@@ -1,7 +1,14 @@
 import "./App.css";
+import NavBar from "./components/Navbar/NavBar";
+import Homepage from "./pages/Homepage";
 
 function App() {
-  return <h1>APP</h1>;
+  return (
+    <>
+      <NavBar />
+      <Homepage />
+    </>
+  );
 }
 
 export default App;

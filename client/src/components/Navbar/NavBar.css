@@ -1,0 +1,30 @@
+.navBar_component {
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menuBurger {
+  height: 30px;
+  width: 28px;
+  position: relative;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.menuBurger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: black;
+}
+
+.menuBurger span:first-child {
+  top: 8px;
+}
+
+.menuBurger span:last-child {
+  bottom: 8px;
+}

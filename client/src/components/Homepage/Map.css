@@ -1,0 +1,18 @@
+.map-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  height: 2.5rem;
+  min-width: 15rem;
+  max-width: 25rem;
+}
+
+.map {
+  height: 55vh;
+  width: 95vw;
+}

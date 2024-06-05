@@ -9,6 +9,13 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        loader: async () => {
+          fetch(`http://localhost:3310/api/`);
+        },
+      },
+    ],
   },
 ]);
 

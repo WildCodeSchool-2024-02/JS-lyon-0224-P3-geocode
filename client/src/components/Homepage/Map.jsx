@@ -17,8 +17,12 @@ const createCustomIcon = () =>
 function Map() {
   return (
     <div className="map-component">
-      <div className="input container">
-        <p>Input</p>
+      <div className="search-container">
+        <input
+          className="input container"
+          type="search"
+          placeholder="Search a city ..."
+        />
       </div>
       <div className="map container">
         <MapContainer

@@ -10,6 +10,8 @@ function StationInfo() {
         <div className="supplementary">
           <div className="address">
             <h3>Address</h3>
+            <h4>City</h4>
+            <h4>ZIP code</h4>
           </div>
           <div className="charger">
             <h3>Charger</h3>

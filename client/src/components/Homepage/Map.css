@@ -12,6 +12,10 @@
   height: 2.5rem;
   min-width: 15rem;
   max-width: 25rem;
+  border: none;
+  font-family: var(--main-font);
+  font-weight: 500;
+  outline-color: var(--dark-bg-color);
 }
 
 .map.container {

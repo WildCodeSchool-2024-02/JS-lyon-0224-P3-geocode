@@ -1,0 +1,23 @@
+.welcome {
+  background: var(--second-gradient);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-color);
+  transition: opacity 1s ease-out;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+.main-content {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.main-content.fade-in {
+  opacity: 1;
+}

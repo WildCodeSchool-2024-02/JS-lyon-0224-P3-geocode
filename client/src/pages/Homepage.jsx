@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import WelcomePage from "../components/Homepage/WelcomePage";
 import "../App.css";
 
-export default function HomePage() {
+export default function Homepage() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [showMain, setShowMain] = useState(false);
 

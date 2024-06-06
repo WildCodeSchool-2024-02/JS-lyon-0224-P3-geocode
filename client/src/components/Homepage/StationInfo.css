@@ -1,0 +1,60 @@
+/* --------MAIN GRID--------- */
+
+.stationComponent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stationInfo {
+  height: 25vh;
+  width: 95vw;
+  padding: 0rem;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.stationInfo.container {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+}
+
+/* -----------COMPONENT GRID----------- */
+
+.station {
+  background-color: var(--primary-color);
+  height: 100%;
+  margin-right: 0.5rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.supplementary {
+  background-color: transparent;
+  height: 100%;
+  display: grid;
+  grid-row: 1fr 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.address {
+  background-color: var(--primary-color);
+  height: 5rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  /* margin-bottom: 1rem; */
+}
+
+.charger {
+  background-color: var(--primary-color);
+  height: 5rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  /* margin-bottom: 1rem; */
+}
+
+.supplementary_buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}

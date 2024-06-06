@@ -7,7 +7,6 @@ function NavBar() {
       <div className="menuBurger">
         <span />
         <span />
-        {/* <span /> */}
       </div>
       <div className="logo">
         <MdElectricCar className="logo" />

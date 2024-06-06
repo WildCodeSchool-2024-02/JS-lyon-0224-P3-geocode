@@ -7,7 +7,7 @@
 }
 
 .stationInfo {
-  height: 26vh;
+  height: 25vh;
   width: 95vw;
   padding: 0rem;
   background-color: transparent;
@@ -32,25 +32,29 @@
 .supplementary {
   background-color: transparent;
   height: 100%;
+  display: grid;
+  grid-row: 1fr 1fr 1fr;
+  gap: 0.5rem;
 }
 
 .address {
   background-color: var(--primary-color);
-  height: 6rem;
+  height: 5rem;
   border-radius: 0.5rem;
   box-shadow: var(--shadow);
-  margin-bottom: 1.5rem;
+  /* margin-bottom: 1rem; */
 }
 
 .charger {
   background-color: var(--primary-color);
-  height: 6rem;
+  height: 5rem;
   border-radius: 0.5rem;
   box-shadow: var(--shadow);
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 }
 
 .supplementary_buttons {
   display: flex;
   justify-content: space-between;
+  align-items: end;
 }

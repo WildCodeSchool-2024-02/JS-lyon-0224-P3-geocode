@@ -55,17 +55,13 @@ p {
   padding: 1rem;
 }
 
-.title {
-  color: var(--title-color);
-}
-
 .button-container {
   display: flex;
   justify-content: center;
 }
 
 .button {
-  width: 6rem;
+  width: 6.5rem;
   height: 2.5rem;
   background: var(--main-gradient);
   border: none;
@@ -75,4 +71,20 @@ p {
 .button p {
   margin: 0;
   color: var(--primary-color);
+}
+
+/* .footer-box {
+  margin-top: 3rem;
+} */
+
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.footer_text {
+  font-size: smaller;
+  font-weight: 300;
+  color: var(--title-color);
 }

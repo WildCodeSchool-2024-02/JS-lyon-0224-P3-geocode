@@ -28,3 +28,8 @@
 .menuBurger span:last-child {
   bottom: 8px;
 }
+
+.logo {
+  height: 2.5rem;
+  width: 3rem;
+}

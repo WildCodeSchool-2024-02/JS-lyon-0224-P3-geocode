@@ -1,20 +1,40 @@
 import "./StationInfo.css";
+import stationPic from "../../assets/image/pngtree-white-electric-vehicle-charging-station-png-image_6574430 1.png";
+import chargerPic from "../../assets/image/ev-plug-t2.svg";
 
 function StationInfo() {
   return (
     <div className="stationComponent">
       <div className="stationInfo container">
         <div className="station">
-          <h3>StationInfo</h3>
+          <div>
+            <img
+              src={stationPic}
+              alt="white-electric-vehicle-charging-station"
+            />
+          </div>
+          <div className="info">
+            {/* here we will use the data for the station */}
+            <h2>
+              <span>12</span>
+            </h2>
+            <h3>spots</h3>
+            <h2>
+              <span>200</span>
+            </h2>
+            <h3>kw/h</h3>
+          </div>
         </div>
         <div className="supplementary">
           <div className="address">
+            {/* here we will use the data for the address */}
             <h3>Address</h3>
             <h4>City</h4>
-            <h4>ZIP code</h4>
           </div>
           <div className="charger">
-            <h3>Charger</h3>
+            {/* here we will use the data for the charger type and we are going to be mapping for the types */}
+            <img src={chargerPic} alt="ev-plug-t2" />
+            <h3>type</h3>
           </div>
           <div className="supplementary_buttons">
             <button type="button" className="button dire">

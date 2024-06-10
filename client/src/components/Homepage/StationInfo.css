@@ -27,8 +27,20 @@
   margin-right: 0.5rem;
   border-radius: 0.5rem;
   box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 2rem;
+}
+.info span {
+  color: var(--accent-color);
+}
 .supplementary {
   background-color: transparent;
   height: 100%;
@@ -43,6 +55,10 @@
   border-radius: 0.5rem;
   box-shadow: var(--shadow);
   font-family: var(--main-font);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .charger {
@@ -50,6 +66,16 @@
   height: 5rem;
   border-radius: 0.5rem;
   box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 1rem;
+}
+.charger > img {
+  height: 3rem;
+  width: 3rem;
+  margin: 1rem;
 }
 
 .supplementary_buttons {

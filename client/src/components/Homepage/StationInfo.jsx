@@ -14,6 +14,7 @@ function StationInfo() {
             />
           </div>
           <div className="info">
+            {/* when we fetch our data here we going to make a logic to show info related to the map */}
             {/* here we will use the data for the station */}
             <h2>
               <span>12</span>
@@ -32,7 +33,7 @@ function StationInfo() {
             <h4>City</h4>
           </div>
           <div className="charger">
-            {/* here we will use the data for the charger type and we are going to be mapping for the types */}
+            {/* here we will use the data for the charger type and we are going to be mapping for the types maybe */}
             <img src={chargerPic} alt="ev-plug-t2" />
             <h3>type</h3>
           </div>

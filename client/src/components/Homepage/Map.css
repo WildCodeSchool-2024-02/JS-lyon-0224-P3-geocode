@@ -22,6 +22,7 @@
   height: 55vh;
   width: 95vw;
   padding: 0.1rem;
+  z-index: 1;
 }
 
 .map {

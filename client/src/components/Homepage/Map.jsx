@@ -1,6 +1,6 @@
 import ReactDOMServer from "react-dom/server";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+// import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "./Map.css";
 import { FaMapMarkerAlt } from "react-icons/fa";
@@ -28,7 +28,7 @@ function Map() {
         <MapContainer
           center={[45.75, 4.83]}
           zoom={13}
-          scrollWheelZoom={false}
+          scrollWheelZoom
           className="map"
         >
           <TileLayer

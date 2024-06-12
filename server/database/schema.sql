@@ -19,8 +19,8 @@ create table cars (
 create table stations (
   id int unsigned primary key auto_increment not null,
   address varchar(255) not null,
-  geo_point_x NUMERIC(20,16),
-  geo_point_y NUMERIC(20,16),
+  geo_x NUMERIC(20,16),
+  geo_y NUMERIC(20,16),
   power NUMERIC(3,1)
 );
 

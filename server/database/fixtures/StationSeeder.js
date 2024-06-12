@@ -20,8 +20,8 @@ class StationSeeder extends AbstractSeeder {
 
       const station = {
         address: row[4],
-        geo_point_x: parseFloat(row[6]),
-        geo_point_y: parseFloat(row[7]),
+        geo_x: parseFloat(row[6]),
+        geo_y: parseFloat(row[7]),
         power: parseFloat(row[10]),
       }
 

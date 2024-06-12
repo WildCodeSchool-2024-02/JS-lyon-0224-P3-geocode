@@ -4,9 +4,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
-import StationInfo from "./components/Homepage/StationInfo";
-import NavBar from "./components/Navbar/NavBar";
-import Map from "./components/Homepage/Map";
+import Homepage from "./pages/Homepage";
 
 const router = createBrowserRouter([
   {
@@ -14,23 +12,15 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: "/",
+        element: <Homepage />,
         loader: async () => {
-          fetch(`http://localhost:3310/api/`);
+          const response = await fetch(`http://localhost:3310/api/stations`);
+          const data = await response.json();
+          return data;
         },
       },
     ],
-  },
-  {
-    path: "/",
-    element: <StationInfo />,
-  },
-  {
-    path: "/",
-    element: <NavBar />,
-  },
-  {
-    path: "/",
-    element: <Map />,
   },
 ]);
 

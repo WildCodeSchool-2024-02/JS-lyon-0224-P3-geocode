@@ -1,6 +1,9 @@
 import "./StationInfo.css";
+import PropTypes from "prop-types";
 
-function StationInfo() {
+function StationInfo({ station }) {
+  const address = station !== null ? station.address : " ";
+
   return (
     <div className="stationComponent">
       <div className="stationInfo container">
@@ -10,8 +13,7 @@ function StationInfo() {
         <div className="supplementary">
           <div className="address">
             <h3>Address</h3>
-            <h4>City</h4>
-            <h4>ZIP code</h4>
+            <p>{address}</p>
           </div>
           <div className="charger">
             <h3>Charger</h3>
@@ -29,5 +31,15 @@ function StationInfo() {
     </div>
   );
 }
+
+StationInfo.propTypes = {
+  station: PropTypes.shape({
+    address: PropTypes.string.isRequired,
+  }),
+};
+
+StationInfo.defaultProps = {
+  station: null,
+};
 
 export default StationInfo;

@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import ReactDOMServer from "react-dom/server";
-import { MapContainer, TileLayer, Marker, } from "react-leaflet";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import L from "leaflet";
 import "./Map.css";
 import { FaMapMarkerAlt } from "react-icons/fa";

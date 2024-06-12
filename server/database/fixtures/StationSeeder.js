@@ -23,6 +23,8 @@ class StationSeeder extends AbstractSeeder {
         geo_x: parseFloat(row[6]),
         geo_y: parseFloat(row[7]),
         power: parseFloat(row[10]),
+        spots: parseFloat(row[8]),
+        type: row[11],
       }
 
       this.insert(station);

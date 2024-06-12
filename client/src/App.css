@@ -13,7 +13,7 @@
   --dark-bg-color: rgba(82, 91, 90, 0.6);
   --primary-color: #f9f9f9;
   --secondary-color: #525b5a;
-  --title-color: #21a89a;
+  --title-color: #1f807b;
   --accent-color: #7cd858;
   --main-gradient: linear-gradient(
     0deg,
@@ -46,6 +46,10 @@ h3,
 p {
   font-family: var(--main-font);
   font-weight: 700;
+}
+
+span {
+  color: var(--title-color);
 }
 
 .container {
@@ -89,4 +93,15 @@ p {
   font-size: smaller;
   font-weight: 300;
   color: var(--title-color);
+}
+
+/*-----------NAV----------------*/
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0%;
+}
+
+a {
+  text-decoration: none;
 }

@@ -76,10 +76,16 @@ p {
   margin: 0;
   color: var(--primary-color);
 }
-
-.footer {
-  width: 100%;
+.footer-box {
+  height: 1rem;
   display: flex;
+  align-items: flex-end;
+}
+.footer-box {
+  height: 2rem;
+  bottom: 0;
+  display: flex;
+  align-items: flex-end;
   justify-content: center;
 }
 

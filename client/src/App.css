@@ -94,6 +94,15 @@ p {
   font-weight: 300;
   color: var(--title-color);
 }
+/*-----------NAV----------------*/
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0%;
+}
+a {
+  text-decoration: none;
+}
 
 @media (min-width: 900px) {
   .home {

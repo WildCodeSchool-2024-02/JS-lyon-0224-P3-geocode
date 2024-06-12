@@ -34,3 +34,10 @@
   width: 30px;
   height: 30px;
 }
+@media (min-width: 900px) {
+  .map.container {
+    height: 70vh;
+    width: 60vw;
+    padding: 0.1rem;
+  }
+}

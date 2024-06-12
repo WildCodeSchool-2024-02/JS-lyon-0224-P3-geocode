@@ -10,7 +10,7 @@
   height: 25vh;
   width: 95vw;
   padding: 0rem;
-  background-color: transparent;
+  background-color: red;
   box-shadow: none;
 }
 
@@ -41,11 +41,12 @@
 .info span {
   color: var(--accent-color);
 }
+
 .supplementary {
   background-color: transparent;
   height: 100%;
   display: grid;
-  grid-row: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   gap: 0.5rem;
 }
 
@@ -82,4 +83,25 @@
   display: flex;
   justify-content: space-between;
   align-items: end;
+}
+
+@media (min-width: 900px) {
+  .stationInfo.container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2rem;
+    width: 40vw;
+    height: 35vh;
+    padding: 4.5rem;
+  }
+
+  .station,
+  .supplementary {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .supplementary {
+    grid-template-rows: 1fr 1fr 1fr;
+  }
 }

@@ -94,3 +94,10 @@ p {
   font-weight: 300;
   color: var(--title-color);
 }
+
+@media (min-width: 900px) {
+  .home {
+    display: flex;
+    flex-direction: row;
+  }
+}

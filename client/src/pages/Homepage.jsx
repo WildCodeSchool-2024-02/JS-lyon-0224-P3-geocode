@@ -3,9 +3,9 @@ import Map from "../components/Homepage/Map";
 
 export default function Homepage() {
   return (
-    <>
+    <div className="home">
       <Map />
       <StationInfo />
-    </>
+    </div>
   );
 }

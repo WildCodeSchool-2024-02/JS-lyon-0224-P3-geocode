@@ -10,9 +10,9 @@ function Navbar() {
   // Function to toggle menu visibility
   const updateMenu = () => {
     setBurgerClass(
-      isMenuClicked ? "burger-bar unclicked" : "burger-bar clicked"
+      isMenuClicked === true ? "burger-bar unclicked" : "burger-bar clicked"
     );
-    setMenuClass(isMenuClicked ? "menu hidden" : "menu visible");
+    setMenuClass(isMenuClicked === true ? "menu hidden" : "menu visible");
     setIsMenuClicked(!isMenuClicked);
   };
 

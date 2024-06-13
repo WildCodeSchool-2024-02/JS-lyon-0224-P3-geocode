@@ -5,6 +5,7 @@ import L from "leaflet";
 import "./Map.css";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import PropTypes from "prop-types";
+import GeoSearch from "./geoSearch";
 
 const createCustomIcon = () =>
   L.divIcon({
@@ -24,13 +25,6 @@ function Map({ setSelectedStation }) {
 
   return (
     <div className="map-component">
-      <div className="search-container">
-        <input
-          className="input container"
-          type="search"
-          placeholder="Search a city ..."
-        />
-      </div>
       <div className="map container">
         <MapContainer
           center={[45.75, 4.83]}
@@ -42,6 +36,7 @@ function Map({ setSelectedStation }) {
             attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           />
+          <GeoSearch />
           {stations.map((station) => (
             <Marker
               key={station.id}

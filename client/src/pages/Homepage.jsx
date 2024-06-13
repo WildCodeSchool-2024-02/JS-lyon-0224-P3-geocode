@@ -6,9 +6,9 @@ export default function Homepage() {
   const [selectedStation, setSelectedStation] = useState(null);
 
   return (
-    <>
+    <div className="home">
       <Map setSelectedStation={setSelectedStation} />
       <StationInfo station={selectedStation} />
-    </>
+    </div>
   );
 }

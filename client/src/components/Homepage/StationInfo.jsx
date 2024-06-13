@@ -1,8 +1,14 @@
 import "./StationInfo.css";
+import PropTypes from "prop-types";
 import stationPic from "../../assets/image/pngtree-white-electric-vehicle-charging-station-png-image_6574430 1.png";
 import chargerPic from "../../assets/image/ev-plug-t2.svg";
 
-function StationInfo() {
+function StationInfo({ station }) {
+  const address = station !== null ? station.address : "";
+  const power = station !== null ? station.power : "";
+  const spots = station !== null ? station.spots : "";
+  const type = station !== null ? station.type : "";
+
   return (
     <div className="stationComponent">
       <div className="stationInfo container">
@@ -17,25 +23,29 @@ function StationInfo() {
             {/* when we fetch our data here we going to make a logic to show info related to the map */}
             {/* here we will use the data for the station */}
             <h2>
-              <span>12</span>
+              <span>{spots}</span>
             </h2>
-            <h3>spots</h3>
+            <p>Spots</p>
             <h2>
-              <span>200</span>
+              <span>{power}</span>
             </h2>
-            <h3>kw/h</h3>
+            <p>kw/h</p>
           </div>
         </div>
         <div className="supplementary">
           <div className="address">
             {/* here we will use the data for the address */}
-            <h3>Address</h3>
-            <h4>City</h4>
+            <h3>
+              <span>Address</span>
+            </h3>
+            <p>{address}</p>
           </div>
           <div className="charger">
             {/* here we will use the data for the charger type and we are going to be mapping for the types maybe */}
             <img src={chargerPic} alt="ev-plug-t2" />
-            <h3>type</h3>
+            <h3>
+              <span>{type}</span>
+            </h3>
           </div>
           <div className="supplementary_buttons">
             <button type="button" className="button dire">
@@ -50,5 +60,18 @@ function StationInfo() {
     </div>
   );
 }
+
+StationInfo.propTypes = {
+  station: PropTypes.shape({
+    address: PropTypes.string,
+    power: PropTypes.number,
+    spots: PropTypes.number,
+    type: PropTypes.string,
+  }),
+};
+
+StationInfo.defaultProps = {
+  station: null,
+};
 
 export default StationInfo;

@@ -7,7 +7,7 @@ function StationInfo({ station }) {
   const address = station !== null ? station.address : "";
   const power = station !== null ? station.power : "";
   const spots = station !== null ? station.spots : "";
-  const type = station !== null ? station.type : " ";
+  const type = station !== null ? station.type : "";
 
   return (
     <div className="stationComponent">
@@ -63,10 +63,10 @@ function StationInfo({ station }) {
 
 StationInfo.propTypes = {
   station: PropTypes.shape({
-    address: PropTypes.string.isRequired,
-    power: PropTypes.number.isRequired,
-    spots: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
+    address: PropTypes.string,
+    power: PropTypes.number,
+    spots: PropTypes.number,
+    type: PropTypes.string,
   }),
 };
 

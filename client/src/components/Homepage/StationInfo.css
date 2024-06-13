@@ -3,7 +3,10 @@
 .stationComponent {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 27vh;
 }
 
 .stationInfo {
@@ -17,6 +20,7 @@
 .stationInfo.container {
   display: grid;
   grid-template-columns: 1fr 1.6fr;
+  gap: 1rem;
 }
 
 /* -----------COMPONENT GRID----------- */
@@ -27,13 +31,27 @@
   margin-right: 0.5rem;
   border-radius: 0.5rem;
   box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 2rem;
+}
+
+.info span {
+  color: var(--accent-color);
 }
 
 .supplementary {
   background-color: transparent;
   height: 100%;
   display: grid;
-  grid-row: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   gap: 0.5rem;
 }
 
@@ -43,6 +61,10 @@
   border-radius: 0.5rem;
   box-shadow: var(--shadow);
   font-family: var(--main-font);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .charger {
@@ -50,10 +72,62 @@
   height: 5rem;
   border-radius: 0.5rem;
   box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+.charger > img {
+  height: 3rem;
+  width: 3rem;
+  margin: 1rem;
 }
 
 .supplementary_buttons {
   display: flex;
   justify-content: space-between;
   align-items: end;
+}
+
+@media (min-width: 900px) {
+  .stationComponent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 12rem;
+    height: 40vh;
+    margin-top: 5rem;
+  }
+
+  .stationInfo.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2rem;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .station,
+  .supplementary {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .station {
+    height: 35vh;
+  }
+
+  .supplementary {
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .supplementary_buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 2.2rem;
+  }
 }

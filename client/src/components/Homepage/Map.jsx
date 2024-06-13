@@ -1,9 +1,11 @@
+import { useLoaderData } from "react-router-dom";
 import ReactDOMServer from "react-dom/server";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import L from "leaflet";
 import "./Map.css";
 import { FaMapMarkerAlt } from "react-icons/fa";
+import PropTypes from "prop-types";
+import GeoSearch from "./geoSearch";
 
 const createCustomIcon = () =>
   L.divIcon({
@@ -14,36 +16,45 @@ const createCustomIcon = () =>
     iconAnchor: [12, 24],
   });
 
-function Map() {
+function Map({ setSelectedStation }) {
+  const stations = useLoaderData();
+
+  const handleStationClick = (station) => {
+    setSelectedStation(station);
+  };
+
   return (
     <div className="map-component">
-      <div className="search-container">
-        <input
-          className="input container"
-          type="search"
-          placeholder="Search a city ..."
-        />
-      </div>
       <div className="map container">
         <MapContainer
           center={[45.75, 4.83]}
           zoom={13}
-          scrollWheelZoom={false}
+          scrollWheelZoom
           className="map"
         >
           <TileLayer
             attribution='&copy; <a href="https://carto.com/attributions">CARTO</a>'
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
           />
-          <Marker position={[45.757198, 4.8312188]} icon={createCustomIcon()}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
+          <GeoSearch />
+          {stations.map((station) => (
+            <Marker
+              key={station.id}
+              position={[station.geo_y, station.geo_x]}
+              icon={createCustomIcon()}
+              eventHandlers={{
+                click: () => handleStationClick(station),
+              }}
+            />
+          ))}
         </MapContainer>
       </div>
     </div>
   );
 }
+
+Map.propTypes = {
+  setSelectedStation: PropTypes.func.isRequired,
+};
 
 export default Map;

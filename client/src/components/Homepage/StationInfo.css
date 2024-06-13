@@ -3,20 +3,26 @@
 .stationComponent {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 27vh; /* Use full viewport height to center vertically */
 }
 
 .stationInfo {
   height: 25vh;
   width: 95vw;
   padding: 0rem;
-  background-color: red;
+  background-color: transparent;
   box-shadow: none;
 }
 
 .stationInfo.container {
   display: grid;
   grid-template-columns: 1fr 1.6fr;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
 }
 
 /* -----------COMPONENT GRID----------- */
@@ -86,13 +92,23 @@
 }
 
 @media (min-width: 900px) {
+  .stationComponent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 12rem;
+    height: 40vh;
+    margin-top: 5rem;
+  }
+
   .stationInfo.container {
+    display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, 1fr);
     gap: 2rem;
-    width: 40vw;
-    height: 35vh;
-    padding: 4.5rem;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
   }
 
   .station,
@@ -100,8 +116,16 @@
     width: 100%;
     margin-right: 0;
   }
+  .station {
+    height: 28vh;
+  }
 
   .supplementary {
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+  .supplementary_buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 2.2rem;
   }
 }

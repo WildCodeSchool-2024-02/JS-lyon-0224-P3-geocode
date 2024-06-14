@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 27vh;
+  height: 25vh;
 }
 
 .stationInfo {
@@ -41,10 +41,6 @@
   flex-direction: column;
   align-items: center;
   line-height: 2rem;
-}
-
-.info span {
-  color: var(--accent-color);
 }
 
 .supplementary {
@@ -94,40 +90,46 @@
 @media (min-width: 900px) {
   .stationComponent {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 12rem;
+    justify-content: unset;
+  }
+
+  .station {
+    margin: 0;
     height: 40vh;
-    margin-top: 5rem;
+  }
+
+  .stationInfo {
+    width: 25vw;
+    height: 85vh;
+    display: flex;
+    flex-direction: row;
   }
 
   .stationInfo.container {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, 1fr);
-    gap: 2rem;
-    width: 30%;
-    justify-content: center;
-    align-items: center;
+    gap: 1.5rem;
   }
 
-  .station,
-  .supplementary {
-    width: 100%;
-    margin-right: 0;
-  }
-
-  .station {
-    height: 35vh;
-  }
-
-  .supplementary {
-    grid-template-rows: 1fr 1fr;
-  }
-
-  .supplementary_buttons {
+  .address {
+    height: 7rem;
     display: flex;
-    justify-content: space-between;
-    padding: 2.2rem;
+    justify-content: start;
+    align-items: start;
+    padding: 0.5rem;
+  }
+
+  .charger {
+    height: 7rem;
+  }
+
+  .charger > img {
+    margin: 0 1rem 0 0;
+  }
+
+  .supplementary {
+    gap: 1rem;
+    height: 40vh;
+    grid-template-columns: 1fr;
   }
 }

@@ -27,6 +27,14 @@ class StationSeeder extends AbstractSeeder {
         type: row[11],
       }
 
+      // Some of the data had empty fields, so we needed to filter it.
+
+      // eslint-disable-next-line no-restricted-globals
+      if (isNaN(station.geo_x) === true || isNaN(station.geo_y) === true || isNaN(station.power) === true || isNaN(station.spots) === true) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
       this.insert(station);
     }
   }

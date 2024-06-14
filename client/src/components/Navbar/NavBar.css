@@ -4,15 +4,26 @@ nav {
   width: 100%;
   height: 3em;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   /* Center items vertically */
-  padding-left: 1em;
+  padding-inline: 1em;
   position: relative;
+  margin: 1rem 0;
   /* Ensure nav stays relative for menu positioning */
 }
 
+.logo-box {
+  display: flex;
+}
+
+.logo {
+  width: 5rem;
+  height: 3rem;
+}
+
 .burger-menu {
+  /* position: fixed; */
   height: 2rem;
   width: 3rem;
   display: flex;
@@ -39,8 +50,8 @@ nav {
 .menu {
   width: 100%;
   height: 100vh;
+  position: fixed;
   background-color: var(--primary-color);
-  position: absolute;
   top: 0;
   left: 0;
   /* Ensures menu starts from the left edge */
@@ -49,7 +60,8 @@ nav {
   /* Smoother animation */
   transform: translateX(-100%);
   /* Hidden state: translate the menu off-screen */
-  overflow-y: auto;
+  /* overflow-y: auto; */
+  margin: 0;
 }
 
 /* Show menu when it's visible */

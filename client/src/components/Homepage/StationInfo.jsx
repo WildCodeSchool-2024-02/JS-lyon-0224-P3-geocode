@@ -42,7 +42,7 @@ function StationInfo({ station }) {
           </div>
           <div className="charger">
             {/* here we will use the data for the charger type and we are going to be mapping for the types maybe */}
-            <img src={chargerPic} alt="ev-plug-t2" />
+            <img src={chargerPic} alt="charger type icon" />
             <h3>
               <span>{type}</span>
             </h3>

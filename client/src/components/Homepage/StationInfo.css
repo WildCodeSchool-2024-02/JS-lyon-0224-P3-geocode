@@ -6,11 +6,10 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 25vh;
 }
 
 .stationInfo {
-  height: 25vh;
+  height: fit-content;
   width: 95vw;
   padding: 0rem;
   background-color: transparent;
@@ -20,7 +19,6 @@
 .stationInfo.container {
   display: grid;
   grid-template-columns: 1fr 1.6fr;
-  gap: 1rem;
 }
 
 /* -----------COMPONENT GRID----------- */
@@ -44,8 +42,6 @@
 }
 
 .supplementary {
-  background-color: transparent;
-  height: 100%;
   display: grid;
   grid-template-rows: 1fr 1fr 0.5fr;
   gap: 0.5rem;
@@ -88,6 +84,10 @@
 }
 
 @media (min-width: 450px) {
+  .container {
+    align-items: unset;
+  }
+
   .supplementary_buttons {
     justify-content: space-around;
   }

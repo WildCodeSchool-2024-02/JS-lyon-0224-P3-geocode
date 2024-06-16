@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
 import Homepage from "./pages/Homepage";
+import Profilepage from "./pages/Profilepage";
 
 const stationApi = import.meta.env.VITE_API_URL;
 
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
           const data = await response.json();
           return data;
         },
+      },
+      {
+        path: "/profile",
+        element: <Profilepage />,
       },
     ],
   },

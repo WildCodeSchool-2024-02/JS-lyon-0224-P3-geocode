@@ -76,7 +76,7 @@ span {
   border-radius: 0.5rem;
 }
 
-.button p {
+.button h3 {
   margin: 0;
   color: var(--primary-color);
 }

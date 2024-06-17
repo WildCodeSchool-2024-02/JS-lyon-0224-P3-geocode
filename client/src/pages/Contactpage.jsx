@@ -1,4 +1,4 @@
-export default function Contactpage() {
+export default function ContactPage() {
     return (
         <div>
             Contact

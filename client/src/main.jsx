@@ -4,12 +4,12 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
-import Homepage from "./pages/Homepage";
+import Homepage from "./pages/HomePage";
 
 // page components
-import Aboutuspage from "./pages/Aboutuspage";
-import Contactpage from "./pages/Contactpage";
-import Profilepage from "./pages/Profilepage";
+import Aboutuspage from "./pages/AboutUsPage";
+import Contactpage from "./pages/ContactPage";
+import Profilepage from "./pages/ProfilePage";
 
 const stationApi = import.meta.env.VITE_API_URL;
 

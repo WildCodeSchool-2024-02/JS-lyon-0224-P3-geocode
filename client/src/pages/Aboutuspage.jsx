@@ -1,4 +1,4 @@
-export default function Aboutuspage() {
+export default function AboutusPage() {
     return (
         <div>
             About us

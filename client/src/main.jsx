@@ -11,7 +11,7 @@ import Aboutuspage from "./pages/Aboutuspage";
 import Contactpage from "./pages/Contactpage";
 import Profilepage from "./pages/Profilepage";
 
-
+const stationApi = import.meta.env.VITE_API_URL;
 
 const router = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         path: "/Home",
         element: <Homepage />,
         loader: async () => {
-          const response = await fetch(`http://localhost:3310/api/stations`);
+          const response = await fetch(`${stationApi}/api/stations`);
           const data = await response.json();
           return data;
         },

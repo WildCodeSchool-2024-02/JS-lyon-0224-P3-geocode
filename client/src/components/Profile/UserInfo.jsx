@@ -1,4 +1,5 @@
 import { FaRegUserCircle } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import "./UserInfo.css";
 
 export default function UserInfo() {
@@ -11,9 +12,11 @@ export default function UserInfo() {
         </h2>
         <h3>Email</h3>
         <h3>City</h3>
-        <button type="button" className="button">
-          <h3>edit</h3>
-        </button>
+        <Link to="/profile/edit">
+          <button type="button" className="button">
+            <h3>edit</h3>
+          </button>
+        </Link>
       </div>
     </div>
   );

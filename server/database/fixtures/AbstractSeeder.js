@@ -44,8 +44,7 @@ class AbstractSeeder {
     const sql = `insert into ${this.table}(${fields}) values (${placeholders})`;
 
     // Perform the query and if applicable store the insert id given the ref name
-    // console.log(sql);
-    // console.log(Object.values(values));
+
 
 
     const [result] = await database.query(sql, Object.values(values));

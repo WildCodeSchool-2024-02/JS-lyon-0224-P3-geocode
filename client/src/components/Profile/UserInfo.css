@@ -18,3 +18,18 @@
   width: 6rem;
   height: 6rem;
 }
+
+@media (min-width: 900px) {
+  .profileComponent {
+    margin: 0;
+  }
+
+  .profileInfo {
+    width: 45vw;
+    height: 70vh;
+  }
+
+  h2 {
+    display: none;
+  }
+}

@@ -111,4 +111,11 @@ a {
     display: flex;
     flex-direction: row;
   }
+
+  .profile-component {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
 }

@@ -22,3 +22,10 @@
 .img {
   width: 200px;
 }
+
+@media (min-width: 900px) {
+  .carInfo {
+    width: 45vw;
+    height: 70vh;
+  }
+}

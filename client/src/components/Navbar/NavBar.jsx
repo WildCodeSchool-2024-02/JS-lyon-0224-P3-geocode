@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./NavBar.css";
-import Logo from "../../assets/image/geocode.png";
 
 function Navbar() {
   // State for burger menu classes
@@ -56,9 +55,7 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="logo-box">
-          <img src={Logo} className="logo" alt="site logo" />
-        </div>
+        <img src="" className="logo" alt="site logo" />
       </nav>
     </div>
   );

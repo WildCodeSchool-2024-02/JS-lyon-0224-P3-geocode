@@ -11,7 +11,7 @@ import AboutUsPage from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
 import ProfilePage from "./pages/ProfilePage";
 
-const stationApi = import.meta.env.VITE_API_URL;
+const Api = import.meta.env.VITE_API_URL;
 
 const router = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
         loader: async () => {
-          const response = await fetch(`${stationApi}/api/stations`);
+          const response = await fetch(`${Api}/api/stations`);
           const data = await response.json();
           return data;
         },
@@ -36,8 +36,16 @@ const router = createBrowserRouter([
         element: <ContactPage />,
       },
       {
-        path: "/Profile",
+        path: "/Profile/:id",
         element: <ProfilePage />,
+        loader: async ({ params }) => {
+          const response = await fetch(`${Api}/api/users/${params.id}`);
+          const data = await response.json();
+          if (!response.ok) {
+            throw new Error("Failed to fetch profile data");
+          }
+          return data;
+        },
       },
     ],
   },

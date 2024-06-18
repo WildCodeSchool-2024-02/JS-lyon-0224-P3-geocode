@@ -1,7 +1,11 @@
+import { useLoaderData } from "react-router-dom";
 import "./UserCars.css";
+
 import porsche from "../../assets/image/porsche.jpeg";
 
 export default function UserCars() {
+  const car = useLoaderData();
+  const { brand, model, type } = car;
   return (
     <div className="userCars">
       <h2>
@@ -9,12 +13,12 @@ export default function UserCars() {
       </h2>
       <div className="carInfo container">
         <h3>
-          <span>Porsche</span> Taycan
+          <span>{brand}</span> {model}
         </h3>
         <img src={porsche} alt="" className="img" />
         <p>charging port</p>
         <p>
-          <span>type 2</span>
+          <span>{type}</span>
         </p>
       </div>
     </div>

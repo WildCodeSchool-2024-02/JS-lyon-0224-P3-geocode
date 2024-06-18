@@ -55,6 +55,7 @@ function Navbar() {
             </li>
           </ul>
         </div>
+        <img src="" className="logo" alt="site logo" />
       </nav>
     </div>
   );

@@ -4,9 +4,9 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
-import HomePage from "./pages/HomePage";
 
 // page components
+import HomePage from "./pages/HomePage";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
 import ProfilePage from "./pages/ProfilePage";
@@ -42,8 +42,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
-// test
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

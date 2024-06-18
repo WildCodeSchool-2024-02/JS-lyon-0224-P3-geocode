@@ -1,11 +1,13 @@
-import { FaRegUserCircle } from "react-icons/fa";
+import Image from "../../assets/image/porsche.jpeg";
 import "./UserInfo.css";
 
 export default function UserInfo() {
   return (
     <div className="profileComponent">
       <div className="profileInfo container">
-        <FaRegUserCircle className="profileLogo" />
+        <div className="photoComponent">
+          <img src={Image} alt="" className="profilePhoto" />
+        </div>
         <h2>
           <span>Jeff Jefferson</span>
         </h2>

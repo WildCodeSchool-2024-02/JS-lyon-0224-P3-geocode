@@ -4,6 +4,7 @@ create table user (
   lastname varchar(80) not null,
   email varchar(255) not null,
   city varchar(80),
+  image text,
   admin boolean not null
 );
 
@@ -26,3 +27,7 @@ create table stations (
   type varchar(255) not null
 );
 
+create table socket (
+  id int unsigned primary key auto_increment not null,
+  type varchar(155) not null
+);

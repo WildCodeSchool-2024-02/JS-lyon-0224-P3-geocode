@@ -9,7 +9,7 @@ import App from "./App";
 import HomePage from "./pages/HomePage";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
-import ProfilePage from "./pages/ProfilePageTEMP";
+import ProfilePage from "./pages/ProfilePage";
 
 const stationApi = import.meta.env.VITE_API_URL;
 

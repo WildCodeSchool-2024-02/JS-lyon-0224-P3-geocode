@@ -32,9 +32,24 @@ const read = async (req, res, next) => {
     next(err);
   }
 };
+// New action to fetch user with cars
+const readWithCars = async (req, res, next) => {
+  try {
+    const userWithCars = await tables.user.readWithCars(req.params.id);
+
+    if (userWithCars.length === 0) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(userWithCars);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
 
 // Ready to export the controller functions
 module.exports = {
   browse,
   read,
+  readWithCars,
 };

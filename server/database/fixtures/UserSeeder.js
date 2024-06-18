@@ -13,10 +13,11 @@ class UserSeeder extends AbstractSeeder {
     for (let i = 0; i < 20; i += 1) {
       // Generate fake user data
       const fakeUser = {
-        firstname: this.faker.lorem.word(), // Gnerate a fake name
-        lastname: this.faker.lorem.word(), // Generate a fake name
+        firstname: this.faker.person.firstName(), // Gnerate a fake name
+        lastname: this.faker.person.lastName(), // Generate a fake name
         email: this.faker.internet.email(), // Generate a fake email using faker library
         city: this.faker.location.city("FR"),
+        image: this.faker.image.avatarLegacy(), // Generate random image
         admin: this.faker.datatype.boolean(), // Generate a random boolean value (true or false)
         refName: `user_${i}`,
       };

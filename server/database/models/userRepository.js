@@ -28,12 +28,16 @@ class userRepository extends AbstractRepository {
     return rows;
   }
 
-  async readAllWithCars() {
-    const [rows] = await this.database.query(`
+  async readWithCars(id) {
+    const [rows] = await this.database.query(
+      `
       SELECT u.*, c.*
       FROM ${this.table} u
-      LEFT JOIN car c ON u.id = c.user_id
-    `);
+      LEFT JOIN cars c ON u.id = c.user_id
+      WHERE u.id = ?
+    `,
+      [id]
+    );
     return rows;
   }
 }

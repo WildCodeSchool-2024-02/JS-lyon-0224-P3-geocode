@@ -27,3 +27,7 @@ create table stations (
   type varchar(255) not null
 );
 
+create table socket (
+  id int unsigned primary key auto_increment not null,
+  type varchar(155) not null
+);

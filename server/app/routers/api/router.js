@@ -18,6 +18,10 @@ const stationsRouter = require("./stations/router");
 
 router.use("/stations", stationsRouter);
 
+const socketRouter = require("./socket/router");
+
+router.use("/socket", socketRouter);
+
 /* ************************************************************************* */
 
 module.exports = router;

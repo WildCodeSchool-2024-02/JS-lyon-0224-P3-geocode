@@ -25,6 +25,7 @@ class UserSeeder extends AbstractSeeder {
       // Insert the fakeUser data into the 'user' table
       this.insert(fakeUser); // insert into user(email, password) values (?, ?)
     }
+    return Promise.all(this.promises);
   }
 }
 

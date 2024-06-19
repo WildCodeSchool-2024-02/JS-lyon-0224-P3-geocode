@@ -40,7 +40,22 @@ const readWithCars = async (req, res, next) => {
     if (userWithCars.length === 0) {
       res.sendStatus(404);
     } else {
-      res.status(200).json(userWithCars);
+      const user = {
+        id: userWithCars[0].id,
+        firstname: userWithCars[0].firstname,
+        lastname: userWithCars[0].lastname,
+        email: userWithCars[0].email,
+        city: userWithCars[0].city,
+        image: userWithCars[0].image,
+        admin: userWithCars[0].admin,
+        cars: userWithCars.map((car) => ({
+          id: car.car_id,
+          brand: car.brand,
+          model: car.model,
+          socket: car.socket,
+        })),
+      };
+      res.status(200).json(user);
     }
   } catch (err) {
     next(err);

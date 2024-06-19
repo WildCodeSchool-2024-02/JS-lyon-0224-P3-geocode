@@ -31,7 +31,7 @@ class userRepository extends AbstractRepository {
   async readWithCars(id) {
     const [rows] = await this.database.query(
       `
-      SELECT u.*, c.*
+      SELECT u.*, c.id as car_id, c.brand, c.model, c.socket
       FROM ${this.table} u
       LEFT JOIN cars c ON u.id = c.user_id
       WHERE u.id = ?

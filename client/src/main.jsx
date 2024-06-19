@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
 import ProfilePage from "./pages/ProfilePage";
+import SignUpForm from "./pages/SignUp";
 
 const stationApi = import.meta.env.VITE_API_URL;
 
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
       {
         path: "/Profile",
         element: <ProfilePage />,
+      },
+      {
+        path: "/signup",
+        element: <SignUpForm />,
+        
       },
     ],
   },

@@ -15,7 +15,7 @@ const {
 // Route to get a list of items
 router.get("/", browse);
 // Route to add a new user
-router.post("/", add);
+router.post("/add", add);
 /* ************************************************************************* */
 
 module.exports = router;

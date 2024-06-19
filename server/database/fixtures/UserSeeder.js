@@ -10,7 +10,7 @@ class UserSeeder extends AbstractSeeder {
 
   run() {
     // Generate and insert fake data into the 'user' table
-    for (let i = 0; i < 20; i += 1) {
+    for (let i = 0; i < 25; i += 1) {
       // Generate fake user data
       const fakeUser = {
         firstname: this.faker.lorem.word(), // Gnerate a fake name

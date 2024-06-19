@@ -29,10 +29,10 @@ class StationSeeder extends AbstractSeeder {
       // Some of the data had empty fields, so we needed to filter it.
 
       if (
-        !Number.isNaN(station.geo_x) &&
-        !Number.isNaN(station.geo_y) &&
-        !Number.isNaN(station.power) &&
-        !Number.isNaN(station.spots)
+        !Number.isNaN(station.geo_x) === true ||
+        !Number.isNaN(station.geo_y) === true ||
+        !Number.isNaN(station.power) === true ||
+        !Number.isNaN(station.spots) === true
       )
         this.insert(station);
     }

@@ -1,10 +1,10 @@
+import propTypes from "prop-types";
 import { FaRegUserCircle } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
 import "./UserInfo.css";
 
-export default function UserInfo() {
-  const user = useLoaderData();
+export default function UserInfo({ user }) {
   const { firstname, lastname, email, city, image } = user;
+
   return (
     <div className="profileComponent">
       <div className="profileInfo container">
@@ -23,3 +23,13 @@ export default function UserInfo() {
     </div>
   );
 }
+
+UserInfo.propTypes = {
+  user: propTypes.shape({
+    firstname: propTypes.string.isRequired,
+    lastname: propTypes.string.isRequired,
+    email: propTypes.string.isRequired,
+    city: propTypes.string.isRequired,
+    image: propTypes.string,
+  }).isRequired,
+};

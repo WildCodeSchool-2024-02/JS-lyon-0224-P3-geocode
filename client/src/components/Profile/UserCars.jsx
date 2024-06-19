@@ -1,26 +1,39 @@
-import { useLoaderData } from "react-router-dom";
+import propTypes from "prop-types";
 import "./UserCars.css";
 
 import porsche from "../../assets/image/porsche.jpeg";
 
-export default function UserCars() {
-  const car = useLoaderData();
-  const { brand, model, type } = car;
+export default function UserCars({ cars }) {
+  if (!cars || cars.length === 0) {
+    return <div className="no-cars">No cars found.</div>;
+  }
+
   return (
-    <div className="userCars">
-      <h2>
-        <span>My cars</span>
-      </h2>
-      <div className="carInfo container">
-        <h3>
-          <span>{brand}</span> {model}
-        </h3>
-        <img src={porsche} alt="" className="img" />
-        <p>charging port</p>
-        <p>
-          <span>{type}</span>
-        </p>
-      </div>
+    <div className="user-cars container">
+      <h3>User's Cars:</h3>
+      <ul>
+        {cars.map((car) => (
+          <li key={car.id}>
+            <h4>
+              {car.brand} {car.model}
+            </h4>
+            <img src={porsche} alt="porsche" className="img" />
+
+            <p>Socket: {car.socket}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
+
+UserCars.propTypes = {
+  cars: propTypes.arrayOf(
+    propTypes.shape({
+      id: propTypes.string.isRequired,
+      brand: propTypes.string.isRequired,
+      model: propTypes.string.isRequired,
+      socket: propTypes.string.isRequired,
+    })
+  ).isRequired,
+};

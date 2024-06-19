@@ -27,7 +27,12 @@ class StationSeeder extends AbstractSeeder {
         type: row[11],
       }
 
-      this.insert(station);
+      // Some of the data had empty fields, so we needed to filter it.
+
+
+      if (!Number.isNaN(station.geo_x) && !Number.isNaN(station.geo_y) && !Number.isNaN(station.power) && !Number.isNaN(station.spots))
+
+        this.insert(station);
     }
   }
 }

@@ -5,10 +5,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
 
-import Homepage from "./pages/Homepage";
-
-
-
 // page components
 import HomePage from "./pages/HomePage";
 import AboutUsPage from "./pages/AboutUsPage";
@@ -33,10 +29,10 @@ const router = createBrowserRouter([
         },
       },
       {
-
         path: "/signup",
         element: <SignUp />,
-        },
+      },
+      {
         path: "/About-us",
         element: <AboutUsPage />,
       },
@@ -61,7 +57,6 @@ const router = createBrowserRouter([
           // Rethrow the error to be handled by the caller
           throw error;
         },
-
       },
     ],
   },

@@ -4,6 +4,7 @@ create table user (
   lastname varchar(80) not null,
   email varchar(255) not null,
   city varchar(80),
+  image text,
   admin boolean not null
 );
 

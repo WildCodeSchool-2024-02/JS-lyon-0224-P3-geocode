@@ -14,6 +14,7 @@ class SocketSeeder extends AbstractSeeder {
       { type: "Type5" },
     ];
 
+
     socketTypes.forEach(async (socket) => {
       await this.insert(socket);
     });

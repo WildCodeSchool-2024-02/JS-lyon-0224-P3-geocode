@@ -211,7 +211,7 @@ function SignUp() {
           )}
         </div>
         <button className="button" id="signupbut" type="submit">
-          <h3>Sign Up</h3>
+          <h3>Submit</h3>
         </button>
       </div>
     </Form>

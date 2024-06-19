@@ -12,8 +12,8 @@ class SocketRepository extends AbstractRepository {
   async create(socket) {
     // Execute the SQL INSERT query to add a new socket to the "socket" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (title, socket_id) values (?, ?)`,
-      [socket.title, socket.socket_id]
+      `insert into ${this.table} (type, id) values (?, ?)`,
+      [socket.type, socket.id]
     );
 
     // Return the ID of the newly inserted socket

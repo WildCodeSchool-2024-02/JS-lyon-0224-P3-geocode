@@ -36,7 +36,7 @@ export default function UserCars({ cars }) {
 UserCars.propTypes = {
   cars: propTypes.arrayOf(
     propTypes.shape({
-      id: propTypes.string.isRequired,
+      id: propTypes.number.isRequired,
       brand: propTypes.string.isRequired,
       model: propTypes.string.isRequired,
       socket: propTypes.string.isRequired,

@@ -46,6 +46,12 @@ const router = createBrowserRouter([
           const data = await response.json();
           return data;
         },
+        catch(error) {
+          // Log the error for debugging purposes
+          console.error("Error fetching profile data:", error);
+          // Rethrow the error to be handled by the caller
+          throw error;
+        },
       },
     ],
   },

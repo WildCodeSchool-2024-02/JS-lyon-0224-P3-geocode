@@ -5,7 +5,7 @@ import porsche from "../../assets/image/porsche.jpeg";
 
 export default function UserCars({ cars }) {
   if (!cars || cars.length === 0) {
-    return <div className="no-cars">No cars found.</div>;
+    return <div className="no-cars container">No cars found.</div>;
   }
 
   return (

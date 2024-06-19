@@ -1,6 +1,6 @@
-const fs = require('fs');
+const fs = require("fs");
 
-const Papa = require('papaparse');
+const Papa = require("papaparse");
 
 const AbstractSeeder = require("./AbstractSeeder");
 
@@ -11,9 +11,8 @@ class StationSeeder extends AbstractSeeder {
   }
 
   run() {
-    const csvFile = fs.readFileSync('public/assets/stations.csv', 'utf8');
-    const csv = Papa.parse(csvFile)
-
+    const csvFile = fs.readFileSync("public/assets/stations.csv", "utf8");
+    const csv = Papa.parse(csvFile);
 
     for (let i = 1; i < csv.data.length; i += 1) {
       const row = csv.data[i];
@@ -25,13 +24,16 @@ class StationSeeder extends AbstractSeeder {
         power: parseFloat(row[10]),
         spots: parseFloat(row[8]),
         type: row[11],
-      }
+      };
 
       // Some of the data had empty fields, so we needed to filter it.
 
-
-      if (!Number.isNaN(station.geo_x) && !Number.isNaN(station.geo_y) && !Number.isNaN(station.power) && !Number.isNaN(station.spots))
-
+      if (
+        !Number.isNaN(station.geo_x) &&
+        !Number.isNaN(station.geo_y) &&
+        !Number.isNaN(station.power) &&
+        !Number.isNaN(station.spots)
+      )
         this.insert(station);
     }
   }

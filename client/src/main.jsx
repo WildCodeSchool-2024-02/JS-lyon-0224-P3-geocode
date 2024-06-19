@@ -4,7 +4,12 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
-import Homepage from "./pages/Homepage";
+
+// page components
+import HomePage from "./pages/HomePage";
+import AboutUsPage from "./pages/AboutUsPage";
+import ContactPage from "./pages/ContactPage";
+import ProfilePage from "./pages/ProfilePage";
 
 const stationApi = import.meta.env.VITE_API_URL;
 
@@ -15,12 +20,24 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Homepage />,
+        element: <HomePage />,
         loader: async () => {
           const response = await fetch(`${stationApi}/api/stations`);
           const data = await response.json();
           return data;
         },
+      },
+      {
+        path: "/About-us",
+        element: <AboutUsPage />,
+      },
+      {
+        path: "/Contact",
+        element: <ContactPage />,
+      },
+      {
+        path: "/Profile",
+        element: <ProfilePage />,
       },
     ],
   },

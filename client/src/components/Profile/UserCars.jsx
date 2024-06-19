@@ -5,24 +5,30 @@ import porsche from "../../assets/image/porsche.jpeg";
 
 export default function UserCars({ cars }) {
   if (!cars || cars.length === 0) {
-    return <div className="no-cars">No cars found.</div>;
+    return <div className="no-cars container">No cars found.</div>;
   }
 
   return (
-    <div className="user-cars container">
-      <h3>User's Cars:</h3>
-      <ul>
-        {cars.map((car) => (
-          <li key={car.id}>
-            <h4>
-              {car.brand} {car.model}
-            </h4>
-            <img src={porsche} alt="porsche" className="img" />
+    <div className="userCars">
+      <h2>
+        <span>My Cars:</span>
+      </h2>
+      <div className="carInfo container">
+        <ul>
+          {cars.map((car) => (
+            <li key={car.id}>
+              <h3>
+                <span>{car.brand}</span> {car.model}
+              </h3>
+              <img src={porsche} alt="porsche" className="img" />
 
-            <p>Socket: {car.socket}</p>
-          </li>
-        ))}
-      </ul>
+              <p>
+                <span>Socket:</span> {car.socket}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

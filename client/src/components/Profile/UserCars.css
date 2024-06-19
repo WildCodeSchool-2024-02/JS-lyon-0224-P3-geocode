@@ -1,3 +1,7 @@
+.no-cars {
+  font-family: var(--main-font);
+}
+
 .userCars {
   display: flex;
   flex-direction: column;

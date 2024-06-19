@@ -29,7 +29,7 @@ class userRepository extends AbstractRepository {
   }
 
   // Read a user with their associated cars
-  async readWithCars(id) {
+  async read(id) {
     const query = `
       SELECT 
         user.id, user.firstname, user.lastname, user.email, user.city, user.image, user.admin,

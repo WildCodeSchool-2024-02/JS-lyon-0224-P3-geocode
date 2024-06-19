@@ -32,6 +32,11 @@
   border-radius: 50%;
 }
 
+.noPhoto {
+  width: 6.5rem;
+  height: 6.5rem;
+}
+
 @media (min-width: 900px) {
   .profileComponent {
     margin: 0;

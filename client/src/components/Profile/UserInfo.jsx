@@ -9,7 +9,7 @@ export default function UserInfo({ user }) {
     <div className="profileComponent">
       <div className="profileInfo container">
         <div className="photoComponent">
-          {image ? (
+          {image !== null ? (
             <img src={image} alt="user profile" className="profilePhoto" />
           ) : (
             <FaRegUserCircle className="noPhoto" />

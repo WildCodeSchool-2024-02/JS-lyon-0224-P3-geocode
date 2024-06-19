@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         element: <ProfilePage />,
         loader: async ({ params }) => {
           const response = await fetch(`${Api}/api/users/${params.id}/cars`);
-          if (!response.ok) {
+          if (response.status !== 200) {
             throw new Error("Failed to fetch profile data");
           }
           const data = await response.json();

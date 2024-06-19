@@ -12,7 +12,7 @@ export default function UserInfo({ user }) {
           {image ? (
             <img src={image} alt="user profile" className="profilePhoto" />
           ) : (
-            <FaRegUserCircle />
+            <FaRegUserCircle className="noPhoto" />
           )}
         </div>
         <h2>

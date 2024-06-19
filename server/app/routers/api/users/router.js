@@ -7,10 +7,18 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import item-related actions
-const { browse } = require("../../../controllers/userActions");
+const {
+  browse,
+  read,
+  readWithCars,
+} = require("../../../controllers/userActions");
 
 // Route to get a list of items
 router.get("/", browse);
+
+router.get("/:id", read);
+
+router.get("/:id/cars", readWithCars); // New route to get user with cars
 
 /* ************************************************************************* */
 

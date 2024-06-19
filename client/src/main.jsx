@@ -41,8 +41,22 @@ const router = createBrowserRouter([
         element: <ContactPage />,
       },
       {
-        path: "/Profile",
+        path: "/Profile/:id/cars",
         element: <ProfilePage />,
+        loader: async ({ params }) => {
+          const response = await fetch(`${Api}/api/users/${params.id}/cars`);
+          if (response.status !== 200) {
+            throw new Error("Failed to fetch profile data");
+          }
+          const data = await response.json();
+          return data;
+        },
+        catch(error) {
+          // Log the error for debugging purposes
+          console.error("Error fetching profile data:", error);
+          // Rethrow the error to be handled by the caller
+          throw error;
+        },
       },
       {
         path: "/profile/edit/:id",

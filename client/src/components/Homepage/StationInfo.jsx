@@ -49,10 +49,10 @@ function StationInfo({ station }) {
           </div>
           <div className="supplementary_buttons">
             <button type="button" className="button dire">
-              <p>Direction</p>
+              <h3>Direction</h3>
             </button>
             <button type="button" className="button">
-              <p>Reservation</p>
+              <h3>Reservation</h3>
             </button>
           </div>
         </div>

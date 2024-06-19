@@ -3,18 +3,27 @@
 nav {
   width: 100%;
   height: 3em;
-
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   /* Center items vertically */
-
-  padding-left: 1em;
+  padding-inline: 1em;
   position: relative;
+  margin: 1rem 0;
   /* Ensure nav stays relative for menu positioning */
 }
 
+.logo-box {
+  display: flex;
+}
+
+.logo {
+  width: 5rem;
+  height: 3rem;
+}
+
 .burger-menu {
+  /* position: fixed; */
   height: 2rem;
   width: 3rem;
   display: flex;
@@ -28,11 +37,12 @@ nav {
 }
 
 .burger-bar {
-  width: 2.5rem;
+  width: 2.6rem;
   /* Reduced width for better alignment */
   height: 0.2rem;
   background-color: rgb(0, 0, 0);
   border-radius: 0.25em;
+  transition: transform 0.5s ease-out;
   /* Adjusted for a better look */
 }
 
@@ -40,8 +50,8 @@ nav {
 .menu {
   width: 100%;
   height: 100vh;
-  background-color: rgb(242, 244, 247);
-  position: absolute;
+  position: fixed;
+  background-color: var(--primary-color);
   top: 0;
   left: 0;
   /* Ensures menu starts from the left edge */
@@ -50,7 +60,8 @@ nav {
   /* Smoother animation */
   transform: translateX(-100%);
   /* Hidden state: translate the menu off-screen */
-  overflow-y: auto;
+  /* overflow-y: auto; */
+  margin: 0;
 }
 
 /* Show menu when it's visible */
@@ -67,7 +78,7 @@ nav {
 
 /* ------------- animations for burger menu ------------------ */
 .burger-bar.clicked:nth-child(1) {
-  transform: rotate(45deg) translate(0.5em, 0.5em);
+  transform: rotate(45deg) translate(0.5rem, 0.5rem);
   /* Improved spacing */
   transition: transform 0.5s ease-out;
 }
@@ -78,7 +89,7 @@ nav {
 }
 
 .burger-bar.clicked:nth-child(3) {
-  transform: rotate(-45deg) translate(0.5em, -0.5em);
+  transform: rotate(-45deg) translate(0.45rem, -0.45rem);
   /* Adjusted rotation */
   transition: transform 0.5s ease-out;
 }
@@ -106,6 +117,28 @@ nav {
 .menu li {
   margin: 1em 0;
   /* Space between menu items */
+}
+
+.menu li a {
+  position: relative;
+  text-decoration: none;
+}
+
+.menu li a::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--title-color);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.menu li a:hover::before {
+  transform: scaleX(1);
 }
 
 .menu a {

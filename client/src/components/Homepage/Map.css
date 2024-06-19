@@ -16,6 +16,7 @@
 .map {
   height: 100%;
   width: 100%;
+  border-radius: 0.5rem;
 }
 
 .mapMarker {
@@ -27,11 +28,11 @@
 /* -----------MEDIA QUERIES----------- */
 @media (min-width: 900px) {
   .map.container {
-    height: 76vh;
-    width: 72vw;
-    padding: 0.1rem;
+    height: 85vh;
+    width: 70vw;
   }
+
   .map-component {
-    margin-left: 1rem;
+    margin: 0rem 1rem;
   }
 }

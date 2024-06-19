@@ -1,29 +1,47 @@
 const AbstractSeeder = require("./AbstractSeeder");
+const database = require("../client");
 const UserSeeder = require("./UserSeeder");
+const SocketSeeder = require("./SocketSeeder");
 
 class CarSeeder extends AbstractSeeder {
   constructor() {
-    // Call the constructor of the parent class (AbstractSeeder) with appropriate options
-    super({ table: "cars", truncate: true, dependencies: [UserSeeder] });
+    super({
+      table: "cars",
+      truncate: true,
+      dependencies: [UserSeeder, SocketSeeder],
+    });
   }
 
-  // The run method - Populate the 'Car' table with fake data
+  async run() {
+    // Fetch user IDs from the user table
+    const [users] = await database.query(`SELECT id FROM user`);
+    // Fetch socket types from the socket table
+    const [sockets] = await database.query(`SELECT type FROM socket`);
 
-  run() {
-    // Generate and insert fake data into the 'Car' table
-    for (let i = 0; i < 20; i += 1) {
-      // Generate fake Car data
-      const fakeCar = {
-        brand: this.faker.vehicle.manufacturer(), // Generate a fake car brand
-        model: this.faker.vehicle.model(), // Generate a fake car model
-        Socket: this.faker.lorem.word(), // generate random word for socket
-        user_id: this.getRef(`user_${i}`).insertId,
-      };
-      // Insert the fakeCar data into the 'Car' table
-      this.insert(fakeCar); // insert into Car(email, password) values (?, ?)
+    // Check if users and sockets tables are populated
+    if (!users.length || !sockets.length) {
+      throw new Error("Users or Sockets table is empty");
     }
+
+    const userIds = users.map((user) => user.id);
+    const socketTypes = sockets.map((socket) => socket.type);
+
+    // Generate and insert fake car data
+    for (let i = 0; i < 50; i += 1) {
+      // Adjusting to allow multiple cars per user
+      const fakeCar = {
+        brand: this.faker.vehicle.manufacturer(),
+        model: this.faker.vehicle.model(),
+        socket: socketTypes[Math.floor(Math.random() * socketTypes.length)],
+        user_id: userIds[Math.floor(Math.random() * userIds.length)],
+      };
+
+      this.insert(fakeCar);
+    }
+
+    // Ensure all promises are resolved
+    return Promise.all(this.promises);
   }
 }
 
-// Export the CarSeeder class
 module.exports = CarSeeder;

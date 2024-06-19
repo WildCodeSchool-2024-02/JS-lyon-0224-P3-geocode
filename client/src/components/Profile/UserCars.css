@@ -29,4 +29,8 @@
     width: 45vw;
     height: 70vh;
   }
+
+  .userCars h2 {
+    display: none;
+  }
 }

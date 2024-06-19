@@ -40,7 +40,30 @@ class userRepository extends AbstractRepository {
     `;
 
     const [rows] = await this.database.query(query, [id]);
-    return rows;
+
+    if (rows.length === 0) {
+      return null; // User not found
+    }
+
+    const user = {
+      id: rows[0].id,
+      firstname: rows[0].firstname,
+      lastname: rows[0].lastname,
+      email: rows[0].email,
+      city: rows[0].city,
+      image: rows[0].image,
+      admin: rows[0].admin,
+      cars: rows
+        .filter((row) => row.car_id !== null)
+        .map((row) => ({
+          id: row.car_id,
+          brand: row.brand,
+          model: row.model,
+          socket: row.socket,
+        })),
+    };
+
+    return user;
   }
 }
 

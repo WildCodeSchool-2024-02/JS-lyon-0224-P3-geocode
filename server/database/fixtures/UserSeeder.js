@@ -17,6 +17,7 @@ class UserSeeder extends AbstractSeeder {
         lastname: this.faker.lorem.word(), // Generate a fake name
         email: this.faker.internet.email(), // Generate a fake email using faker library
         city: this.faker.location.city("FR"),
+        password: this.faker.internet.password(),
         admin: this.faker.datatype.boolean(), // Generate a random boolean value (true or false)
         refName: `user_${i}`,
       };

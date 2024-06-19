@@ -37,7 +37,7 @@ const readWithCars = async (req, res, next) => {
   try {
     const userWithCars = await tables.user.readWithCars(req.params.id);
 
-    if (userWithCars.length === 0) {
+    if (!userWithCars) {
       res.sendStatus(404);
     } else {
       res.status(200).json(userWithCars);

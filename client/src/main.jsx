@@ -36,10 +36,10 @@ const router = createBrowserRouter([
         element: <ContactPage />,
       },
       {
-        path: "/Profile/:id/cars",
+        path: "/Profile/:id/",
         element: <ProfilePage />,
         loader: async ({ params }) => {
-          const response = await fetch(`${Api}/api/users/${params.id}/cars`);
+          const response = await fetch(`${Api}/api/users/${params.id}`);
           if (response.status !== 200) {
             throw new Error("Failed to fetch profile data");
           }

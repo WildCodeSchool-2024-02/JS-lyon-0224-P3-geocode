@@ -74,11 +74,18 @@ span {
   background: var(--main-gradient);
   border: none;
   border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 .button h3 {
   margin: 0;
   color: var(--primary-color);
+}
+
+.button:hover,
+.buton:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--title-color);
+  transform: translateY(-0.25em);
 }
 
 .footer-box {

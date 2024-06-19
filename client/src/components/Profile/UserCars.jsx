@@ -18,7 +18,6 @@ export default function UserCars({ cars }) {
               {car.brand} {car.model}
             </h4>
             <img src={porsche} alt="porsche" className="img" />
-
             <p>Socket: {car.socket}</p>
           </li>
         ))}
@@ -30,7 +29,7 @@ export default function UserCars({ cars }) {
 UserCars.propTypes = {
   cars: propTypes.arrayOf(
     propTypes.shape({
-      id: propTypes.string.isRequired,
+      id: propTypes.number.isRequired,
       brand: propTypes.string.isRequired,
       model: propTypes.string.isRequired,
       socket: propTypes.string.isRequired,

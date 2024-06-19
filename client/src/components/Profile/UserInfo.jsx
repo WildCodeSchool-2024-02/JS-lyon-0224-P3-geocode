@@ -8,7 +8,13 @@ export default function UserInfo({ user }) {
   return (
     <div className="profileComponent">
       <div className="profileInfo container">
-        {image ? <img src={image} alt="user profile" /> : <FaRegUserCircle />}
+        <div className="photoComponent">
+          {image ? (
+            <img src={image} alt="user profile" className="profilePhoto" />
+          ) : (
+            <FaRegUserCircle />
+          )}
+        </div>
         <h2>
           <span>
             `${firstname} ${lastname}`

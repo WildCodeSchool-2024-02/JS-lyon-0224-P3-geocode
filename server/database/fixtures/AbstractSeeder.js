@@ -45,8 +45,6 @@ class AbstractSeeder {
 
     // Perform the query and if applicable store the insert id given the ref name
 
-
-
     const [result] = await database.query(sql, Object.values(values));
 
     if (refName != null) {

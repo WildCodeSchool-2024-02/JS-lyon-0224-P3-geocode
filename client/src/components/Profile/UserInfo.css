@@ -12,12 +12,24 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  gap: 1rem;
+  padding: 0;
+  gap: 0.5rem;
 }
 
-.profileLogo {
-  width: 6rem;
-  height: 6rem;
+.photoComponent {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  border: solid 0.2rem var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profilePhoto {
+  width: 6.8rem;
+  height: 6.8rem;
+  border-radius: 50%;
 }
 
 @media (min-width: 900px) {
@@ -28,9 +40,5 @@
   .profileInfo {
     width: 45vw;
     height: 70vh;
-  }
-
-  h2 {
-    display: none;
   }
 }

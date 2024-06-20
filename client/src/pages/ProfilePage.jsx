@@ -9,7 +9,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="profileComponent">
+    <div className="profile-component">
       <UserInfo user={user} />
       <UserCars cars={user.cars} />
     </div>

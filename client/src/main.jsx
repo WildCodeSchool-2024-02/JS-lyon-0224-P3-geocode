@@ -10,7 +10,7 @@ import HomePage from "./pages/HomePage";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
 import ProfilePage from "./pages/ProfilePage";
-import SignUpForm from "./pages/SignUp";
+import SignUp from "./pages/SignUp";
 
 const Api = import.meta.env.VITE_API_URL;
 
@@ -27,6 +27,10 @@ const router = createBrowserRouter([
           const data = await response.json();
           return data;
         },
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
       },
       {
         path: "/About-us",
@@ -53,11 +57,6 @@ const router = createBrowserRouter([
           // Rethrow the error to be handled by the caller
           throw error;
         },
-      },
-      {
-        path: "/signup",
-        element: <SignUpForm />,
-        
       },
     ],
   },

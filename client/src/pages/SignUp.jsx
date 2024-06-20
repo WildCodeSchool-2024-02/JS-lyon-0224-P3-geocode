@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form } from "react-router-dom";
 import "../components/SignUp/SignUp.css";
 
-function SignUpForm() {
+function SignUp() {
   const [formValues, setFormValues] = useState({
     firstname: "",
     lastname: "",
@@ -43,9 +43,6 @@ function SignUpForm() {
     }));
   };
 
-  const isValidEmail = (email) =>
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
-
   const validateInputs = () => {
     const { firstname, lastname, email, city, password, password2 } =
       formValues;
@@ -75,7 +72,6 @@ function SignUpForm() {
         name: "email",
         value: email,
         message: "Email is required",
-        validate: isValidEmail,
         errorMessage: "Provide a valid email address",
       },
       {
@@ -97,17 +93,14 @@ function SignUpForm() {
     let allValid = true;
 
     fields.forEach(
-      ({ name, value, message, validate, errorMessage, minLength, match }) => {
+      ({ name, value, message, errorMessage, minLength, match }) => {
         if (value.trim() === "") {
           setError(name, message);
           allValid = false;
-        } else if (validate && !validate(value)) {
+        } else if (value.length < minLength) {
           setError(name, errorMessage);
           allValid = false;
-        } else if (minLength && value.length < minLength) {
-          setError(name, errorMessage);
-          allValid = false;
-        } else if (match && value !== match) {
+        } else if (match !== undefined && value !== match) {
           setError(name, errorMessage);
           allValid = false;
         } else {
@@ -116,7 +109,7 @@ function SignUpForm() {
       }
     );
 
-    if (allValid) {
+    if (allValid === true) {
       window.location.href = "../html/index.html";
     }
   };
@@ -130,7 +123,7 @@ function SignUpForm() {
     <Form type="submit" className="bodyform" id="form" onSubmit={handleSubmit}>
       <div className="inscription-component">
         <h1>Sign Up</h1>
-        <div className="input-control">
+        <label className="input-control">
           <input
             className="input container"
             type="text"
@@ -140,11 +133,11 @@ function SignUpForm() {
             value={formValues.firstname}
             onChange={handleChange}
           />
-          {formErrors.firstname && (
+          {formErrors.firstname !== "" && (
             <div className="error">{formErrors.firstname}</div>
           )}
-        </div>
-        <div className="input-control">
+        </label>
+        <label className="input-control">
           <input
             className="input container"
             type="text"
@@ -154,11 +147,11 @@ function SignUpForm() {
             value={formValues.lastname}
             onChange={handleChange}
           />
-          {formErrors.lastname && (
+          {formErrors.lastname !== "" && (
             <div className="error">{formErrors.lastname}</div>
           )}
-        </div>
-        <div className="input-control">
+        </label>
+        <label className="input-control">
           <input
             className="input container"
             type="email"
@@ -168,9 +161,11 @@ function SignUpForm() {
             value={formValues.email}
             onChange={handleChange}
           />
-          {formErrors.email && <div className="error">{formErrors.email}</div>}
-        </div>
-        <div className="input-control">
+          {formErrors.email !== "" && (
+            <div className="error">{formErrors.email}</div>
+          )}
+        </label>
+        <label className="input-control">
           <input
             className="input container"
             type="text"
@@ -180,9 +175,11 @@ function SignUpForm() {
             value={formValues.city}
             onChange={handleChange}
           />
-          {formErrors.city && <div className="error">{formErrors.city}</div>}
-        </div>
-        <div className="input-control">
+          {formErrors.city !== "" && (
+            <div className="error">{formErrors.city}</div>
+          )}
+        </label>
+        <label className="input-control">
           <input
             className="input container"
             type="password"
@@ -192,11 +189,11 @@ function SignUpForm() {
             value={formValues.password}
             onChange={handleChange}
           />
-          {formErrors.password && (
+          {formErrors.password !== "" && (
             <div className="error">{formErrors.password}</div>
           )}
-        </div>
-        <div className="input-control">
+        </label>
+        <label className="input-control">
           <input
             className="input container"
             type="password"
@@ -206,16 +203,16 @@ function SignUpForm() {
             value={formValues.password2}
             onChange={handleChange}
           />
-          {formErrors.password2 && (
+          {formErrors.password2 !== "" && (
             <div className="error">{formErrors.password2}</div>
           )}
-        </div>
+        </label>
         <button className="button" id="signupbut" type="submit">
-          <h3>Sign Up</h3>
+          <h3>Submit</h3>
         </button>
       </div>
     </Form>
   );
 }
 
-export default SignUpForm;
+export default SignUp;

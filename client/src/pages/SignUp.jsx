@@ -43,8 +43,8 @@ function SignUp() {
     }));
   };
 
-  const isValidEmail = (email) =>
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
+  // const isValidEmail = (email) =>
+  //   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
 
   const validateInputs = () => {
     const { firstname, lastname, email, city, password, password2 } =
@@ -75,7 +75,7 @@ function SignUp() {
         name: "email",
         value: email,
         message: "Email is required",
-        validate: isValidEmail,
+        // validate: isValidEmail,
         errorMessage: "Provide a valid email address",
       },
       {
@@ -97,13 +97,13 @@ function SignUp() {
     let allValid = true;
 
     fields.forEach(
-      ({ name, value, message, validate, errorMessage, minLength, match }) => {
+      ({ name, value, message,  errorMessage, minLength, match }) => {
         if (value.trim() === "") {
           setError(name, message);
           allValid = false;
-        } else if (validate === true && validate(value) === false) {
-          setError(name, errorMessage);
-          allValid = false;
+        // } else if (validate === true && validate(value) === false) {
+        //   setError(name, errorMessage);
+        //   allValid = false;
         } else if (value.length < minLength) {
           setError(name, errorMessage);
           allValid = false;

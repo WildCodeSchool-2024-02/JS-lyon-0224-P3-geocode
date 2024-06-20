@@ -54,8 +54,8 @@ function SignUp() {
         name: "firstname",
         value: firstname,
         message: "Firstname is required",
-        minLength: 2,
-        errorMessage: "Firstname must be at least 2 characters long",
+        minLength: 3,
+        errorMessage: "Firstname must be at least 3 characters long",
       },
       {
         name: "lastname",
@@ -75,19 +75,21 @@ function SignUp() {
         name: "email",
         value: email,
         message: "Email is required",
+        validate: isValidEmail,
         errorMessage: "Provide a valid email address",
       },
       {
         name: "password",
         value: password,
         message: "Password is required",
-        passwordMinLength: 8,
+        minLength: 8,
         errorMessage: "Password must be at least 8 characters long",
       },
       {
         name: "password2",
         value: password2,
         message: "Please confirm your password",
+        match: password,
         errorMessage: "Passwords don't match",
       },
     ];
@@ -95,21 +97,17 @@ function SignUp() {
     let allValid = true;
 
     fields.forEach(
-      ({ name, value, message, errorMessage, passwordMinLength }) => {
+      ({ name, value, message, validate, errorMessage, minLength, match }) => {
         if (value.trim() === "") {
           setError(name, message);
           allValid = false;
-        } else if (name === "email") {
-          if (isValidEmail(value) === false) {
-            setError(name, errorMessage);
-            allValid = false;
-          } else {
-            setSuccess(name);
-          }
-        } else if (value.length < passwordMinLength) {
+        } else if (validate === true && validate(value) === false) {
           setError(name, errorMessage);
           allValid = false;
-        } else if (value !== password) {
+        } else if (value.length < minLength) {
+          setError(name, errorMessage);
+          allValid = false;
+        } else if (match !== undefined && value !== match) {
           setError(name, errorMessage);
           allValid = false;
         } else {

@@ -10,7 +10,6 @@ const router = express.Router();
 const {
   browse,
   read,
-  readWithCars,
   edit,
   destroy,
 } = require("../../../controllers/userActions");
@@ -19,8 +18,6 @@ const {
 router.get("/", browse);
 
 router.get("/:id", read);
-
-router.get("/:id/cars", readWithCars); // New route to get user with cars
 
 router.put("/:id", edit);
 

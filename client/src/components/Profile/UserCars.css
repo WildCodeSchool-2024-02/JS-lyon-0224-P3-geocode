@@ -1,39 +1,67 @@
 .no-cars {
   font-family: var(--main-font);
 }
+
+h3,
+p {
+  color: var(--secondary-color);
+}
+
 .userCars {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: transparent;
 }
 
 .carInfo {
+  padding: 0;
   height: 35vh;
-  width: 90vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 0rem;
+  width: 80vw;
+  background: var(--primary-color);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
 }
 
-.carBrand {
+.car-slide {
+  height: 35vh;
+  width: 80vw;
   display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .img {
-  width: 200px;
+  height: auto;
+  max-width: 200px;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
 }
 
-@media (min-width: 900px) {
+.swiper-pagination {
+  position: unset;
+  padding: 0.1rem;
+}
+
+.swiper-pagination-bullet-active {
+  --swiper-theme-color: var(--title-color);
+}
+
+@media (min-width: 680px) {
   .carInfo {
     width: 45vw;
     height: 70vh;
   }
 
-  .userCars h2 {
-    display: none;
+  .car-slide {
+    width: 45vw;
+    height: 70vh;
+    gap: 3rem;
+  }
+
+  .img {
+    max-width: 300px;
   }
 }

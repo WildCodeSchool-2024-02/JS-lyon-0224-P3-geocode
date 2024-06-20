@@ -2,7 +2,8 @@ create table user (
   id int unsigned primary key auto_increment not null,
   firstname varchar(80) not null,
   lastname varchar(80) not null,
-  email varchar(255) not null,
+  email varchar(255) not null unique,
+  password varchar(255) not null,
   city varchar(80),
   image text,
   admin boolean not null

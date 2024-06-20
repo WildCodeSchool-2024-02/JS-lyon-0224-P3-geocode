@@ -54,8 +54,8 @@ function SignUp() {
         name: "firstname",
         value: firstname,
         message: "Firstname is required",
-        minLength: 3,
-        errorMessage: "Firstname must be at least 3 characters long",
+        minLength: 2,
+        errorMessage: "Firstname must be at least 2 characters long",
       },
       {
         name: "lastname",
@@ -75,21 +75,19 @@ function SignUp() {
         name: "email",
         value: email,
         message: "Email is required",
-        validate: isValidEmail,
         errorMessage: "Provide a valid email address",
       },
       {
         name: "password",
         value: password,
         message: "Password is required",
-        minLength: 8,
+        passwordMinLength: 8,
         errorMessage: "Password must be at least 8 characters long",
       },
       {
         name: "password2",
         value: password2,
         message: "Please confirm your password",
-        match: password,
         errorMessage: "Passwords don't match",
       },
     ];
@@ -97,17 +95,21 @@ function SignUp() {
     let allValid = true;
 
     fields.forEach(
-      ({ name, value, message, validate, errorMessage, minLength, match }) => {
+      ({ name, value, message, errorMessage, passwordMinLength }) => {
         if (value.trim() === "") {
           setError(name, message);
           allValid = false;
-        } else if (validate && !validate(value)) {
+        } else if (name === "email") {
+          if (isValidEmail(value) === false) {
+            setError(name, errorMessage);
+            allValid = false;
+          } else {
+            setSuccess(name);
+          }
+        } else if (passwordMinLength && value.length < passwordMinLength) {
           setError(name, errorMessage);
           allValid = false;
-        } else if (minLength && value.length < minLength) {
-          setError(name, errorMessage);
-          allValid = false;
-        } else if (match && value !== match) {
+        } else if (password && value !== password) {
           setError(name, errorMessage);
           allValid = false;
         } else {
@@ -130,7 +132,7 @@ function SignUp() {
     <Form type="submit" className="bodyform" id="form" onSubmit={handleSubmit}>
       <div className="inscription-component">
         <h1>Sign Up</h1>
-        <div className="input-control">
+        <label className="input-control">
           <input
             className="input container"
             type="text"
@@ -140,11 +142,11 @@ function SignUp() {
             value={formValues.firstname}
             onChange={handleChange}
           />
-          {formErrors.firstname && (
+          {formErrors.firstname !== "" && (
             <div className="error">{formErrors.firstname}</div>
           )}
-        </div>
-        <div className="input-control">
+        </label>
+        <label className="input-control">
           <input
             className="input container"
             type="text"
@@ -154,11 +156,11 @@ function SignUp() {
             value={formValues.lastname}
             onChange={handleChange}
           />
-          {formErrors.lastname && (
+          {formErrors.lastname !== "" && (
             <div className="error">{formErrors.lastname}</div>
           )}
-        </div>
-        <div className="input-control">
+        </label>
+        <label className="input-control">
           <input
             className="input container"
             type="email"
@@ -168,9 +170,11 @@ function SignUp() {
             value={formValues.email}
             onChange={handleChange}
           />
-          {formErrors.email && <div className="error">{formErrors.email}</div>}
-        </div>
-        <div className="input-control">
+          {formErrors.email !== "" && (
+            <div className="error">{formErrors.email}</div>
+          )}
+        </label>
+        <label className="input-control">
           <input
             className="input container"
             type="text"
@@ -180,9 +184,11 @@ function SignUp() {
             value={formValues.city}
             onChange={handleChange}
           />
-          {formErrors.city && <div className="error">{formErrors.city}</div>}
-        </div>
-        <div className="input-control">
+          {formErrors.city !== "" && (
+            <div className="error">{formErrors.city}</div>
+          )}
+        </label>
+        <label className="input-control">
           <input
             className="input container"
             type="password"
@@ -192,11 +198,11 @@ function SignUp() {
             value={formValues.password}
             onChange={handleChange}
           />
-          {formErrors.password && (
+          {formErrors.password !== "" && (
             <div className="error">{formErrors.password}</div>
           )}
-        </div>
-        <div className="input-control">
+        </label>
+        <label className="input-control">
           <input
             className="input container"
             type="password"
@@ -206,10 +212,10 @@ function SignUp() {
             value={formValues.password2}
             onChange={handleChange}
           />
-          {formErrors.password2 && (
+          {formErrors.password2 !== "" && (
             <div className="error">{formErrors.password2}</div>
           )}
-        </div>
+        </label>
         <button className="button" id="signupbut" type="submit">
           <h3>Submit</h3>
         </button>

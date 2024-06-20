@@ -106,10 +106,10 @@ function SignUp() {
           } else {
             setSuccess(name);
           }
-        } else if (passwordMinLength && value.length < passwordMinLength) {
+        } else if (value.length < passwordMinLength) {
           setError(name, errorMessage);
           allValid = false;
-        } else if (password && value !== password) {
+        } else if (value !== password) {
           setError(name, errorMessage);
           allValid = false;
         } else {

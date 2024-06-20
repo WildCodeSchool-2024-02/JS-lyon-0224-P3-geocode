@@ -20,6 +20,12 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/no-unescaped-entities": "off",
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": ["^swiper/"]
+      }
+    ],
     "jsx-a11y/label-has-associated-control": [
       "error",
       {

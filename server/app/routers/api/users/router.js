@@ -21,7 +21,7 @@ router.get("/:id", read);
 
 router.get("/:id/cars", readWithCars); // New route to get user with cars
 
-router.post("/", add);
+router.post("/add", add);
 
 
 /* ************************************************************************* */

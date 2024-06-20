@@ -19,7 +19,7 @@ const browse = async (req, res, next) => {
 const read = async (req, res, next) => {
   try {
     // Fetch a specific user from the database based on the provided ID
-    const users = await tables.users.read(req.params.id);
+    const users = await tables.user.read(req.params.id);
 
     // If the user is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the users in JSON format
@@ -30,20 +30,6 @@ const read = async (req, res, next) => {
     }
   } catch (err) {
     // Pass any errors to the error-handling middleware
-    next(err);
-  }
-};
-// New action to fetch user with cars
-const readWithCars = async (req, res, next) => {
-  try {
-    const userWithCars = await tables.user.readWithCars(req.params.id);
-
-    if (!userWithCars) {
-      res.sendStatus(404);
-    } else {
-      res.status(200).json(userWithCars);
-    }
-  } catch (err) {
     next(err);
   }
 };
@@ -71,6 +57,5 @@ const add = async (req, res, next) => {
 module.exports = {
   browse,
   read,
-  readWithCars,
   add,
 };

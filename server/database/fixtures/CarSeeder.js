@@ -27,20 +27,40 @@ class CarSeeder extends AbstractSeeder {
     const socketTypes = sockets.map((socket) => socket.type);
 
     // Generate and insert fake car data
-    for (let i = 0; i < 50; i += 1) {
-      // Adjusting to allow multiple cars per user
-      const fakeCar = {
-        brand: this.faker.vehicle.manufacturer(),
-        model: this.faker.vehicle.model(),
-        socket: socketTypes[Math.floor(Math.random() * socketTypes.length)],
-        user_id: userIds[Math.floor(Math.random() * userIds.length)],
-      };
+    for (let i = 0; i < users.length; i += 1) {
+      // Check if the user already has a car
+      const userHasCar = database.query(
+        `SELECT * FROM cars WHERE user_id = ?`,
+        [userIds[i]]
+      );
 
-      this.insert(fakeCar);
+      // If the user doesn't have a car, add a new one
+      if (userHasCar.length === 0) {
+        const fakeCar = {
+          brand: this.faker.vehicle.manufacturer(),
+          model: this.faker.vehicle.model(),
+          socket: socketTypes[Math.floor(Math.random() * socketTypes.length)],
+          user_id: userIds[i],
+        };
+
+        this.insert(fakeCar);
+      }
+
+      // Add additional cars for each user (if desired)
+      for (let j = 1; j < Math.floor(Math.random() * 5) + 1; j += 1) {
+        // Add logic to check if the user already has additional cars here
+        const additionalCar = {
+          brand: this.faker.vehicle.manufacturer(),
+          model: this.faker.vehicle.model(),
+          socket: socketTypes[Math.floor(Math.random() * socketTypes.length)],
+          user_id: userIds[i],
+        };
+
+        this.insert(additionalCar);
+      }
     }
 
     // Ensure all promises are resolved
-    return Promise.all(this.promises);
   }
 }
 

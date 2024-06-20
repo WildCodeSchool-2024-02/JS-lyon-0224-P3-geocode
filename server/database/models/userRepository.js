@@ -36,12 +36,12 @@ class userRepository extends AbstractRepository {
   }
 
   // Read a user with their associated cars
-  async readWithCars(id) {
+  async read(id) {
     const query = `
       SELECT 
         user.id, user.firstname, user.lastname, user.email, user.city, user.image, user.admin,
         cars.id as car_id, cars.brand, cars.model, cars.socket
-      FROM ${this.table} user
+      FROM ${this.table}
       LEFT JOIN cars ON user.id = cars.user_id
       WHERE user.id = ?
     `;

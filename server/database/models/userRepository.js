@@ -67,7 +67,6 @@ class userRepository extends AbstractRepository {
   }
 
   async update(user) {
-    // Execute the SQL UPDATE query to update a specific user
     const [result] = await this.database.query(
       `update ${this.table} set firstname = ?, lastname = ?, city = ?, image = ?, email = ? where id = ?`,
       [
@@ -80,12 +79,10 @@ class userRepository extends AbstractRepository {
       ]
     );
 
-    // Return how many rows were affected
     return result.affectedRows;
   }
 
   async delete(id) {
-    // Execute the SQL DELETE query to delete a specific user
     const [result] = await this.database.query(
       `delete from ${this.table} where id = ?`,
       [id]

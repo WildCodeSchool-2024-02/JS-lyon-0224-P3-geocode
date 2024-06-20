@@ -78,7 +78,7 @@ const router = createBrowserRouter([
                 image: formData.get("image"),
               });
 
-              return redirect(`/profile`);
+              return redirect(`/profile/${params.id}`);
             }
             default:
               throw new Response("", { status: 405 });

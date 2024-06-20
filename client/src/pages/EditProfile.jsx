@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLoaderData, Form } from "react-router-dom";
 
 export default function EditProfile() {
-  const profile = useLoaderData();
+  const user = useLoaderData();
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -12,10 +12,10 @@ export default function EditProfile() {
   });
 
   useEffect(() => {
-    if (profile) {
-      setFormData(profile);
+    if (user) {
+      setFormData(user);
     }
-  }, [profile]);
+  }, [user]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

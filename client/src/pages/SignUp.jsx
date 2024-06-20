@@ -109,8 +109,8 @@ function SignUp() {
       }
     );
 
-    if (allValid) {
-      window.location.href = "../html/index.html";
+    if (allValid === true) {
+      window.location.href = "/";
     }
   };
 

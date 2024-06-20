@@ -110,7 +110,7 @@ function SignUp() {
     );
 
     if (allValid === true) {
-      window.location.href = "../html/index.html";
+      window.location.href = "/";
     }
   };
 

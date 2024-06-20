@@ -47,9 +47,32 @@ const readWithCars = async (req, res, next) => {
   }
 };
 
+const edit = async (req, res, next) => {
+  const user = { ...req.body, id: req.params.id };
+  try {
+    await tables.user.update(user);
+
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const destroy = async (req, res, next) => {
+  try {
+    await tables.user.delete(req.params.id);
+
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
 // Ready to export the controller functions
 module.exports = {
   browse,
   read,
   readWithCars,
+  edit,
+  destroy,
 };

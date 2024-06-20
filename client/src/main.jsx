@@ -59,7 +59,7 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/profile/edit/:id",
+        path: "/profile/:id/edit",
         element: <EditProfile />,
         loader: async ({ params }) => {
           const response = await axios.get(`${Api}/api/users/${params.id}`);

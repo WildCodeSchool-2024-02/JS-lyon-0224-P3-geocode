@@ -40,6 +40,11 @@ body {
   background: var(--light-bg-color);
 }
 
+.connection-page-background {
+  background: var(--main-gradient);
+  height: 100vh;
+}
+
 h1,
 h2,
 h3,

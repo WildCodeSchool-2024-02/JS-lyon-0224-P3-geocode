@@ -1,0 +1,29 @@
+.connectionPage {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.imageLogo {
+  margin-bottom: 4rem;
+  max-height: 17rem;
+}
+
+.btn {
+  width: 15rem;
+  height: 3.5rem;
+  background: var(--primary-color);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.btn:hover,
+.btn:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--primary-color);
+  transform: translateY(-0.25em);
+}

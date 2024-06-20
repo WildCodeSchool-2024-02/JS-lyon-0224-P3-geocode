@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./NavBar.css";
 import Logo from "../../assets/image/geocode4.svg";
+import { LogoContext } from "../Context/LogoContext";
 
 function Navbar() {
   // State for burger menu classes
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");
   const [menuClass, setMenuClass] = useState("menu hidden");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
+
+  const { showLogo } = useContext(LogoContext);
 
   // Function to toggle menu visibility
   const updateMenu = () => {
@@ -56,9 +59,11 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="logo-box">
-          <img src={Logo} className="logo" alt="site logo" />
-        </div>
+        {showLogo && (
+          <div className="logo-box">
+            <img src={Logo} className="logo" alt="site logo" />
+          </div>
+        )}
       </nav>
     </div>
   );

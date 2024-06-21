@@ -21,8 +21,20 @@ export default function UserInfo({ user }) {
             {firstname} {lastname}
           </span>
         </h2>
-        <h3>Email: {email}</h3>
-        <h3>City: {city}</h3>
+        <div className="UserContact">
+          <div className="field">
+            <p>
+              <span>Email: </span>
+            </p>
+            <p>
+              <span>City: </span>
+            </p>
+          </div>
+          <div className="coordinates">
+            <p>{email}</p>
+            <p>{city}</p>
+          </div>
+        </div>
         <Link to={`/profile/${user.id}/edit`}>
           <button type="button" className="button">
             <h3>Edit</h3>

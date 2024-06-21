@@ -1,0 +1,37 @@
+.bodyform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+
+  background-color: var(--light-bg-color);
+}
+
+.inscription-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-color);
+  padding: 0.5rem;
+  width: 50%;
+  height: 90%;
+}
+
+.input {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  height: 3rem;
+  min-width: 20rem;
+  max-width: 25rem;
+  border: none;
+  font-family: var(--main-font);
+  font-weight: 500;
+  outline-color: var(--dark-bg-color);
+}
+
+.input-control {
+  margin: 0.4rem;
+}

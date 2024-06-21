@@ -76,6 +76,7 @@ const router = createBrowserRouter([
                 email: formData.get("email"),
                 city: formData.get("city"),
                 image: formData.get("image"),
+                id: params.id,
               });
 
               return redirect(`/profile/${params.id}`);

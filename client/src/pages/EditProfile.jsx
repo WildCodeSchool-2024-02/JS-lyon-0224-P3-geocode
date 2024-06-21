@@ -12,8 +12,14 @@ export default function EditProfile() {
   });
 
   useEffect(() => {
-    if (user) {
-      setFormData(user);
+    if (user !== null) {
+      setFormData({
+        firstname: user.firstname || "",
+        lastname: user.lastname || "",
+        email: user.email || "",
+        city: user.city || "",
+        image: user.image || "",
+      });
     }
   }, [user]);
 

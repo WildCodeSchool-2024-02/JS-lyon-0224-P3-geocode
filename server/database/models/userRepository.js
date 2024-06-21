@@ -67,8 +67,18 @@ class userRepository extends AbstractRepository {
   }
 
   async update(user) {
+    if (
+      !user.firstname ||
+      !user.lastname ||
+      !user.city ||
+      !user.email ||
+      !user.id
+    ) {
+      throw new Error("Missing required fields");
+    }
+
     const [result] = await this.database.query(
-      `update ${this.table} set firstname = ?, lastname = ?, city = ?, image = ?, email = ? where id = ?`,
+      `UPDATE ${this.table} SET firstname = ?, lastname = ?, city = ?, image = ?, email = ? WHERE id = ?`,
       [
         user.firstname,
         user.lastname,
@@ -79,16 +89,6 @@ class userRepository extends AbstractRepository {
       ]
     );
 
-    return result.affectedRows;
-  }
-
-  async delete(id) {
-    const [result] = await this.database.query(
-      `delete from ${this.table} where id = ?`,
-      [id]
-    );
-
-    // Return how many rows were affected
     return result.affectedRows;
   }
 }

@@ -36,18 +36,15 @@ const read = async (req, res, next) => {
 const edit = async (req, res, next) => {
   const user = { ...req.body, id: req.params.id };
   try {
-    await tables.user.update(user);
-    res.sendStatus(204);
+    const affectedRows = await tables.user.update(user);
+    if (affectedRows === 0) {
+      res.status(404).json({ error: "User not found" });
+    } else {
+      res.sendStatus(204);
+    }
   } catch (err) {
-    next(err);
-  }
-};
-
-const destroy = async (req, res, next) => {
-  try {
-    await tables.user.delete(req.params.id);
-    res.sendStatus(204);
-  } catch (err) {
+    console.error("Error in edit action:", err);
+    res.status(500).json({ error: "Internal server error" });
     next(err);
   }
 };
@@ -57,5 +54,4 @@ module.exports = {
   browse,
   read,
   edit,
-  destroy,
 };

@@ -23,7 +23,7 @@ export default function UserInfo({ user }) {
         </h2>
         <h3>Email: {email}</h3>
         <h3>City: {city}</h3>
-        <Link to="/profile/edit">
+        <Link to={`/profile/${user.id}/edit`}>
           <button type="button" className="button">
             <h3>Edit</h3>
           </button>
@@ -40,5 +40,6 @@ UserInfo.propTypes = {
     email: propTypes.string.isRequired,
     city: propTypes.string.isRequired,
     image: propTypes.string,
+    id: propTypes.number,
   }).isRequired,
 };

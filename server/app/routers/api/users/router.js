@@ -14,7 +14,7 @@ router.get("/", browse);
 
 router.get("/:id", read);
 
-router.post("/add", add);
+router.post("/", add);
 
 /* ************************************************************************* */
 

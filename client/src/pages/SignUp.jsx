@@ -1,13 +1,14 @@
 import { useState } from "react";
+import PropTypes from "prop-types"
 import { Form } from "react-router-dom";
 import "../components/SignUp/SignUp.css";
 
-function SignUp() {
+function SignUp({ handleSignUp }) {
   const [formValues, setFormValues] = useState({
     firstname: "",
     lastname: "",
-    email: "",
     city: "",
+    email: "",
     password: "",
     password2: "",
   });
@@ -15,8 +16,8 @@ function SignUp() {
   const [formErrors, setFormErrors] = useState({
     firstname: "",
     lastname: "",
-    email: "",
     city: "",
+    email: "",
     password: "",
     password2: "",
   });
@@ -43,9 +44,13 @@ function SignUp() {
     }));
   };
 
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
+
   const validateInputs = () => {
-    const { firstname, lastname, email, city, password, password2 } =
-      formValues;
+    const { firstname, lastname, city, email, password, password2 } = formValues;
     const fields = [
       {
         name: "firstname",
@@ -92,35 +97,52 @@ function SignUp() {
 
     let allValid = true;
 
-    fields.forEach(
-      ({ name, value, message, errorMessage, minLength, match }) => {
-        if (value.trim() === "") {
-          setError(name, message);
-          allValid = false;
-        } else if (value.length < minLength) {
-          setError(name, errorMessage);
-          allValid = false;
-        } else if (match !== undefined && value !== match) {
-          setError(name, errorMessage);
-          allValid = false;
-        } else {
-          setSuccess(name);
-        }
+    fields.forEach(({ name, value, message, errorMessage, minLength, match }) => {
+      if (value.trim() === "") {
+        setError(name, message);
+        allValid = false;
+      } else if (minLength && value.length < minLength) {
+        setError(name, errorMessage);
+        allValid = false;
+      } else if (name === "email" && !validateEmail(value)) {
+        setError(name, "Provide a valid email address");
+        allValid = false;
+      } else if (match !== undefined && value !== match) {
+        setError(name, errorMessage);
+        allValid = false;
+      } else {
+        setSuccess(name);
       }
-    );
+    });
 
-    if (allValid === true) {
-      window.location.href = "/";
+    return allValid;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      firstname: formValues.firstname,
+      lastname: formValues.lastname,
+      city: formValues.city,
+      email: formValues.email,
+      password: formValues.password,
+      password2: formValues.password2,
+    };
+
+    if (validateInputs()) {
+      const result = await handleSignUp({ formData });
+
+      if (result.success) {
+        window.location.href = "/contact";
+      } else {
+        setError("form", result.error);
+      }
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    validateInputs();
-  };
-
   return (
-    <Form type="submit" className="bodyform" id="form" onSubmit={handleSubmit}>
+    <Form method="post" className="bodyform" id="form" onSubmit={handleSubmit}>
       <div className="inscription-component">
         <h1>Sign Up</h1>
         <label className="input-control">
@@ -132,6 +154,7 @@ function SignUp() {
             placeholder="Firstname"
             value={formValues.firstname}
             onChange={handleChange}
+            autoComplete="off"
           />
           {formErrors.firstname !== "" && (
             <div className="error">{formErrors.firstname}</div>
@@ -146,23 +169,10 @@ function SignUp() {
             placeholder="Lastname"
             value={formValues.lastname}
             onChange={handleChange}
+            autoComplete="off"
           />
           {formErrors.lastname !== "" && (
             <div className="error">{formErrors.lastname}</div>
-          )}
-        </label>
-        <label className="input-control">
-          <input
-            className="input container"
-            type="email"
-            id="email"
-            placeholder="Email"
-            name="email"
-            value={formValues.email}
-            onChange={handleChange}
-          />
-          {formErrors.email !== "" && (
-            <div className="error">{formErrors.email}</div>
           )}
         </label>
         <label className="input-control">
@@ -174,9 +184,25 @@ function SignUp() {
             placeholder="City"
             value={formValues.city}
             onChange={handleChange}
+            autoComplete="off"
           />
           {formErrors.city !== "" && (
             <div className="error">{formErrors.city}</div>
+          )}
+        </label>
+        <label className="input-control">
+          <input
+            className="input container"
+            type="email"
+            id="email"
+            placeholder="Email"
+            name="email"
+            value={formValues.email}
+            onChange={handleChange}
+            autoComplete="off"
+          />
+          {formErrors.email !== "" && (
+            <div className="error">{formErrors.email}</div>
           )}
         </label>
         <label className="input-control">
@@ -188,6 +214,7 @@ function SignUp() {
             name="password"
             value={formValues.password}
             onChange={handleChange}
+            autoComplete="new-password"
           />
           {formErrors.password !== "" && (
             <div className="error">{formErrors.password}</div>
@@ -202,6 +229,7 @@ function SignUp() {
             name="password2"
             value={formValues.password2}
             onChange={handleChange}
+            autoComplete="new-password"
           />
           {formErrors.password2 !== "" && (
             <div className="error">{formErrors.password2}</div>
@@ -210,9 +238,14 @@ function SignUp() {
         <button className="button" id="signupbut" type="submit">
           <h3>Submit</h3>
         </button>
+        {formErrors.form && <div className="error">{formErrors.form}</div>}
       </div>
     </Form>
   );
 }
+
+SignUp.propTypes = {
+  handleSignUp: PropTypes.func.isRequired,
+};
 
 export default SignUp;

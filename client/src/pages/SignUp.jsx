@@ -1,7 +1,9 @@
 import { useState } from "react";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import { Form } from "react-router-dom";
 import "../components/SignUp/SignUp.css";
+import CustomImgInput from "../components/SignUp/CustomImgInput";
+import CustomCarImg from "../components/SignUp/CustomCarImg";
 
 function SignUp({ handleSignUp }) {
   const [formValues, setFormValues] = useState({
@@ -9,6 +11,15 @@ function SignUp({ handleSignUp }) {
     lastname: "",
     city: "",
     email: "",
+    profileImage: null,
+    carBrand: "",
+    carModel: "",
+    chargerType1: "",
+    chargerType2: "",
+    chargerType3: "",
+    chargerType4: "",
+    chargerType5: "",
+    carImage: null,
     password: "",
     password2: "",
   });
@@ -18,6 +29,13 @@ function SignUp({ handleSignUp }) {
     lastname: "",
     city: "",
     email: "",
+    carBrand: "",
+    carModel: "",
+    chargerType1: "",
+    chargerType2: "",
+    chargerType3: "",
+    chargerType4: "",
+    chargerType5: "",
     password: "",
     password2: "",
   });
@@ -50,7 +68,16 @@ function SignUp({ handleSignUp }) {
   };
 
   const validateInputs = () => {
-    const { firstname, lastname, city, email, password, password2 } = formValues;
+    const {
+      firstname,
+      lastname,
+      city,
+      email,
+      carBrand,
+      carModel,
+      password,
+      password2,
+    } = formValues;
     const fields = [
       {
         name: "firstname",
@@ -80,6 +107,16 @@ function SignUp({ handleSignUp }) {
         errorMessage: "Provide a valid email address",
       },
       {
+        name: "carBrand",
+        value: carBrand,
+        message: "Car brand is required",
+      },
+      {
+        name: "carModel",
+        value: carModel,
+        message: "Car model is required",
+      },
+      {
         name: "password",
         value: password,
         message: "Password is required",
@@ -97,23 +134,25 @@ function SignUp({ handleSignUp }) {
 
     let allValid = true;
 
-    fields.forEach(({ name, value, message, errorMessage, minLength, match }) => {
-      if (value.trim() === "") {
-        setError(name, message);
-        allValid = false;
-      } else if (minLength && value.length < minLength) {
-        setError(name, errorMessage);
-        allValid = false;
-      } else if (name === "email" && !validateEmail(value)) {
-        setError(name, "Provide a valid email address");
-        allValid = false;
-      } else if (match !== undefined && value !== match) {
-        setError(name, errorMessage);
-        allValid = false;
-      } else {
-        setSuccess(name);
+    fields.forEach(
+      ({ name, value, message, errorMessage, minLength, match }) => {
+        if (value.trim() === "") {
+          setError(name, message);
+          allValid = false;
+        } else if (minLength && value.length < minLength) {
+          setError(name, errorMessage);
+          allValid = false;
+        } else if (name === "email" && !validateEmail(value)) {
+          setError(name, "Provide a valid email address");
+          allValid = false;
+        } else if (match !== undefined && value !== match) {
+          setError(name, errorMessage);
+          allValid = false;
+        } else {
+          setSuccess(name);
+        }
       }
-    });
+    );
 
     return allValid;
   };
@@ -121,17 +160,25 @@ function SignUp({ handleSignUp }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = {
-      firstname: formValues.firstname,
-      lastname: formValues.lastname,
-      city: formValues.city,
-      email: formValues.email,
-      password: formValues.password,
-      password2: formValues.password2,
-    };
+    const formData = new FormData();
+    formData.append("firstname", formValues.firstname);
+    formData.append("lastname", formValues.lastname);
+    formData.append("city", formValues.city);
+    formData.append("email", formValues.email);
+    formData.append("profileImage", formValues.profileImage);
+    formData.append("carBrand", formValues.carBrand);
+    formData.append("carModel", formValues.carModel);
+    formData.append("chargerType1", formValues.chargerType1);
+    formData.append("chargerType2", formValues.chargerType2);
+    formData.append("chargerType3", formValues.chargerType3);
+    formData.append("chargerType4", formValues.chargerType4);
+    formData.append("chargerType5", formValues.chargerType5);
+    formData.append("carImage", formValues.carImage);
+    formData.append("password", formValues.password);
+    formData.append("password2", formValues.password2);
 
     if (validateInputs()) {
-      const result = await handleSignUp({ formData });
+      const result = await handleSignUp(formData);
 
       if (result.success) {
         window.location.href = "/contact";
@@ -142,7 +189,13 @@ function SignUp({ handleSignUp }) {
   };
 
   return (
-    <Form method="post" className="bodyform" id="form" onSubmit={handleSubmit}>
+    <Form
+      method="post"
+      className="bodyform"
+      id="form"
+      onSubmit={handleSubmit}
+      encType="multipart/form-data"
+    >
       <div className="inscription-component">
         <h1>Sign Up</h1>
         <label className="input-control">
@@ -205,6 +258,57 @@ function SignUp({ handleSignUp }) {
             <div className="error">{formErrors.email}</div>
           )}
         </label>
+        <CustomImgInput handleChange={handleChange} />
+        <label className="input-control">
+          <input
+            className="input container"
+            type="text"
+            id="carBrand"
+            name="carBrand"
+            placeholder="Car Brand"
+            value={formValues.carBrand}
+            onChange={handleChange}
+            autoComplete="off"
+          />
+          {formErrors.carBrand !== "" && (
+            <div className="error">{formErrors.carBrand}</div>
+          )}
+        </label>
+        <label className="input-control">
+          <input
+            className="input container"
+            type="text"
+            id="carModel"
+            name="carModel"
+            placeholder="Car Model"
+            value={formValues.carModel}
+            onChange={handleChange}
+            autoComplete="off"
+          />
+          {formErrors.carModel !== "" && (
+            <div className="error">{formErrors.carModel}</div>
+          )}
+        </label>
+        <label className="input-control">
+          <select
+            className="input container"
+            id="chargerType1"
+            name="chargerType1"
+            value={formValues.chargerType1}
+            onChange={handleChange}
+          >
+            <option value="">Select Charger Type </option>
+            <option value="Type1">Type 1</option>
+            <option value="Type2">Type 2</option>
+            <option value="Type3">Type 3</option>
+            <option value="Type4">Type 4</option>
+            <option value="Type5">Type 5</option>
+          </select>
+          {formErrors.chargerType1 !== "" && (
+            <div className="error">{formErrors.chargerType1}</div>
+          )}
+        </label>
+        <CustomCarImg handleChange={handleChange} />
         <label className="input-control">
           <input
             className="input container"

@@ -3,9 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
-
   background-color: var(--light-bg-color);
 }
 
@@ -16,8 +13,7 @@
   justify-content: center;
   color: var(--secondary-color);
   padding: 0.5rem;
-  width: 50%;
-  height: 90%;
+  gap: 0.7rem;
 }
 
 .input {
@@ -32,6 +28,7 @@
   outline-color: var(--dark-bg-color);
 }
 
-.input-control {
-  margin: 0.4rem;
+div.error {
+  padding: 0.2rem;
+  color: var(--title-color);
 }

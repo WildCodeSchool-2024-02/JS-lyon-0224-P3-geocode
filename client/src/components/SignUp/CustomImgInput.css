@@ -1,0 +1,16 @@
+.custom-file {
+  min-width: 20rem;
+  max-width: 25rem;
+  height: 2rem;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.custom-file p {
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-color);
+}

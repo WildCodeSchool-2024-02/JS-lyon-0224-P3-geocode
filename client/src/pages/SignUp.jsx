@@ -2,8 +2,6 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { Form } from "react-router-dom";
 import "../components/SignUp/SignUp.css";
-import CustomImgInput from "../components/SignUp/CustomImgInput";
-import CustomCarImg from "../components/SignUp/CustomCarImg";
 
 function SignUp({ handleSignUp }) {
   const [formValues, setFormValues] = useState({
@@ -11,15 +9,9 @@ function SignUp({ handleSignUp }) {
     lastname: "",
     city: "",
     email: "",
-    profileImage: null,
     carBrand: "",
     carModel: "",
-    chargerType1: "",
-    chargerType2: "",
-    chargerType3: "",
-    chargerType4: "",
-    chargerType5: "",
-    carImage: null,
+    chargerType: "",
     password: "",
     password2: "",
   });
@@ -31,11 +23,7 @@ function SignUp({ handleSignUp }) {
     email: "",
     carBrand: "",
     carModel: "",
-    chargerType1: "",
-    chargerType2: "",
-    chargerType3: "",
-    chargerType4: "",
-    chargerType5: "",
+    chargerType: "",
     password: "",
     password2: "",
   });
@@ -160,24 +148,22 @@ function SignUp({ handleSignUp }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("firstname", formValues.firstname);
-    formData.append("lastname", formValues.lastname);
-    formData.append("city", formValues.city);
-    formData.append("email", formValues.email);
-    formData.append("profileImage", formValues.profileImage);
-    formData.append("carBrand", formValues.carBrand);
-    formData.append("carModel", formValues.carModel);
-    formData.append("chargerType1", formValues.chargerType1);
-    formData.append("chargerType2", formValues.chargerType2);
-    formData.append("chargerType3", formValues.chargerType3);
-    formData.append("chargerType4", formValues.chargerType4);
-    formData.append("chargerType5", formValues.chargerType5);
-    formData.append("carImage", formValues.carImage);
-    formData.append("password", formValues.password);
-    formData.append("password2", formValues.password2);
-
     if (validateInputs()) {
+      const formData = {
+        user: {
+          firstname: formValues.firstname,
+          lastname: formValues.lastname,
+          city: formValues.city,
+          email: formValues.email,
+          password: formValues.password,
+        },
+        car: {
+          brand: formValues.carBrand,
+          model: formValues.carModel,
+          socket: formValues.chargerType,
+        },
+      };
+
       const result = await handleSignUp(formData);
 
       if (result.success) {
@@ -258,7 +244,6 @@ function SignUp({ handleSignUp }) {
             <div className="error">{formErrors.email}</div>
           )}
         </label>
-        <CustomImgInput handleChange={handleChange} />
         <label className="input-control">
           <input
             className="input container"
@@ -292,9 +277,9 @@ function SignUp({ handleSignUp }) {
         <label className="input-control">
           <select
             className="input container"
-            id="chargerType1"
-            name="chargerType1"
-            value={formValues.chargerType1}
+            id="chargerType"
+            name="chargerType"
+            value={formValues.chargerType}
             onChange={handleChange}
           >
             <option value="">Select Charger Type </option>
@@ -304,11 +289,10 @@ function SignUp({ handleSignUp }) {
             <option value="Type4">Type 4</option>
             <option value="Type5">Type 5</option>
           </select>
-          {formErrors.chargerType1 !== "" && (
-            <div className="error">{formErrors.chargerType1}</div>
+          {formErrors.chargerType !== "" && (
+            <div className="error">{formErrors.chargerType}</div>
           )}
         </label>
-        <CustomCarImg handleChange={handleChange} />
         <label className="input-control">
           <input
             className="input container"

@@ -9,11 +9,16 @@ class carsRepository extends AbstractRepository {
 
   // The C of CRUD - Create operation
 
-  async create(cars) {
+  async create(car) {
     // Execute the SQL INSERT query to add a new cars to the "cars" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (title, cars_id) values (?, ?)`,
-      [cars.title, cars.cars_id]
+      `insert into ${this.table} (brand, model, socket, user_id) values (?, ?, ?, ?)`,
+      [
+        car.brand,
+        car.model,
+        car.socket,
+        car.user_id,
+      ]
     );
 
     // Return the ID of the newly inserted cars

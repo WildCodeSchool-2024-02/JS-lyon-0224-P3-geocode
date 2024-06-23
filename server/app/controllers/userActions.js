@@ -36,22 +36,37 @@ const read = async (req, res, next) => {
 
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
-  // Extract the user data from the request body
-  const dataUser = req.body;
+  const { user, car } = req.body;
+
+  const connection = await tables.user.database.getConnection();
+
   try {
+    await connection.beginTransaction();
+
     // Insert the user into the database
-    const insertId = await tables.user.create(dataUser);
+    const userId = await tables.user.create(user, connection);
+
+    // Add the user_id to the car data
+    car.user_id = userId;
+
+    // Insert the car into the database
+    await tables.car.create(car, connection);
+
+    // Commit the transaction
+    await connection.commit();
 
     // Respond with HTTP 201 (Created) and the ID of the newly inserted user
-    res.status(201).json({ insertId });
+    res.status(201).json({ insertId: userId });
   } catch (err) {
-    res
-      .status(500)
-      .json({ error: "une error est survenue lors de la création du user" });
-    // Pass any errors to the error-handling middleware
+    // Rollback the transaction in case of error
+    await connection.rollback();
+    res.status(500).json({ error: "An error occurred during the signup process" });
     next(err);
+  } finally {
+    connection.release();
   }
 };
+
 
 // Ready to export the controller functions
 module.exports = {

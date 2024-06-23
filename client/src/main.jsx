@@ -31,7 +31,8 @@ const handleSignUp = async ({ formData }) => {
 
     return { success: true };
   } catch (error) {
-    return { error: error.message };
+    console.error('Error:', error);
+    return { success: false, error: 'Failed to sign up' };
   }
 };
 

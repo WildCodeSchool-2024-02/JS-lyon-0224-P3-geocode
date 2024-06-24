@@ -92,6 +92,7 @@ export default function SignInPage({ handleSignIn }) {
   return (
     <Form className="logInComponent" method="post" onSubmit={handleSubmit}>
       <div className="logIn">
+        <p>Acces to your profile</p>
         <label>
           <input
             className="emailInput container"
@@ -124,6 +125,11 @@ export default function SignInPage({ handleSignIn }) {
             <span className="error">{signInErrors.password}</span>
           )}
         </label>
+        <a href="/signin" className="forgetPassword">
+          <p>
+            <span>Forget password?</span>
+          </p>
+        </a>
         <button className="button" type="submit">
           Log in
         </button>

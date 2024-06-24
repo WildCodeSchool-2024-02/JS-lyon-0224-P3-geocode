@@ -81,7 +81,7 @@ const router = createBrowserRouter([
         element: <SignUp handleSignUp={handleSignUp} />,
       },
       {
-        path: "/SignIn",
+        path: "/signin",
         element: <SignInPage handleSignIn={handleSignIn} />,
       },
       {

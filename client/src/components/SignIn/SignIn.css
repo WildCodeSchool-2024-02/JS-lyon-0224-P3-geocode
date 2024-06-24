@@ -20,3 +20,7 @@
   outline-color: var(--dark-bg-color);
   font-family: var(--main-font);
 }
+
+.forgetPassword {
+  text-decoration: underline var(--title-color);
+}

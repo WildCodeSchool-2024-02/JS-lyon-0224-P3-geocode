@@ -1,0 +1,29 @@
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  max-width: 50%;
+}
+.edit-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  align-items: center;
+  background-color: var(--light-bg-color);
+}
+.edit-label {
+  margin: 1rem;
+}
+.edit-input {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  height: 3rem;
+  min-width: 20rem;
+  max-width: 25rem;
+  border: none;
+  font-family: var(--main-font);
+  font-weight: 500;
+  outline-color: var(--dark-bg-color);
+}

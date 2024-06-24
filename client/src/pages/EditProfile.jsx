@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLoaderData, Form } from "react-router-dom";
+import "../components/Profile/ProfileEdit.css";
 
 export default function EditProfile() {
   const user = useLoaderData();
@@ -28,53 +29,62 @@ export default function EditProfile() {
   };
 
   return (
-    <Form method="put">
-      <label>
-        First Name:
-        <input
-          type="text"
-          name="firstname"
-          value={formData.firstname}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Last Name:
-        <input
-          type="text"
-          name="lastname"
-          value={formData.lastname}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Email:
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        City:
-        <input
-          type="text"
-          name="city"
-          value={formData.city}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Image URL:
-        <input
-          type="text"
-          name="image"
-          value={formData.image}
-          onChange={handleChange}
-        />
-      </label>
-      <button type="submit">Save</button>
+    <Form method="put" className="edit-form">
+      <div className="edit-box">
+        <label className="edit-label ">
+          First Name:
+          <input
+            className="edit-input container"
+            type="text"
+            name="firstname"
+            value={formData.firstname}
+            onChange={handleChange}
+          />
+        </label>
+        <label className="edit-label ">
+          Last Name:
+          <input
+            className="edit-input container"
+            type="text"
+            name="lastname"
+            value={formData.lastname}
+            onChange={handleChange}
+          />
+        </label>
+        <label className="edit-label ">
+          Email:
+          <input
+            className="edit-input container"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </label>
+        <label className="edit-label ">
+          City:
+          <input
+            className="edit-input container"
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+          />
+        </label>
+        <label className="edit-label ">
+          Image URL:
+          <input
+            className="edit-input container"
+            type="text"
+            name="image"
+            value={formData.image}
+            onChange={handleChange}
+          />
+        </label>
+      </div>
+      <button type="submit" className="button">
+        <h3>save</h3>
+      </button>
     </Form>
   );
 }

@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLoaderData, Form } from "react-router-dom";
+import { FaRegUserCircle } from "react-icons/fa";
+
 import "../components/Profile/ProfileEdit.css";
 
 export default function EditProfile() {
@@ -30,9 +32,34 @@ export default function EditProfile() {
 
   return (
     <Form method="put" className="edit-form">
+      <section className="image-edit-container">
+        <div className="photoComponent">
+          {user.image !== null ? (
+            <img src={user.image} alt="user profile" className="profilePhoto" />
+          ) : (
+            <FaRegUserCircle className="noPhoto" />
+          )}
+        </div>
+
+        <div className="img-input">
+          <label className="edit-label">
+            <p>Image URL:</p>
+            <input
+              className="edit-input container"
+              type="text"
+              name="image"
+              value={formData.image}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <button type="button" className="button">
+          import
+        </button>
+      </section>
       <div className="edit-box">
         <label className="edit-label ">
-          First Name:
+          <p> First Name:</p>
           <input
             className="edit-input container"
             type="text"
@@ -42,7 +69,7 @@ export default function EditProfile() {
           />
         </label>
         <label className="edit-label ">
-          Last Name:
+          <p>Last Name:</p>
           <input
             className="edit-input container"
             type="text"
@@ -52,7 +79,7 @@ export default function EditProfile() {
           />
         </label>
         <label className="edit-label ">
-          Email:
+          <p>Email:</p>
           <input
             className="edit-input container"
             type="email"
@@ -62,7 +89,7 @@ export default function EditProfile() {
           />
         </label>
         <label className="edit-label ">
-          City:
+          <p>City:</p>
           <input
             className="edit-input container"
             type="text"
@@ -71,19 +98,9 @@ export default function EditProfile() {
             onChange={handleChange}
           />
         </label>
-        <label className="edit-label ">
-          Image URL:
-          <input
-            className="edit-input container"
-            type="text"
-            name="image"
-            value={formData.image}
-            onChange={handleChange}
-          />
-        </label>
       </div>
       <button type="submit" className="button">
-        <h3>save</h3>
+        save
       </button>
     </Form>
   );

@@ -2,6 +2,7 @@
 const UserRepository = require("./models/userRepository");
 const CarsRepository = require("./models/carsRepository");
 const StationsRepository = require("./models/stationsRepository");
+const SocketRepository = require("./models/SocketRepository");
 
 // Create an empty object to hold data repositories for different tables
 const tables = {};
@@ -14,6 +15,7 @@ const tables = {};
 tables.user = new UserRepository();
 tables.cars = new CarsRepository();
 tables.stations = new StationsRepository();
+tables.socket = new SocketRepository();
 
 /* ************************************************************************* */
 

@@ -3,14 +3,16 @@ import "../components/Contact/Contact.css";
 
 function ContactForm() {
   const [formValues, setFormValues] = useState({
-    fullName: "",
+    firstname: "",
+    lastname: "",
     email: "",
     subject: "",
     contactMessage: "",
   });
 
   const [formErrors, setFormErrors] = useState({
-    fullName: "",
+    firstname: "",
+    lastname: "",
     email: "",
     subject: "",
     contactMessage: "",
@@ -42,14 +44,21 @@ function ContactForm() {
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
 
   const validateInputs = () => {
-    const { fullName, email, subject, contactMessage } = formValues;
+    const { firstname, lastname, email, subject, contactMessage } = formValues;
     const fields = [
       {
-        name: "fullName",
-        value: fullName,
-        message: "Name is required",
+        name: "firstname",
+        value: firstname,
+        message: "firstname is required",
         minLength: 3,
-        errorMessage: "Name must be at least 3 characters long",
+        errorMessage: "firstname must be at least 3 characters long",
+      },
+      {
+        name: "lastname",
+        value: lastname,
+        message: "Lastname is required",
+        minLength: 2,
+        errorMessage: "Lastname must be at least 2 characters long",
       },
       {
         name: "email",
@@ -108,9 +117,23 @@ function ContactForm() {
           <input
             className="input container"
             type="text"
-            id="fullName"
-            name="fullName"
-            placeholder="Your full name, please"
+            id="firstname"
+            name="firstname"
+            placeholder="Your firstname please"
+            value={formValues.fullName}
+            onChange={handleChange}
+          />
+          {formErrors.fullName && (
+            <div className="error">{formErrors.fullName}</div>
+          )}
+        </div>
+        <div className="input-control">
+          <input
+            className="input container"
+            type="text"
+            id="lastname"
+            name="lasttname"
+            placeholder="Your lastname please"
             value={formValues.fullName}
             onChange={handleChange}
           />

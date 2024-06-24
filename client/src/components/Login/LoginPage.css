@@ -1,0 +1,6 @@
+.logIn {
+  display: flex;
+  flex-direction: column;
+  /* min-width: 20vw;
+  max-width: 25vw; */
+}

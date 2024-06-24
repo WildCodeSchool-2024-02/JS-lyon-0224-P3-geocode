@@ -16,7 +16,7 @@ router.get("/:id", read);
 
 router.put("/:id", edit);
 
-router.post("/add", add);
+router.post("/", add);
 
 /* ************************************************************************* */
 

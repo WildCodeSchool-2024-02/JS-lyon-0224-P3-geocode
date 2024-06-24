@@ -12,8 +12,15 @@ class userRepository extends AbstractRepository {
   async create(user) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (title, user_id) values (?, ?)`,
-      [user.title, user.user_id]
+      `insert into ${this.table} (firstname, lastname, email, password, city, admin) values (?, ?, ?, ?, ?, ?)`,
+      [
+        user.firstname,
+        user.lastname,
+        user.email,
+        user.password,
+        user.city,
+        user.admin,
+      ]
     );
 
     // Return the ID of the newly inserted user
@@ -29,12 +36,12 @@ class userRepository extends AbstractRepository {
   }
 
   // Read a user with their associated cars
-  async readWithCars(id) {
+  async read(id) {
     const query = `
       SELECT 
         user.id, user.firstname, user.lastname, user.email, user.city, user.image, user.admin,
         cars.id as car_id, cars.brand, cars.model, cars.socket
-      FROM ${this.table} user
+      FROM ${this.table}
       LEFT JOIN cars ON user.id = cars.user_id
       WHERE user.id = ?
     `;

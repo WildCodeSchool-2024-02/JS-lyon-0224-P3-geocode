@@ -1,17 +1,22 @@
+.container {
+  margin: 0;
+}
+
 .profileComponent {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .profileInfo {
   height: 45vh;
-  width: 90vw;
+  width: 80vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 0;
   gap: 0.5rem;
 }
@@ -32,7 +37,31 @@
   border-radius: 50%;
 }
 
-@media (min-width: 900px) {
+.noPhoto {
+  width: 6.5rem;
+  height: 6.5rem;
+}
+
+.UserContact {
+  display: flex;
+  align-items: center;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.coordinates {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  gap: 1rem;
+}
+
+@media (min-width: 680px) {
   .profileComponent {
     margin: 0;
   }
@@ -40,5 +69,15 @@
   .profileInfo {
     width: 45vw;
     height: 70vh;
+  }
+
+  .photoComponent {
+    width: 12.2rem;
+    height: 12.2rem;
+  }
+
+  .profilePhoto {
+    width: 12rem;
+    height: 12rem;
   }
 }

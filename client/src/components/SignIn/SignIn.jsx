@@ -1,8 +1,8 @@
 import { Form } from "react-router-dom";
 import { useState } from "react";
-import "./LoginPage.css";
+import "./SignIn.css";
 
-export default function LoginPage() {
+export default function SignInPage() {
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
@@ -59,7 +59,7 @@ export default function LoginPage() {
       if (value.trim() === "") {
         setError(name, message);
         allValid = false;
-      } else if (minLength && value.length < minLength) {
+      } else if (value.length < minLength) {
         setError(name, errorMessage);
         allValid = false;
       } else {
@@ -67,21 +67,23 @@ export default function LoginPage() {
       }
     });
 
-    return allValid;
+    if (allValid === true) {
+      window.location.href = "/";
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateInputs()) {
-      // Send the form data to the server
-      // console.log(formValues);
+      console.info('toto')
     }
+    return "hello"
   };
 
   return (
     <Form method="post" onSubmit={handleSubmit}>
-      <div className="logIn container">
-        <label className="emailInput">
+      <div className="logIn">
+        <label>
           <input
             type="email"
             id="email"
@@ -89,15 +91,14 @@ export default function LoginPage() {
             placeholder="Email"
             value={formValues.email}
             onChange={handleChange}
+            className="emailInput container"
             required
           />
-          {formErrors.email && (
+          {formErrors.email !== "" && (
             <span className="error">{formErrors.email}</span>
           )}
         </label>
-      </div>
-      <div className="passwordInput container">
-        <label className="passwordInput">
+        <label>
           <input
             type="password"
             id="password"
@@ -106,8 +107,9 @@ export default function LoginPage() {
             value={formValues.password}
             onChange={handleChange}
             required
+            className="passwordInput container"
           />
-          {formErrors.password && (
+          {formErrors.password !== "" && (
             <span className="error">{formErrors.password}</span>
           )}
         </label>

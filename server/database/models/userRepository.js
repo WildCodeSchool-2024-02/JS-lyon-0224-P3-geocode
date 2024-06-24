@@ -71,6 +71,32 @@ class userRepository extends AbstractRepository {
 
     return user;
   }
+
+  async update(user) {
+    if (
+      user.firstname === undefined ||
+      user.lastname === undefined ||
+      user.city === undefined || // undefined is a valid value for city
+      user.email === undefined ||
+      user.id === undefined
+    ) {
+      throw new Error("Missing required fields");
+    }
+
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET firstname = ?, lastname = ?, city = ?, image = ?, email = ? WHERE id = ?`,
+      [
+        user.firstname,
+        user.lastname,
+        user.city,
+        user.image,
+        user.email,
+        user.id,
+      ]
+    );
+
+    return result.affectedRows;
+  }
 }
 
 module.exports = userRepository;

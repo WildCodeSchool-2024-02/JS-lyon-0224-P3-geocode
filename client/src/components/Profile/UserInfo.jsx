@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import propTypes from "prop-types";
 import { FaRegUserCircle } from "react-icons/fa";
 import "./UserInfo.css";
@@ -34,9 +35,11 @@ export default function UserInfo({ user }) {
             <p>{city}</p>
           </div>
         </div>
-        <button type="button" className="button">
-          <h3>Edit</h3>
-        </button>
+        <Link to={`/profile/${user.id}/edit`}>
+          <button type="button" className="button">
+            Edit
+          </button>
+        </Link>
       </div>
     </div>
   );
@@ -49,5 +52,6 @@ UserInfo.propTypes = {
     email: propTypes.string.isRequired,
     city: propTypes.string.isRequired,
     image: propTypes.string,
+    id: propTypes.number,
   }).isRequired,
 };

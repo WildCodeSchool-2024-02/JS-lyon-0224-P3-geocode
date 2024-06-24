@@ -19,6 +19,27 @@ import EditProfile from "./pages/EditProfile";
 
 const Api = import.meta.env.VITE_API_URL;
 
+const handleSignUp = async ({ formData }) => {
+  try {
+    const response = await fetch(`${Api}/api/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.status !== 201) {
+      const errorData = await response.json();
+      return { error: errorData.message };
+    }
+
+    return { success: true };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,7 +56,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/signup",
-        element: <SignUp />,
+        element: <SignUp handleSignUp={handleSignUp} />,
       },
       {
         path: "/About-us",

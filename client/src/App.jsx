@@ -1,14 +1,17 @@
 import "./App.css";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import NavBar from "./components/Navbar/NavBar";
-import { LogoProvider } from "./components/Context/LogoContext";
 
 function App() {
+  const location = useLocation();
+
+  const isLogoVisible = location.pathname !== "/profile";
+
   return (
-    <LogoProvider>
-      <NavBar />
+    <>
+      <NavBar isLogoVisible={isLogoVisible} />
       <Outlet />
-    </LogoProvider>
+    </>
   );
 }
 

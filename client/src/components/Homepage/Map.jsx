@@ -15,7 +15,6 @@ const createCustomIcon = () =>
     html: ReactDOMServer.renderToString(
       <FaMapMarkerAlt className="mapMarker" />
     ),
-    iconAnchor: [12, 24], // Anchor point for the custom icon
   });
 
 function Map({ setSelectedStation }) {

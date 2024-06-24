@@ -37,7 +37,7 @@ export default function UserInfo({ user }) {
         </div>
         <Link to={`/profile/${user.id}/edit`}>
           <button type="button" className="button">
-            <h3>Edit</h3>
+            Edit
           </button>
         </Link>
       </div>

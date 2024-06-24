@@ -75,11 +75,11 @@ class userRepository extends AbstractRepository {
 
   async update(user) {
     if (
-      !user.firstname ||
-      !user.lastname ||
-      !user.city ||
-      !user.email ||
-      !user.id
+      user.firstname === undefined ||
+      user.lastname === undefined ||
+      user.city === undefined || // undefined is a valid value for city
+      user.email === undefined ||
+      user.id === undefined
     ) {
       throw new Error("Missing required fields");
     }

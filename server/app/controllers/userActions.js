@@ -34,6 +34,22 @@ const read = async (req, res, next) => {
   }
 };
 
+const edit = async (req, res, next) => {
+  const user = { ...req.body, id: req.params.id };
+  try {
+    const affectedRows = await tables.user.update(user);
+    if (affectedRows === 0) {
+      res.status(404).json({ error: "User not found" });
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    console.error("Error in edit action:", err);
+    res.status(500).json({ error: "Internal server error" });
+    next(err);
+  }
+};
+
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
   // Extract the user data from the request body
@@ -57,5 +73,6 @@ const add = async (req, res, next) => {
 module.exports = {
   browse,
   read,
+  edit,
   add,
 };

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import { Form } from "react-router-dom";
 import "../components/SignUp/SignUp.css";
 
@@ -50,7 +50,8 @@ function SignUp({ handleSignUp }) {
   };
 
   const validateInputs = () => {
-    const { firstname, lastname, city, email, password, password2 } = formValues;
+    const { firstname, lastname, city, email, password, password2 } =
+      formValues;
     const fields = [
       {
         name: "firstname",
@@ -97,23 +98,25 @@ function SignUp({ handleSignUp }) {
 
     let allValid = true;
 
-    fields.forEach(({ name, value, message, errorMessage, minLength, match }) => {
-      if (value.trim() === "") {
-        setError(name, message);
-        allValid = false;
-      } else if (minLength && value.length < minLength) {
-        setError(name, errorMessage);
-        allValid = false;
-      } else if (name === "email" && !validateEmail(value)) {
-        setError(name, "Provide a valid email address");
-        allValid = false;
-      } else if (match !== undefined && value !== match) {
-        setError(name, errorMessage);
-        allValid = false;
-      } else {
-        setSuccess(name);
+    fields.forEach(
+      ({ name, value, message, errorMessage, minLength, match }) => {
+        if (value.trim() === "") {
+          setError(name, message);
+          allValid = false;
+        } else if (minLength && value.length < minLength) {
+          setError(name, errorMessage);
+          allValid = false;
+        } else if (name === "email" && !validateEmail(value)) {
+          setError(name, "Provide a valid email address");
+          allValid = false;
+        } else if (match !== undefined && value !== match) {
+          setError(name, errorMessage);
+          allValid = false;
+        } else {
+          setSuccess(name);
+        }
       }
-    });
+    );
 
     return allValid;
   };
@@ -236,7 +239,7 @@ function SignUp({ handleSignUp }) {
           )}
         </label>
         <button className="button" id="signupbut" type="submit">
-          <h3>Submit</h3>
+          Submit
         </button>
         {formErrors.form && <div className="error">{formErrors.form}</div>}
       </div>

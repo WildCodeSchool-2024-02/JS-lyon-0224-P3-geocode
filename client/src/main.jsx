@@ -41,6 +41,27 @@ const handleSignUp = async ({ formData }) => {
   }
 };
 
+const handleSignIn = async ({ signInData }) => {
+  try {
+    const response = await fetch(`${Api}/api/signin`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(signInData),
+    });
+
+    if (response.status !== 200) {
+      const errorData = await response.json();
+      return { error: errorData.message };
+    }
+
+    return { success: true };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -61,7 +82,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/SignIn",
-        element: <SignInPage />,
+        element: <SignInPage handleSignIn={handleSignIn} />,
       },
       {
         path: "/About-us",

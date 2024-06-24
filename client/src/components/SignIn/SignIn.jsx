@@ -1,42 +1,43 @@
 import { Form } from "react-router-dom";
 import { useState } from "react";
+import PropTypes from "prop-types";
 import "./SignIn.css";
 
-export default function SignInPage() {
-  const [formValues, setFormValues] = useState({
+export default function SignInPage({ handleSignIn }) {
+  const [signInValues, setSignInValues] = useState({
     email: "",
     password: "",
   });
 
-  const [formErrors, setFormErrors] = useState({
+  const [signInErrors, setSignInErrors] = useState({
     email: "",
     password: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
+    setSignInValues({
+      ...signInValues,
       [name]: value,
     });
   };
 
   const setError = (name, message) => {
-    setFormErrors((prevErrors) => ({
+    setSignInErrors((prevErrors) => ({
       ...prevErrors,
       [name]: message,
     }));
   };
 
   const setSuccess = (name) => {
-    setFormErrors((prevErrors) => ({
+    setSignInErrors((prevErrors) => ({
       ...prevErrors,
       [name]: "",
     }));
   };
 
   const validateInputs = () => {
-    const { email, password } = formValues;
+    const { email, password } = signInValues;
     const fields = [
       {
         name: "email",
@@ -59,7 +60,7 @@ export default function SignInPage() {
       if (value.trim() === "") {
         setError(name, message);
         allValid = false;
-      } else if (value.length < minLength) {
+      } else if (minLength && value.length < minLength) {
         setError(name, errorMessage);
         allValid = false;
       } else {
@@ -67,50 +68,60 @@ export default function SignInPage() {
       }
     });
 
-    if (allValid === true) {
-      window.location.href = "/";
-    }
+    return allValid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const signInData = {
+      email: signInValues.email,
+      password: signInValues.password,
+    };
+
     if (validateInputs()) {
-      console.info('toto')
+      const result = await handleSignIn({ signInData });
+      if (result.success) {
+        window.location.href = "/";
+      } else {
+        setError("form", result.error);
+        console.error("Sign-in error:", result.error);
+      }
     }
-    return "hello"
   };
 
   return (
-    <Form method="post" onSubmit={handleSubmit}>
+    <Form className="logInComponent" method="post" onSubmit={handleSubmit}>
       <div className="logIn">
         <label>
           <input
+            className="emailInput container"
             type="email"
             id="email"
             name="email"
             placeholder="Email"
-            value={formValues.email}
+            value={signInValues.email}
             onChange={handleChange}
-            className="emailInput container"
+            autoComplete="off"
             required
           />
-          {formErrors.email !== "" && (
-            <span className="error">{formErrors.email}</span>
+          {signInErrors.email !== "" && (
+            <span className="error">{signInErrors.email}</span>
           )}
         </label>
         <label>
           <input
+            className="passwordInput container"
             type="password"
             id="password"
             name="password"
             placeholder="Password"
-            value={formValues.password}
+            value={signInValues.password}
             onChange={handleChange}
+            autoComplete="off"
             required
-            className="passwordInput container"
           />
-          {formErrors.password !== "" && (
-            <span className="error">{formErrors.password}</span>
+          {signInErrors.password !== "" && (
+            <span className="error">{signInErrors.password}</span>
           )}
         </label>
         <button className="button" type="submit">
@@ -120,3 +131,7 @@ export default function SignInPage() {
     </Form>
   );
 }
+
+SignInPage.propTypes = {
+  handleSignIn: PropTypes.func.isRequired,
+};

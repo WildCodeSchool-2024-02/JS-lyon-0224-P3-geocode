@@ -22,6 +22,10 @@ const socketRouter = require("./socket/router");
 
 router.use("/socket", socketRouter);
 
+const signInActions = require("../../controllers/signInActions");
+
+router.post("/signin", signInActions.signIn)
+
 /* ************************************************************************* */
 
 module.exports = router;

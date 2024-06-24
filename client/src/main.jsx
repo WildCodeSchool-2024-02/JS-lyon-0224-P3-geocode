@@ -12,6 +12,7 @@ import ContactPage from "./pages/ContactPage";
 import ProfilePage from "./pages/ProfilePage";
 import ProfileAccess from "./pages/ProfileAccess";
 import SignUp from "./pages/SignUp";
+import SignIn from "./components/SignIn/SignIn";
 
 const Api = import.meta.env.VITE_API_URL;
 
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
+      },
+      {
+        path: "/signIn",
+        element: <SignIn />,
       },
       {
         path: "/About-us",

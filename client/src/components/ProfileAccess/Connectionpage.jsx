@@ -6,7 +6,7 @@ export default function ConnectionPage() {
     <div className="connectionPage">
       <img src={logo} alt="" className="imageLogo" />
       <button className="btn" type="button">
-        <a href=".">
+        <a href="SignIn">
           <h3>Sign in</h3>
         </a>
       </button>

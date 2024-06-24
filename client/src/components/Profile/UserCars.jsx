@@ -1,4 +1,9 @@
 import propTypes from "prop-types";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+
 import "./UserCars.css";
 
 import porsche from "../../assets/image/porsche.jpeg";
@@ -10,23 +15,31 @@ export default function UserCars({ cars }) {
 
   return (
     <div className="userCars">
-      <h2>
-        <span>My Cars:</span>
-      </h2>
-      <div className="carInfo container">
+      <div className="carInfo">
         <ul>
-          {cars.map((car) => (
-            <li key={car.id}>
-              <h3>
-                <span>{car.brand}</span> {car.model}
-              </h3>
-              <img src={porsche} alt="porsche" className="img" />
-
-              <p>
-                <span>Socket:</span> {car.socket}
-              </p>
-            </li>
-          ))}
+          <Swiper
+            spaceBetween={50}
+            slidesPerView={1}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Pagination]}
+            className="pagination"
+          >
+            {cars.map((car) => (
+              <SwiperSlide key={car.id}>
+                <div className="car-slide">
+                  <h3>
+                    <span>{car.brand}</span> {car.model}
+                  </h3>
+                  <img src={porsche} alt="porsche" className="img" />
+                  <p>
+                    <span>Socket:</span> {car.socket}
+                  </p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </ul>
       </div>
     </div>

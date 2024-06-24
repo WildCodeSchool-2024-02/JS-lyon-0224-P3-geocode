@@ -3,7 +3,7 @@ create table user (
   firstname varchar(80) not null,
   lastname varchar(80) not null,
   email varchar(255) not null unique,
-  password VARCHAR(255) NOT NULL,
+  password varchar(255) not null,
   city varchar(80),
   image text,
   admin boolean not null

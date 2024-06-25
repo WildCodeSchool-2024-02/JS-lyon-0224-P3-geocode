@@ -32,3 +32,11 @@ create table socket (
   id int unsigned primary key auto_increment not null,
   type varchar(155) not null
 );
+
+create table usermessage (
+  firstname varchar(80) not null,
+  lastname varchar(80) not null,
+  email varchar(255) not null,
+  subject varchar(250),
+  message text not null
+);

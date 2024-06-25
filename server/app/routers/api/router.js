@@ -22,6 +22,10 @@ const socketRouter = require("./socket/router");
 
 router.use("/socket", socketRouter);
 
+const ContactRouter = require("./Contact/router");
+
+router.use("/contact", ContactRouter);
+
 /* ************************************************************************* */
 
 module.exports = router;

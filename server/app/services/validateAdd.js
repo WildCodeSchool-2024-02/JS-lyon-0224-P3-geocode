@@ -1,6 +1,6 @@
 const Joi = require("joi");
 
-const editSchema = Joi.object({
+const addSchema = Joi.object({
   firstname: Joi.string()
     .pattern(/^[a-zA-ZÀ-ÿ\s']+$/)
     .min(3)
@@ -17,11 +17,11 @@ const editSchema = Joi.object({
     .min(3)
     .max(55)
     .required(),
-  image: Joi.string(),
-  id: Joi.number().required(),
+  password: Joi.string().min(8).required(),
+  password2: Joi.string().valid(Joi.ref("password")).required(),
 });
-const validateEdit = (req, res, next) => {
-  const { error } = editSchema.validate(req.body, { abortEarly: true });
+const validateAdd = (req, res, next) => {
+  const { error } = addSchema.validate(req.body, { abortEarly: true });
 
   if (!error) {
     next();
@@ -29,5 +29,4 @@ const validateEdit = (req, res, next) => {
     res.status(400).json({ validationErrors: error.details });
   }
 };
-
-module.exports = validateEdit;
+module.exports = validateAdd;

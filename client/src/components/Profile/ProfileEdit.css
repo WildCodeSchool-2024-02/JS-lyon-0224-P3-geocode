@@ -1,0 +1,39 @@
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.edit-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  align-items: center;
+  background-color: var(--light-bg-color);
+}
+.edit-label {
+  margin: 1rem;
+}
+.edit-input {
+  background: var(--primary-color);
+  color: black;
+  height: 3rem;
+  min-width: 20rem;
+  max-width: 25rem;
+  border: none;
+  font-family: var(--main-font);
+  font-weight: 600;
+  outline-color: var(--dark-bg-color);
+}
+.label-title {
+  margin-bottom: 0.4rem;
+  margin-left: 0.2rem;
+  font-size: large;
+  color: var(--secondary-color);
+}
+.image-edit-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

@@ -20,13 +20,14 @@ const editSchema = Joi.object({
   image: Joi.string(),
   id: Joi.number().required(),
 });
-const validateEdit = (req, res, next) => {
-  const { error } = editSchema.validate(req.body, { abortEarly: true });
 
-  if (!error) {
-    next();
-  } else {
+const validateEdit = (req, res, next) => {
+  const { error } = editSchema.validate(req.body, { abortEarly: false });
+
+  if (error) {
     res.status(400).json({ validationErrors: error.details });
+  } else {
+    next();
   }
 };
 

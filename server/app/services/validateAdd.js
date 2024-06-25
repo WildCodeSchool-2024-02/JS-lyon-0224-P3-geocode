@@ -23,7 +23,7 @@ const addSchema = Joi.object({
 const validateAdd = (req, res, next) => {
   const { error } = addSchema.validate(req.body, { abortEarly: true });
 
-  if (!error) {
+  if (error !== null) {
     next();
   } else {
     res.status(400).json({ validationErrors: error.details });

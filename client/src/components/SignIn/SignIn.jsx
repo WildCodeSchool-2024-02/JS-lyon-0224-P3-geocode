@@ -80,7 +80,7 @@ export default function SignInPage({ handleSignIn }) {
       password: signInValues.password,
     };
 
-    if (validateInputs()) {
+    if (validateInputs() === true) {
       try {
         const result = await handleSignIn({ signInData });
 
@@ -90,7 +90,7 @@ export default function SignInPage({ handleSignIn }) {
           throw new Error(result.error);
         }
       } catch (error) {
-        if (error.response && error.response.status === 422) {
+        if (error.response === true && error.response.status === 422) {
           setError("form", "Incorrect email or password");
         } else {
           setError("form", "Incorrect email or password");
@@ -137,7 +137,7 @@ export default function SignInPage({ handleSignIn }) {
             <span className="error">{signInErrors.password}</span>
           )}
         </label>
-        {signInErrors.form && (
+        {signInErrors.form !== "" && (
           <span className="error">{signInErrors.form}</span>
         )}
         <a href="/signin" className="forgetPassword">

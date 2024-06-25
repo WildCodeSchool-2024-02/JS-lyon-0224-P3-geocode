@@ -24,7 +24,7 @@ const editSchema = Joi.object({
 const validateEdit = (req, res, next) => {
   const { error } = editSchema.validate(req.body, { abortEarly: false });
 
-  if (error) {
+  if (error === true) {
     res.status(400).json({ validationErrors: error.details });
   } else {
     next();

@@ -24,7 +24,7 @@ router.use("/socket", socketRouter);
 
 const ContactRouter = require("./Contact/router");
 
-router.use("/Contact", ContactRouter);
+router.use("/contact", ContactRouter);
 
 /* ************************************************************************* */
 

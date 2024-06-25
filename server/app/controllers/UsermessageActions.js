@@ -6,7 +6,7 @@ const add = async (req, res, next) => {
   const dataUser = req.body;
   try {
     // Insert the user into the database
-    const insertId = await tables.user.create(dataUser);
+    const insertId = await tables.usermessage.create(dataUser);
     // Respond with HTTP 201 (Created) and the ID of the newly inserted user
     res.status(201).json({ insertId });
   } catch (err) {

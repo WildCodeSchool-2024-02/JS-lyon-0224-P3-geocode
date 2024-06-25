@@ -14,6 +14,7 @@ import HomePage from "./pages/HomePage";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
 import ProfilePage from "./pages/ProfilePage";
+import ProfileAccess from "./pages/ProfileAccess";
 import SignUp from "./pages/SignUp";
 import SignInPage from "./components/SignIn/SignIn";
 import EditProfile from "./pages/EditProfile";
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
       {
         path: "/Contact",
         element: <ContactPage />,
+      },
+      {
+        path: "/Profile",
+        element: <ProfileAccess />,
       },
       {
         path: "/Profile/:id/",

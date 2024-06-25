@@ -2,6 +2,7 @@ import { Form } from "react-router-dom";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "./SignIn.css";
+import logo from "../../assets/image/geocode4.svg";
 
 export default function SignInPage({ handleSignIn }) {
   const [signInValues, setSignInValues] = useState({
@@ -12,6 +13,7 @@ export default function SignInPage({ handleSignIn }) {
   const [signInErrors, setSignInErrors] = useState({
     email: "",
     password: "",
+    form: "",
   });
 
   const handleChange = (e) => {
@@ -78,19 +80,29 @@ export default function SignInPage({ handleSignIn }) {
       password: signInValues.password,
     };
 
-    if (validateInputs()) {
-      const result = await handleSignIn({ signInData });
-      if (result.success) {
-        window.location.href = "/";
-      } else {
-        setError("form", result.error);
-        console.error("Sign-in error:", result.error);
+    if (validateInputs() === true) {
+      try {
+        const result = await handleSignIn({ signInData });
+
+        if (result.success) {
+          window.location.href = `/profile/${result.id}`;
+        } else {
+          throw new Error(result.error);
+        }
+      } catch (error) {
+        if (error.response === true && error.response.status === 422) {
+          setError("form", "Incorrect email or password");
+        } else {
+          setError("form", "Incorrect email or password");
+        }
+        console.error("Sign-in error:", error);
       }
     }
   };
 
   return (
     <Form className="logInComponent" method="post" onSubmit={handleSubmit}>
+      <img src={logo} alt="" className="imageLogo" />
       <div className="logIn">
         <p>Acces to your profile</p>
         <label>
@@ -125,6 +137,9 @@ export default function SignInPage({ handleSignIn }) {
             <span className="error">{signInErrors.password}</span>
           )}
         </label>
+        {signInErrors.form !== "" && (
+          <span className="error">{signInErrors.form}</span>
+        )}
         <a href="/signin" className="forgetPassword">
           <span>Forget password?</span>
         </a>

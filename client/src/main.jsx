@@ -14,6 +14,7 @@ import HomePage from "./pages/HomePage";
 import AboutUsPage from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
 import ProfilePage from "./pages/ProfilePage";
+import ProfileAccess from "./pages/ProfileAccess";
 import SignUp from "./pages/SignUp";
 import SignInPage from "./components/SignIn/SignIn";
 import EditProfile from "./pages/EditProfile";
@@ -56,7 +57,8 @@ const handleSignIn = async ({ signInData }) => {
       return { error: errorData.message };
     }
 
-    return { success: true };
+    const data = await response.json();
+    return { success: true, id: data.id };
   } catch (error) {
     return { error: error.message };
   }
@@ -91,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: "/Contact",
         element: <ContactPage />,
+      },
+      {
+        path: "/Profile",
+        element: <ProfileAccess />,
       },
       {
         path: "/Profile/:id/",

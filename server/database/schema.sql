@@ -36,7 +36,7 @@ create table socket (
 create table usermessage (
   firstname varchar(80) not null,
   lastname varchar(80) not null,
-  email varchar(255) not null unique,
+  email varchar(255) not null,
   subject varchar(250),
   message text not null
 );

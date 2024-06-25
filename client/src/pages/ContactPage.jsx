@@ -44,7 +44,7 @@ function ContactForm() {
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
 
   const validateInputs = () => {
-    const { firstname, lastname, email, subject, messageValue } = formValues;
+    const { firstname, lastname, email, subject, messageText } = formValues;
     const fields = [
       {
         name: "firstname",
@@ -76,7 +76,7 @@ function ContactForm() {
       },
       {
         name: "message",
-        value: messageValue,
+        value: messageText,
         message: "Message is required",
         minLength: 10,
         errorMessage: "Message must be at least 10 characters long",

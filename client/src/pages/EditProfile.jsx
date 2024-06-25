@@ -43,7 +43,7 @@ export default function EditProfile() {
 
         <div className="img-input">
           <label className="edit-label">
-            <p>Image URL:</p>
+            <span className="label-title">Image URL:</span>
             <input
               className="edit-input container"
               type="text"
@@ -59,7 +59,7 @@ export default function EditProfile() {
       </section>
       <div className="edit-box">
         <label className="edit-label ">
-          <p> First Name:</p>
+          <span className="label-title">First Name:</span>
           <input
             className="edit-input container"
             type="text"
@@ -69,7 +69,7 @@ export default function EditProfile() {
           />
         </label>
         <label className="edit-label ">
-          <p>Last Name:</p>
+          <span className="label-title">Last Name:</span>
           <input
             className="edit-input container"
             type="text"
@@ -79,7 +79,7 @@ export default function EditProfile() {
           />
         </label>
         <label className="edit-label ">
-          <p>Email:</p>
+          <span className="label-title">Email:</span>
           <input
             className="edit-input container"
             type="email"
@@ -89,7 +89,7 @@ export default function EditProfile() {
           />
         </label>
         <label className="edit-label ">
-          <p>City:</p>
+          <span className="label-title">City:</span>
           <input
             className="edit-input container"
             type="text"

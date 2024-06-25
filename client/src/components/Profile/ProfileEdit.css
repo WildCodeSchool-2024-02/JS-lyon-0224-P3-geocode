@@ -25,9 +25,11 @@
   font-weight: 600;
   outline-color: var(--dark-bg-color);
 }
-.edit-label > p {
+.label-title {
   margin-bottom: 0.4rem;
   margin-left: 0.2rem;
+  font-size: large;
+  color: var(--secondary-color);
 }
 .image-edit-container {
   display: flex;

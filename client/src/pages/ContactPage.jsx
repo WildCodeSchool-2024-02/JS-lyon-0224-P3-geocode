@@ -89,10 +89,10 @@ function ContactForm() {
         if (value.trim() === "") {
           setError(name, message);
           allValid = false;
-        } else if (validate && !validate(value)) {
+        } else if (validate === true && validate(value) === false) {
           setError(name, errorMessage);
           allValid = false;
-        } else if (minLength && value.length < minLength) {
+        } else if (value.length < minLength) {
           setError(name, errorMessage);
           allValid = false;
         } else {
@@ -104,7 +104,7 @@ function ContactForm() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateInputs()) {
+    if (validateInputs() === true) {
       window.location.href = "/";
       alert("Message Sent.");
     }
@@ -120,11 +120,11 @@ function ContactForm() {
             id="firstname"
             name="firstname"
             placeholder="Your firstname please"
-            value={formValues.fullName}
+            value={formValues.firstname}
             onChange={handleChange}
           />
-          {formErrors.fullName && (
-            <div className="error">{formErrors.fullName}</div>
+          {formErrors.firstname !== "" && (
+            <div className="error">{formErrors.firstname}</div>
           )}
         </div>
         <div className="input-control">
@@ -132,13 +132,14 @@ function ContactForm() {
             className="input container"
             type="text"
             id="lastname"
-            name="lasttname"
+            name="lastname"
             placeholder="Your lastname please"
-            value={formValues.fullName}
+            value={formValues.lastname}
             onChange={handleChange}
+            required
           />
-          {formErrors.fullName && (
-            <div className="error">{formErrors.fullName}</div>
+          {formErrors.lastname !== "" && (
+            <div className="error">{formErrors.lastname}</div>
           )}
         </div>
         <div className="input-control">
@@ -151,7 +152,9 @@ function ContactForm() {
             value={formValues.email}
             onChange={handleChange}
           />
-          {formErrors.email && <div className="error">{formErrors.email}</div>}
+          {formErrors.email !== "" && (
+            <div className="error">{formErrors.email}</div>
+          )}
         </div>
         <div className="input-control">
           <input
@@ -163,7 +166,7 @@ function ContactForm() {
             value={formValues.subject}
             onChange={handleChange}
           />
-          {formErrors.subject && (
+          {formErrors.subject !== "" && (
             <div className="error">{formErrors.subject}</div>
           )}
         </div>
@@ -176,8 +179,8 @@ function ContactForm() {
             value={formValues.message}
             onChange={handleChange}
           />
-          {formErrors.message && (
-            <div className="error">{formErrors.message}</div>
+          {formErrors.message !== "" && (
+            <div className="error">{formErrors.contactMessage}</div>
           )}
         </div>
         <button className="button" id="signupbut" type="submit">

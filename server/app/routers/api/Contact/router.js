@@ -7,4 +7,5 @@ const { add } = require("../../../controllers/ContactActions");
 // Route to get a list of items
 router.post("/add", add);
 
+module.exports = router;
 /* ************************************************************************* */

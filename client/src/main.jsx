@@ -57,7 +57,9 @@ const handleSignIn = async ({ signInData }) => {
       return { error: errorData.message };
     }
 
-    return { success: true };
+    const data = await response.json();
+    return { success: true, id: data.id };
+
   } catch (error) {
     return { error: error.message };
   }

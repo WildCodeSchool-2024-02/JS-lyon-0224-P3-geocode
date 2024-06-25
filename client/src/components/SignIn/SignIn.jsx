@@ -12,6 +12,7 @@ export default function SignInPage({ handleSignIn }) {
   const [signInErrors, setSignInErrors] = useState({
     email: "",
     password: "",
+    form: "",
   });
 
   const handleChange = (e) => {
@@ -79,12 +80,23 @@ export default function SignInPage({ handleSignIn }) {
     };
 
     if (validateInputs()) {
-      const result = await handleSignIn({ signInData });
-      if (result.success) {
-        window.location.href = "/";
-      } else {
-        setError("form", result.error);
-        console.error("Sign-in error:", result.error);
+      try {
+
+
+        const result = await handleSignIn({ signInData });
+
+        if (result.success) {
+          window.location.href = `/profile/${result.id}`;
+        } else {
+          throw new Error(result.error);
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 422) {
+          setError("form", "Incorrect email or password");
+        } else {
+          setError("form", "Incorrect email or password");
+        }
+        console.error("Sign-in error:", error);
       }
     }
   };
@@ -125,6 +137,9 @@ export default function SignInPage({ handleSignIn }) {
             <span className="error">{signInErrors.password}</span>
           )}
         </label>
+        {signInErrors.form && (
+          <span className="error">{signInErrors.form}</span>
+        )}
         <a href="/signin" className="forgetPassword">
           <p>
             <span>Forget password?</span>

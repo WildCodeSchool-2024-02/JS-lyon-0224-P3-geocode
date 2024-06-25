@@ -1,13 +1,15 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
+
 import "../components/Contact/Contact.css";
 
-function ContactForm() {
+function ContactPage({ handleContact }) {
   const [formValues, setFormValues] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    subject: "",
-    message: "",
+    firstname:"",
+    lastname:"",
+    email:"",
+    subject:"",
+    message:"",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -16,6 +18,7 @@ function ContactForm() {
     email: "",
     subject: "",
     message: "",
+    form: ""
   });
 
   const handleChange = (e) => {
@@ -26,14 +29,14 @@ function ContactForm() {
     }));
   };
 
-  const setError = (name, message) => {
+  const setError = (name, errorMsg) => {
     setFormErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: message,
+      [name]: errorMsg,
     }));
   };
 
-  const setSuccess = (name) => {
+  const clearError = (name) => {
     setFormErrors((prevErrors) => ({
       ...prevErrors,
       [name]: "",
@@ -44,71 +47,100 @@ function ContactForm() {
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
 
   const validateInputs = () => {
-    const { firstname, lastname, email, subject, messageText } = formValues;
-    const fields = [
+    const { firstname, lastname, email, subject, message } = formValues;
+    const validations = [
       {
-        name: "firstname",
+        field: "firstname",
         value: firstname,
-        message: "Firstname is required",
+        requiredMsg: "Firstname is required",
         minLength: 3,
-        errorMessage: "Firstname must be at least 3 characters long",
+        minLengthMsg: "Firstname must be at least 3 characters long",
       },
       {
-        name: "lastname",
+        field: "lastname",
         value: lastname,
-        message: "Lastname is required",
+        requiredMsg: "Lastname is required",
         minLength: 2,
-        errorMessage: "Lastname must be at least 2 characters long",
+        minLengthMsg: "Lastname must be at least 2 characters long",
       },
       {
-        name: "email",
+        field: "email",
         value: email,
-        message: "Email is required",
+        requiredMsg: "Email is required",
         validate: isValidEmail,
-        errorMessage: "Provide a valid email address",
+        validateMsg: "Provide a valid email address",
       },
       {
-        name: "subject",
+        field: "subject",
         value: subject,
-        message: "Subject is required",
+        requiredMsg: "Subject is required",
         minLength: 2,
-        errorMessage: "Subject must be at least 2 characters long",
+        minLengthMsg: "Subject must be at least 2 characters long",
       },
       {
-        name: "message",
-        value: messageText,
-        message: "Message is required",
+        field: "message",
+        value: message,
+        requiredMsg: "Message is required",
         minLength: 10,
-        errorMessage: "Message must be at least 10 characters long",
+        minLengthMsg: "Message must be at least 10 characters long",
       },
     ];
 
-    let allValid = true;
-    fields.forEach(
-      ({ name, value, message, validate, errorMessage, minLength }) => {
-        if (value.trim() === "") {
-          setError(name, message);
-          allValid = false;
-        } else if (validate && !validate(value)) {
-          setError(name, errorMessage);
-          allValid = false;
+    let isValid = true;
+    validations.forEach(
+      ({
+        field,
+        value,
+        requiredMsg,
+        validate,
+        validateMsg,
+        minLength,
+        minLengthMsg,
+      }) => {
+        if (!value.trim() === "") {
+          setError(field, requiredMsg);
+          isValid = false;
+        } else if (validate === "" && !validate(value)) {
+          setError(field, validateMsg);
+          isValid = false;
         } else if (minLength && value.length < minLength) {
-          setError(name, errorMessage);
-          allValid = false;
+          setError(field, minLengthMsg);
+          isValid = false;
         } else {
-          setSuccess(name);
+          clearError(field);
         }
       }
     );
-    return allValid;
+
+    return isValid;
   };
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateInputs()) {
-      window.location.href = "/";
-      alert("Message Sent.");
+
+    const contactData =  {
+      firstname: formValues.firstname,
+      lastname: formValues.lastname,
+      email: formValues.email,
+      subject: formValues.subject,
+      message: formValues.message,
+    };
+
+    if (validateInputs() === true) {
+      try {
+        const result = await handleContact(contactData);
+        if (result.success) {
+          alert("Message Sent.");
+          window.location.href = "/";
+        } else {
+          setError("form", result.error);
+        }
+      } catch (error) {
+        setError("form", "An unexpected error occurred.");
+      }
     }
   };
+
   return (
     <form className="bodyform" id="form" onSubmit={handleSubmit}>
       <div className="inscription-component">
@@ -181,10 +213,16 @@ function ContactForm() {
           )}
         </div>
         <button className="button" id="signupbut" type="submit">
-          <h3>Send Message</h3>
+          Send Message
         </button>
+        {formErrors.form && <div className="error">{formErrors.form}</div>}
       </div>
     </form>
   );
 }
-export default ContactForm;
+
+ContactPage.propTypes = {
+  handleContact: PropTypes.func.isRequired,
+};
+
+export default ContactPage;

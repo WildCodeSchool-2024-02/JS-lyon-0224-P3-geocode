@@ -40,6 +40,11 @@ body {
   background: var(--light-bg-color);
 }
 
+.connection-page-background {
+  background: var(--main-gradient);
+  height: 100vh;
+}
+
 h1,
 h2,
 h3,
@@ -84,7 +89,7 @@ span {
 }
 
 .button:hover,
-.buton:focus {
+.button:focus {
   box-shadow: 0 0.5em 0.5em -0.4em var(--title-color);
   transform: translateY(-0.25em);
 }

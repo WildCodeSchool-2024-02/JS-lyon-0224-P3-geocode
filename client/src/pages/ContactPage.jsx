@@ -7,7 +7,7 @@ function ContactForm() {
     lastname: "",
     email: "",
     subject: "",
-    contactMessage: "",
+    message: "",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -15,7 +15,7 @@ function ContactForm() {
     lastname: "",
     email: "",
     subject: "",
-    contactMessage: "",
+    message: "",
   });
 
   const handleChange = (e) => {
@@ -44,7 +44,7 @@ function ContactForm() {
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
 
   const validateInputs = () => {
-    const { firstname, lastname, email, subject, contactMessage } = formValues;
+    const { firstname, lastname, email, subject, messageValus } = formValues;
     const fields = [
       {
         name: "firstname",
@@ -75,8 +75,8 @@ function ContactForm() {
         errorMessage: "Subject must be at least 2 characters long",
       },
       {
-        name: "contactMessage",
-        value: contactMessage,
+        name: "message",
+        value: messageValus ,
         message: "Message is required",
         minLength: 10,
         errorMessage: "Message must be at least 10 characters long",
@@ -89,10 +89,10 @@ function ContactForm() {
         if (value.trim() === "") {
           setError(name, message);
           allValid = false;
-        } else if (validate === true && validate(value) === false) {
+        } else if (validate && !validate(value)) {
           setError(name, errorMessage);
           allValid = false;
-        } else if (value.length < minLength) {
+        } else if (minLength && value.length < minLength) {
           setError(name, errorMessage);
           allValid = false;
         } else {
@@ -104,7 +104,7 @@ function ContactForm() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateInputs() === true) {
+    if (validateInputs()) {
       window.location.href = "/";
       alert("Message Sent.");
     }
@@ -120,11 +120,11 @@ function ContactForm() {
             id="firstname"
             name="firstname"
             placeholder="Your firstname please"
-            value={formValues.firstname}
+            value={formValues.fullName}
             onChange={handleChange}
           />
-          {formErrors.firstname !== "" && (
-            <div className="error">{formErrors.firstname}</div>
+          {formErrors.fullName && (
+            <div className="error">{formErrors.fullName}</div>
           )}
         </div>
         <div className="input-control">
@@ -132,14 +132,13 @@ function ContactForm() {
             className="input container"
             type="text"
             id="lastname"
-            name="lastname"
+            name="lasttname"
             placeholder="Your lastname please"
-            value={formValues.lastname}
+            value={formValues.fullName}
             onChange={handleChange}
-            required
           />
-          {formErrors.lastname !== "" && (
-            <div className="error">{formErrors.lastname}</div>
+          {formErrors.fullName && (
+            <div className="error">{formErrors.fullName}</div>
           )}
         </div>
         <div className="input-control">
@@ -152,9 +151,7 @@ function ContactForm() {
             value={formValues.email}
             onChange={handleChange}
           />
-          {formErrors.email !== "" && (
-            <div className="error">{formErrors.email}</div>
-          )}
+          {formErrors.email && <div className="error">{formErrors.email}</div>}
         </div>
         <div className="input-control">
           <input
@@ -166,21 +163,21 @@ function ContactForm() {
             value={formValues.subject}
             onChange={handleChange}
           />
-          {formErrors.subject !== "" && (
+          {formErrors.subject && (
             <div className="error">{formErrors.subject}</div>
           )}
         </div>
         <div className="input-control">
           <textarea
             className="input-text container"
-            id="contactMessage"
-            name="contactMessage"
+            id="message"
+            name="message"
             placeholder="Your message (max 300 characters)*"
-            value={formValues.contactMessage}
+            value={formValues.message}
             onChange={handleChange}
           />
-          {formErrors.contactMessage !== "" && (
-            <div className="error">{formErrors.contactMessage}</div>
+          {formErrors.message && (
+            <div className="error">{formErrors.message}</div>
           )}
         </div>
         <button className="button" id="signupbut" type="submit">

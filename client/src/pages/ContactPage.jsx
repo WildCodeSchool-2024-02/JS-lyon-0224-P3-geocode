@@ -8,7 +8,6 @@ function ContactForm() {
     email: "",
     subject: "",
     message: "",
-   
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -21,10 +20,10 @@ function ContactForm() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
+    setFormValues((prevValues) => ({
+      ...prevValues,
       [name]: value,
-    });
+    }));
   };
 
   const setError = (name, message) => {
@@ -45,14 +44,14 @@ function ContactForm() {
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
 
   const validateInputs = () => {
-    const { firstname, lastname, email, subject, messageValus } = formValues;
+    const { firstname, lastname, email, subject, messageValue } = formValues;
     const fields = [
       {
         name: "firstname",
         value: firstname,
-        message: "firstname is required",
+        message: "Firstname is required",
         minLength: 3,
-        errorMessage: "firstname must be at least 3 characters long",
+        errorMessage: "Firstname must be at least 3 characters long",
       },
       {
         name: "lastname",
@@ -77,7 +76,7 @@ function ContactForm() {
       },
       {
         name: "message",
-        value: messageValus,
+        value: messageValue,
         message: "Message is required",
         minLength: 10,
         errorMessage: "Message must be at least 10 characters long",
@@ -121,11 +120,11 @@ function ContactForm() {
             id="firstname"
             name="firstname"
             placeholder="Your firstname please"
-            value={formValues.fullName}
+            value={formValues.firstname}
             onChange={handleChange}
           />
-          {formErrors.fullName && (
-            <div className="error">{formErrors.fullName}</div>
+          {formErrors.firstname && (
+            <div className="error">{formErrors.firstname}</div>
           )}
         </div>
         <div className="input-control">
@@ -133,13 +132,13 @@ function ContactForm() {
             className="input container"
             type="text"
             id="lastname"
-            name="lasttname"
+            name="lastname"
             placeholder="Your lastname please"
-            value={formValues.fullName}
+            value={formValues.lastname}
             onChange={handleChange}
           />
-          {formErrors.fullName && (
-            <div className="error">{formErrors.fullName}</div>
+          {formErrors.lastname && (
+            <div className="error">{formErrors.lastname}</div>
           )}
         </div>
         <div className="input-control">

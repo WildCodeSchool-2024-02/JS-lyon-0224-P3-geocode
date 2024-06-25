@@ -2,6 +2,7 @@ import { Form } from "react-router-dom";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "./SignIn.css";
+import logo from "../../assets/image/geocode4.svg";
 
 export default function SignInPage({ handleSignIn }) {
   const [signInValues, setSignInValues] = useState({
@@ -81,8 +82,6 @@ export default function SignInPage({ handleSignIn }) {
 
     if (validateInputs()) {
       try {
-
-
         const result = await handleSignIn({ signInData });
 
         if (result.success) {
@@ -103,6 +102,7 @@ export default function SignInPage({ handleSignIn }) {
 
   return (
     <Form className="logInComponent" method="post" onSubmit={handleSubmit}>
+      <img src={logo} alt="" className="imageLogo" />
       <div className="logIn">
         <p>Acces to your profile</p>
         <label>

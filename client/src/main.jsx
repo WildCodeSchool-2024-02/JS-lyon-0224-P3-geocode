@@ -59,7 +59,6 @@ const handleSignIn = async ({ signInData }) => {
 
     const data = await response.json();
     return { success: true, id: data.id };
-
   } catch (error) {
     return { error: error.message };
   }

@@ -8,6 +8,7 @@ function ContactForm() {
     email: "",
     subject: "",
     message: "",
+   
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -76,7 +77,7 @@ function ContactForm() {
       },
       {
         name: "message",
-        value: messageValus ,
+        value: messageValus,
         message: "Message is required",
         minLength: 10,
         errorMessage: "Message must be at least 10 characters long",

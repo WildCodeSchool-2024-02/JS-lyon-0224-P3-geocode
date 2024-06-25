@@ -58,7 +58,7 @@ describe("GET /api/users/:id", () => {
 describe("POST /api/users", () => {
   it("should add a new user successfully", async () => {
     // Mock result of the database query
-    const result = [{ insertId: 0 }];
+    const result = [{ insertId: 1 }];
 
     // Mock the implementation of the database query method
     jest.spyOn(database, "query").mockImplementation(() => [result]);

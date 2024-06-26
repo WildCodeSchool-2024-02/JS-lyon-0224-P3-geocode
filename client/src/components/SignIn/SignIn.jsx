@@ -141,9 +141,7 @@ export default function SignInPage({ handleSignIn }) {
           <span className="error">{signInErrors.form}</span>
         )}
         <a href="/signin" className="forgetPassword">
-          <p>
-            <span>Forget password?</span>
-          </p>
+          <span>Forget password?</span>
         </a>
         <button className="button" type="submit">
           Log in

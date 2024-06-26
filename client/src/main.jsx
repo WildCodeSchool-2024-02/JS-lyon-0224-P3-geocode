@@ -42,15 +42,14 @@ const handleSignUp = async ({ formData }) => {
   }
 };
 
-
-const handleContact = async ( contactData ) => {
+const handleContact = async (contactData) => {
   try {
     const response = await fetch(`${Api}/api/contact/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(contactData ),
+      body: JSON.stringify(contactData),
     });
 
     if (response.status !== 201) {

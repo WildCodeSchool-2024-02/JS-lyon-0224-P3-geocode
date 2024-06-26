@@ -27,8 +27,9 @@ const ContactRouter = require("./Contact/router");
 router.use("/contact", ContactRouter);
 
 const signInActions = require("../../controllers/signInActions");
+const { hashPassword } = require("../../services/auth");
 
-router.post("/signin", signInActions.signIn);
+router.post("/signin", hashPassword, signInActions.signIn);
 
 /* ************************************************************************* */
 

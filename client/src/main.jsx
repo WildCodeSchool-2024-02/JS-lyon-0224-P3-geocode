@@ -18,7 +18,8 @@ import ProfilePage from "./pages/ProfilePage";
 import ProfileAccess from "./pages/ProfileAccess";
 import SignUp from "./pages/SignUp";
 import CarSignUp from "./pages/SignUpCar";
-import SignIn from "./components/SignIn/SignIn";
+
+import SignInPage from "./components/SignIn/SignIn";
 import EditProfile from "./pages/EditProfile";
 
 const Api = import.meta.env.VITE_API_URL;
@@ -46,8 +47,8 @@ const router = createBrowserRouter([
         element: <CarSignUp />,
       },
       {
-        path: "/signIn",
-        element: <SignIn />,
+        path: "/signin",
+        element: <SignInPage />,
       },
       {
         path: "/About-us",

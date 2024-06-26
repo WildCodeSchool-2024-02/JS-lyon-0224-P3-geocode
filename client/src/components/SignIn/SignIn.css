@@ -1,0 +1,26 @@
+.logInComponent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80vh;
+}
+
+.logIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.emailInput,
+.passwordInput {
+  min-width: 20rem;
+  border: none;
+  outline-color: var(--dark-bg-color);
+  font-family: var(--main-font);
+}
+
+.forgetPassword {
+  text-decoration: underline var(--title-color);
+}

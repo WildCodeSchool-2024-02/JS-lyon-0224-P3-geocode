@@ -7,17 +7,22 @@ const userRepository = require("../../database/models/userRepository");
 
 // Test suite for userRepository
 describe("userRepository", () => {
+  // Test: Check if userRepository extends AbstractRepository
   test("userRepository extends AbstractRepository", async () => {
     // Assertions
     expect(Object.getPrototypeOf(userRepository)).toBe(AbstractRepository);
   });
+
+  // Test: Check if tables.user is an instance of userRepository
   test("tables.user = new userRepository", async () => {
     // Assertions
     expect(tables.user instanceof userRepository).toBe(true);
   });
+
+  // Test: Check if create method inserts data into the 'user' table
   test("create => insert into", async () => {
     // Mock result of the database query
-    const result = [{ insertId: 1 }];
+    const result = { insertId: 1 };
 
     // Mock the implementation of the database query method
     jest.spyOn(database, "query").mockImplementation(() => [result]);
@@ -95,4 +100,3 @@ describe("userRepository", () => {
     expect(returned).toStrictEqual(rows[0]);
   });
 });
-

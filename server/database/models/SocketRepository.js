@@ -10,25 +10,23 @@ class SocketRepository extends AbstractRepository {
   // The C of CRUD - Create operation
 
   async create(socket) {
-    // Execute the SQL INSERT query to add a new socket to the "socket" table
     const [result] = await this.database.query(
-
-
       `insert into ${this.table} (type) values (?)`,
       [socket.type]
-
     );
-
-    // Return the ID of the newly inserted socket
     return result.insertId;
   }
 
   async readAll() {
-    // Execute the SQL SELECT query to retrieve all sockets from the "socket" table
-    const [rows] = await this.database.query(`select * from ${this.table}`);
-
-    // Return the array of sockets
+    const query = `select * from ${this.table}`;
+    const [rows] = await this.database.query(query);
     return rows;
+  }
+
+  async read(id) {
+    const query = `select * from ${this.table} where id = ?`;
+    const [rows] = await this.database.query(query, [id]);
+    return rows[0];
   }
 }
 

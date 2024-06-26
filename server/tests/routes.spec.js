@@ -1,5 +1,5 @@
 // Import required dependencies
-const { app, request, database } = require("../config");
+const { app, request, database } = require("./config");
 
 // Test suite for the GET /api/users route
 describe("GET /api/users", () => {
@@ -58,19 +58,26 @@ describe("GET /api/users/:id", () => {
 describe("POST /api/users", () => {
   it("should add a new user successfully", async () => {
     // Mock result of the database query
-    const result = [{ insertId: 1 }];
+    const result = { insertId: 1 };
 
     // Mock the implementation of the database query method
     jest.spyOn(database, "query").mockImplementation(() => [result]);
 
     // Fake user data
-    const fakeuser = {};
+    const fakeuser = {
+      firstname: "test1",
+      lastname: "test2",
+      email: "test3@test3.com",
+      password: "test4",
+      city: "test5",
+      admin: true,
+    };
 
     // Send a POST request to the /api/users endpoint with a test user
-    const response = await request(app).post("/api/users").send(fakeuser);
+    const response = await request(app).post("/api/users/add").send(fakeuser);
 
     // Assertions
-    expect(response.status).toBe(404);
+    expect(response.status).toBe(201);
     expect(response.body).toBeInstanceOf(Object);
     expect(response.body.insertId).toBe(result.insertId);
   });

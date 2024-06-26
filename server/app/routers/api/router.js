@@ -26,6 +26,10 @@ const ContactRouter = require("./Contact/router");
 
 router.use("/contact", ContactRouter);
 
+const signInActions = require("../../controllers/signInActions");
+
+router.post("/signin", signInActions.signIn);
+
 /* ************************************************************************* */
 
 module.exports = router;

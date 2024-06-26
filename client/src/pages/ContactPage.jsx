@@ -7,7 +7,7 @@ function ContactForm() {
     lastname: "",
     email: "",
     subject: "",
-    contactMessage: "",
+    message: "",
   });
 
   const [formErrors, setFormErrors] = useState({
@@ -15,7 +15,7 @@ function ContactForm() {
     lastname: "",
     email: "",
     subject: "",
-    contactMessage: "",
+    message: "",
   });
 
   const handleChange = (e) => {
@@ -44,7 +44,7 @@ function ContactForm() {
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
 
   const validateInputs = () => {
-    const { firstname, lastname, email, subject, contactMessage } = formValues;
+    const { firstname, lastname, email, subject, messageValus } = formValues;
     const fields = [
       {
         name: "firstname",
@@ -75,8 +75,8 @@ function ContactForm() {
         errorMessage: "Subject must be at least 2 characters long",
       },
       {
-        name: "contactMessage",
-        value: contactMessage,
+        name: "message",
+        value: messageValus,
         message: "Message is required",
         minLength: 10,
         errorMessage: "Message must be at least 10 characters long",
@@ -173,13 +173,13 @@ function ContactForm() {
         <div className="input-control">
           <textarea
             className="input-text container"
-            id="contactMessage"
-            name="contactMessage"
+            id="message"
+            name="message"
             placeholder="Your message (max 300 characters)*"
-            value={formValues.contactMessage}
+            value={formValues.message}
             onChange={handleChange}
           />
-          {formErrors.contactMessage !== "" && (
+          {formErrors.message !== "" && (
             <div className="error">{formErrors.contactMessage}</div>
           )}
         </div>

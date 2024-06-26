@@ -5,7 +5,8 @@ import NavBar from "./components/Navbar/NavBar";
 function App() {
   const location = useLocation();
 
-  const isLogoVisible = location.pathname !== "/profile";
+  const isLogoVisible =
+    location.pathname !== "/profile" && location.pathname !== "/SignIn";
 
   return (
     <>

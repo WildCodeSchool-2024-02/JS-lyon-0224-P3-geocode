@@ -13,7 +13,7 @@ class carsRepository extends AbstractRepository {
     // Log the car data to ensure it's not null or undefined
 
     const [result] = await this.database.query(
-      `INSERT INTO cars (brand, model, socket, user_id) VALUES (?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (brand, model, socket, user_id) VALUES (?, ?, ?, ?)`,
       [car.brand, car.model, car.socket, car.userId]
     );
     return { carId: result.insertId };

@@ -1,6 +1,7 @@
-import "./App.css";
+import { ToastContainer } from "react-toastify";
 import { Outlet, useLocation } from "react-router-dom";
 import NavBar from "./components/Navbar/NavBar";
+import "./App.css";
 
 function App() {
   const location = useLocation();
@@ -12,6 +13,7 @@ function App() {
     <>
       <NavBar isLogoVisible={isLogoVisible} />
       <Outlet />
+      <ToastContainer />
     </>
   );
 }

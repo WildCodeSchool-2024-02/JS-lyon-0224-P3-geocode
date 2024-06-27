@@ -23,6 +23,28 @@ import EditProfile from "./pages/EditProfile";
 
 const Api = import.meta.env.VITE_API_URL;
 
+
+
+const handleContact = async (contactData) => {
+  try {
+    const response = await fetch(`${Api}/api/contact/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(contactData),
+    });
+
+    if (response.status !== 201) {
+      const errorData = await response.json();
+      return { error: errorData.message };
+    }
+    return { success: true };
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
 const handleSignIn = async ({ signInData }) => {
   try {
     const response = await fetch(`${Api}/api/signin`, {
@@ -77,7 +99,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/Contact",
-        element: <ContactPage />,
+        element: <ContactPage handleContact={handleContact} />,
       },
       {
         path: "/Profile",

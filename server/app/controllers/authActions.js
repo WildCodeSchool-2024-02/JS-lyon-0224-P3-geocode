@@ -1,12 +1,11 @@
 const argon2 = require("argon2");
+const jwt = require("jsonwebtoken");
 
 // Import access to database tables
 const tables = require("../../database/tables");
 
 const signin = async (req, res, next) => {
   try {
-
-
     // Fetch a specific user from the database based on the provided email
     const user = await tables.user.readByEmail(req.body.email);
 
@@ -23,6 +22,19 @@ const signin = async (req, res, next) => {
     if (verified === true) {
       // Respond with the user in JSON format (but without the hashed password)
       delete user.hashed_password;
+      const token = await jwt.sign(
+        {
+          sub: user.id,
+        },
+        process.env.APP_SECRET,
+        {
+          expiresIn: "1h",
+        }
+      );
+      res.json({
+        token,
+        user,
+      });
       res.status(201).json({ id: user.id });
     } else {
       res.sendStatus(422);
@@ -36,6 +48,3 @@ const signin = async (req, res, next) => {
 module.exports = {
   signin,
 };
-
-
-

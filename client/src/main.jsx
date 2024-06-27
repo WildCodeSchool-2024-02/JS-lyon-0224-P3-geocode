@@ -52,7 +52,7 @@ const handleSignIn = async ({ signInData }) => {
       body: JSON.stringify(signInData),
     });
 
-    if (response.status !== 200) {
+    if (response.status === 200) {
       const errorData = await response.json();
       return { error: errorData.message };
     }
@@ -60,6 +60,7 @@ const handleSignIn = async ({ signInData }) => {
     const data = await response.json();
     return { success: true, id: data.id };
   } catch (error) {
+    console.error("Error in handleSignIn:", error);
     return { error: error.message };
   }
 };

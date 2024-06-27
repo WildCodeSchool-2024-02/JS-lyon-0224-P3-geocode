@@ -123,7 +123,6 @@ function SignUp({ handleSignUp }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formData = {
       firstname: formValues.firstname,
       lastname: formValues.lastname,

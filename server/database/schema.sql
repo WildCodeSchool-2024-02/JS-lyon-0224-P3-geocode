@@ -4,7 +4,7 @@ create table user (
   lastname varchar(80) not null,
   city varchar(80),
   email varchar(255) not null unique,
-  password varchar(255) not null,
+  hashed_password varchar(255) not null,
   image text,
   admin boolean default 0
 );

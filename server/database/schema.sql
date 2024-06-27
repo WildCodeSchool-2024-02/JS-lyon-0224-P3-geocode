@@ -2,14 +2,14 @@ create table user (
   id int unsigned primary key auto_increment not null,
   firstname varchar(80) not null,
   lastname varchar(80) not null,
-  city varchar(80),
+  city varchar(80) not null,
   email varchar(255) not null unique,
   hashed_password varchar(255) not null,
   image text,
   admin boolean default 0
 );
 
-create table cars (
+create table car (
   id int unsigned primary key auto_increment not null,
   brand varchar(80) not null,
   model varchar(80) not null,
@@ -18,7 +18,7 @@ create table cars (
   foreign key (user_id) references user(id)
 );
 
-create table stations (
+create table station (
   id int unsigned primary key auto_increment not null,
   address varchar(255) not null,
   geo_x float not null,

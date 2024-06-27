@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+import notify from "../poptoastify/notify";
 import "../components/Contact/Contact.css";
 
-function ContactForm() {
+function ContactPage({ handleContact }) {
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     firstname: "",
     lastname: "",
@@ -16,24 +20,25 @@ function ContactForm() {
     email: "",
     subject: "",
     message: "",
+    form: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
+    setFormValues((prevValues) => ({
+      ...prevValues,
       [name]: value,
-    });
-  };
-
-  const setError = (name, message) => {
-    setFormErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: message,
     }));
   };
 
-  const setSuccess = (name) => {
+  const setError = (name, errorMsg) => {
+    setFormErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: errorMsg,
+    }));
+  };
+
+  const clearError = (name) => {
     setFormErrors((prevErrors) => ({
       ...prevErrors,
       [name]: "",
@@ -44,150 +49,190 @@ function ContactForm() {
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
 
   const validateInputs = () => {
-    const { firstname, lastname, email, subject, messageValus } = formValues;
-    const fields = [
+    const { firstname, lastname, email, subject, message } = formValues;
+    const validations = [
       {
-        name: "firstname",
+        field: "firstname",
         value: firstname,
-        message: "firstname is required",
+        requiredMsg: "Firstname is required",
         minLength: 3,
-        errorMessage: "firstname must be at least 3 characters long",
+        minLengthMsg: "Firstname must be at least 3 characters long",
       },
       {
-        name: "lastname",
+        field: "lastname",
         value: lastname,
-        message: "Lastname is required",
+        requiredMsg: "Lastname is required",
         minLength: 2,
-        errorMessage: "Lastname must be at least 2 characters long",
+        minLengthMsg: "Lastname must be at least 2 characters long",
       },
       {
-        name: "email",
+        field: "email",
         value: email,
-        message: "Email is required",
+        requiredMsg: "Email is required",
         validate: isValidEmail,
-        errorMessage: "Provide a valid email address",
+        validateMsg: "Provide a valid email address",
       },
       {
-        name: "subject",
+        field: "subject",
         value: subject,
-        message: "Subject is required",
+        requiredMsg: "Subject is required",
         minLength: 2,
-        errorMessage: "Subject must be at least 2 characters long",
+        minLengthMsg: "Subject must be at least 2 characters long",
       },
       {
-        name: "message",
-        value: messageValus,
-        message: "Message is required",
+        field: "message",
+        value: message,
+        requiredMsg: "Message is required",
         minLength: 10,
-        errorMessage: "Message must be at least 10 characters long",
+        minLengthMsg: "Message must be at least 10 characters long",
       },
     ];
-
-    let allValid = true;
-    fields.forEach(
-      ({ name, value, message, validate, errorMessage, minLength }) => {
+    let isValid = true;
+    validations.forEach(
+      ({
+        field,
+        value,
+        requiredMsg,
+        validate,
+        validateMsg,
+        minLength,
+        minLengthMsg,
+      }) => {
         if (value.trim() === "") {
-          setError(name, message);
-          allValid = false;
-        } else if (validate === true && validate(value) === false) {
-          setError(name, errorMessage);
-          allValid = false;
+          setError(field, requiredMsg);
+          isValid = false;
+        } else if (validate === true && validate(value) === false ) {
+          setError(field, validateMsg);
+          isValid = false;
         } else if (value.length < minLength) {
-          setError(name, errorMessage);
-          allValid = false;
+          setError(field, minLengthMsg);
+          isValid = false;
         } else {
-          setSuccess(name);
+          clearError(field);
         }
       }
     );
-    return allValid;
+
+    return isValid;
   };
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const contactData = {
+      firstname: formValues.firstname,
+      lastname: formValues.lastname,
+      email: formValues.email,
+      subject: formValues.subject,
+      message: formValues.message,
+    };
+
     if (validateInputs() === true) {
-      window.location.href = "/";
-      alert("Message Sent.");
+      try {
+        const result = await handleContact(contactData);
+        if (result.success === true)  {
+          notify("Message sent successfully!", "success");
+          navigate("/");
+        } else {
+          setError("form", result.error);
+        }
+      } catch (error) {
+        setError("form", "An unexpected error occurred.");
+      }
     }
   };
+
   return (
-    <form className="bodyform" id="form" onSubmit={handleSubmit}>
-      <div className="inscription-component">
-        <h1>Contact</h1>
-        <div className="input-control">
-          <input
-            className="input container"
-            type="text"
-            id="firstname"
-            name="firstname"
-            placeholder="Your firstname please"
-            value={formValues.firstname}
-            onChange={handleChange}
-          />
-          {formErrors.firstname !== "" && (
-            <div className="error">{formErrors.firstname}</div>
-          )}
+    
+      <form className="bodyform" id="form" onSubmit={handleSubmit}>
+        <div className="inscription-component">
+          <h1>Contact</h1>
+          <div className="input-control">
+            <input
+              className="input container"
+              type="text"
+              id="firstname"
+              name="firstname"
+              placeholder="Your firstname please"
+              value={formValues.firstname}
+              onChange={handleChange}
+            />
+            {formErrors.firstname !== "" && (
+              <div className="error">{formErrors.firstname}</div>
+            )}
+          </div>
+          <div className="input-control">
+            <input
+              className="input container"
+              type="text"
+              id="lastname"
+              name="lastname"
+              placeholder="Your lastname please"
+              value={formValues.lastname}
+              onChange={handleChange}
+            />
+            {formErrors.lastname !== "" && (
+              <div className="error">{formErrors.lastname}</div>
+            )}
+          </div>
+          <div className="input-control">
+            <input
+              className="input container"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your email address"
+              value={formValues.email}
+              onChange={handleChange}
+            />
+            {formErrors.email !== "" && (
+              <div className="error">{formErrors.email}</div>
+            )}
+          </div>
+          <div className="input-control">
+            <input
+              className="input container"
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="Your subject"
+              value={formValues.subject}
+              onChange={handleChange}
+            />
+            {formErrors.subject !== "" && (
+              <div className="error">{formErrors.subject}</div>
+            )}
+          </div>
+          <div className="input-control">
+            <textarea
+              className="input-text container"
+              id="message"
+              name="message"
+              placeholder="Your message (max 300 characters)*"
+              value={formValues.message}
+              onChange={handleChange}
+            />
+            {formErrors.message !== "" && (
+              <div className="error">{formErrors.message}</div>
+            )}
+          </div>
+          <button
+            className="button"
+            id="signupbut"
+            type="submit"
+            onClick={notify}
+          >
+            Send Message
+          </button>
+          {formErrors.form !== "" && ( <div className="error">{formErrors.form}</div>)}
         </div>
-        <div className="input-control">
-          <input
-            className="input container"
-            type="text"
-            id="lastname"
-            name="lastname"
-            placeholder="Your lastname please"
-            value={formValues.lastname}
-            onChange={handleChange}
-            required
-          />
-          {formErrors.lastname !== "" && (
-            <div className="error">{formErrors.lastname}</div>
-          )}
-        </div>
-        <div className="input-control">
-          <input
-            className="input container"
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Your email address"
-            value={formValues.email}
-            onChange={handleChange}
-          />
-          {formErrors.email !== "" && (
-            <div className="error">{formErrors.email}</div>
-          )}
-        </div>
-        <div className="input-control">
-          <input
-            className="input container"
-            type="text"
-            id="subject"
-            name="subject"
-            placeholder="Your subject"
-            value={formValues.subject}
-            onChange={handleChange}
-          />
-          {formErrors.subject !== "" && (
-            <div className="error">{formErrors.subject}</div>
-          )}
-        </div>
-        <div className="input-control">
-          <textarea
-            className="input-text container"
-            id="message"
-            name="message"
-            placeholder="Your message (max 300 characters)*"
-            value={formValues.message}
-            onChange={handleChange}
-          />
-          {formErrors.message !== "" && (
-            <div className="error">{formErrors.contactMessage}</div>
-          )}
-        </div>
-        <button className="button" id="signupbut" type="submit">
-          <h3>Send Message</h3>
-        </button>
-      </div>
-    </form>
+      </form>
+    
   );
 }
-export default ContactForm;
+
+ContactPage.propTypes = {
+  handleContact: PropTypes.func.isRequired,
+};
+
+export default ContactPage;

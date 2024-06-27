@@ -52,19 +52,21 @@ const edit = async (req, res, next) => {
 
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
-  // Extract the user data from the request body
   const dataUser = req.body;
+
+  // Log the received data to debug
+
   try {
-    // Insert the user into the database
     const insertId = await tables.user.create(dataUser);
 
-    // Respond with HTTP 201 (Created) and the ID of the newly inserted user
+    // After creating the user, log the response
+
     res.status(201).json({ insertId });
   } catch (err) {
+    console.error("Error creating user:", err);
     res
       .status(500)
-      .json({ error: "une error est survenue lors de la création du user" });
-    // Pass any errors to the error-handling middleware
+      .json({ error: "An error occurred while creating the user" });
     next(err);
   }
 };

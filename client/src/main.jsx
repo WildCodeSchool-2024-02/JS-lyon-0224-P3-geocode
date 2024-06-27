@@ -16,31 +16,12 @@ import ContactPage from "./pages/ContactPage";
 import ProfilePage from "./pages/ProfilePage";
 import ProfileAccess from "./pages/ProfileAccess";
 import SignUp from "./pages/SignUp";
+import CarSignUp from "./pages/SignUpCar";
+
 import SignInPage from "./components/SignIn/SignIn";
 import EditProfile from "./pages/EditProfile";
 
 const Api = import.meta.env.VITE_API_URL;
-
-const handleSignUp = async ({ formData }) => {
-  try {
-    const response = await fetch(`${Api}/api/users`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    if (response.status !== 201) {
-      const errorData = await response.json();
-      return { error: errorData.message };
-    }
-
-    return { success: true };
-  } catch (error) {
-    return { error: error.message };
-  }
-};
 
 const handleSignIn = async ({ signInData }) => {
   try {
@@ -80,7 +61,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/signup",
-        element: <SignUp handleSignUp={handleSignUp} />,
+        element: <SignUp />,
+      },
+      {
+        path: "/signup/car",
+        element: <CarSignUp />,
       },
       {
         path: "/signin",

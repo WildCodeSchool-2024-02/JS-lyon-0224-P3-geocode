@@ -1,4 +1,5 @@
 // Import access to database tables
+
 const tables = require("../../database/tables");
 
 // The B of BREAD - Browse (Read All) operation
@@ -33,8 +34,47 @@ const read = async (req, res, next) => {
   }
 };
 
+const edit = async (req, res, next) => {
+  const user = { ...req.body, id: req.params.id };
+  try {
+    const affectedRows = await tables.user.update(user);
+    if (affectedRows === 0) {
+      res.status(404).json({ error: "User not found" });
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    console.error("Error in edit action:", err);
+    res.status(500).json({ error: "Internal server error" });
+    next(err);
+  }
+};
+
+// The A of BREAD - Add (Create) operation
+const add = async (req, res, next) => {
+  const dataUser = req.body;
+
+  // Log the received data to debug
+
+  try {
+    const insertId = await tables.user.create(dataUser);
+
+    // After creating the user, log the response
+
+    res.status(201).json({ insertId });
+  } catch (err) {
+    console.error("Error creating user:", err);
+    res
+      .status(500)
+      .json({ error: "An error occurred while creating the user" });
+    next(err);
+  }
+};
+
 // Ready to export the controller functions
 module.exports = {
   browse,
   read,
+  edit,
+  add,
 };

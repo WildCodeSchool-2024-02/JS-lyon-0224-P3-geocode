@@ -1,8 +1,9 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import "./NavBar.css";
 import Logo from "../../assets/image/geocode4.svg";
 
-function Navbar() {
+function NavBar({ isLogoVisible }) {
   // State for burger menu classes
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");
   const [menuClass, setMenuClass] = useState("menu hidden");
@@ -56,12 +57,18 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="logo-box">
-          <img src={Logo} className="logo" alt="site logo" />
-        </div>
+        {isLogoVisible && (
+          <div className="logo-box">
+            <img src={Logo} className="logo" alt="site logo" />
+          </div>
+        )}
       </nav>
     </div>
   );
 }
 
-export default Navbar;
+NavBar.propTypes = {
+  isLogoVisible: PropTypes.bool.isRequired,
+};
+
+export default NavBar;

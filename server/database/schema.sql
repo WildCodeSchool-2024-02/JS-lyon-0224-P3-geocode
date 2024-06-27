@@ -2,10 +2,11 @@ create table user (
   id int unsigned primary key auto_increment not null,
   firstname varchar(80) not null,
   lastname varchar(80) not null,
-  email varchar(255) not null,
   city varchar(80),
+  email varchar(255) not null unique,
+  hashed_password varchar(255) not null,
   image text,
-  admin boolean not null
+  admin boolean default 0
 );
 
 create table cars (
@@ -30,4 +31,12 @@ create table stations (
 create table socket (
   id int unsigned primary key auto_increment not null,
   type varchar(155) not null
+);
+
+create table usermessage (
+  firstname varchar(80) not null,
+  lastname varchar(80) not null,
+  email varchar(255) not null,
+  subject varchar(250),
+  message text not null
 );

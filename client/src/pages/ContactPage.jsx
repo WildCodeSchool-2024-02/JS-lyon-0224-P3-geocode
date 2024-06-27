@@ -101,7 +101,7 @@ function ContactPage({ handleContact }) {
         if (value.trim() === "") {
           setError(field, requiredMsg);
           isValid = false;
-        } else if (validate && !validate(value)) {
+        } else if (validate === true && validate(value) === false ) {
           setError(field, validateMsg);
           isValid = false;
         } else if (minLength && value.length < minLength) {
@@ -127,10 +127,10 @@ function ContactPage({ handleContact }) {
       message: formValues.message,
     };
 
-    if (validateInputs()) {
+    if (validateInputs() === true) {
       try {
         const result = await handleContact(contactData);
-        if (result.success) {
+        if (result.success === true)  {
           notify("Message sent successfully!", "success");
           navigate("/");
         } else {
@@ -157,7 +157,7 @@ function ContactPage({ handleContact }) {
               value={formValues.firstname}
               onChange={handleChange}
             />
-            {formErrors.firstname && (
+            {formErrors.firstname !== "" && (
               <div className="error">{formErrors.firstname}</div>
             )}
           </div>
@@ -171,7 +171,7 @@ function ContactPage({ handleContact }) {
               value={formValues.lastname}
               onChange={handleChange}
             />
-            {formErrors.lastname && (
+            {formErrors.lastname !== "" && (
               <div className="error">{formErrors.lastname}</div>
             )}
           </div>
@@ -185,7 +185,7 @@ function ContactPage({ handleContact }) {
               value={formValues.email}
               onChange={handleChange}
             />
-            {formErrors.email && (
+            {formErrors.email !== "" && (
               <div className="error">{formErrors.email}</div>
             )}
           </div>
@@ -199,7 +199,7 @@ function ContactPage({ handleContact }) {
               value={formValues.subject}
               onChange={handleChange}
             />
-            {formErrors.subject && (
+            {formErrors.subject !== "" && (
               <div className="error">{formErrors.subject}</div>
             )}
           </div>
@@ -212,7 +212,7 @@ function ContactPage({ handleContact }) {
               value={formValues.message}
               onChange={handleChange}
             />
-            {formErrors.message && (
+            {formErrors.message !== "" && (
               <div className="error">{formErrors.message}</div>
             )}
           </div>
@@ -224,7 +224,7 @@ function ContactPage({ handleContact }) {
           >
             Send Message
           </button>
-          {formErrors.form && <div className="error">{formErrors.form}</div>}
+          {formErrors.form !== "" && ( <div className="error">{formErrors.form}</div>)}
         </div>
       </form>
     

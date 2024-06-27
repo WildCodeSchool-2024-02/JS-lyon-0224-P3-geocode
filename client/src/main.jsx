@@ -55,7 +55,7 @@ const handleSignIn = async ({ signInData }) => {
       body: JSON.stringify(signInData),
     });
 
-    if (response.status === 200) {
+    if (response.status !== 201) {
       const errorData = await response.json();
       return { error: errorData.message };
     }

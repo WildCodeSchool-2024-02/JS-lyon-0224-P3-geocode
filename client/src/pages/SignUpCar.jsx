@@ -1,6 +1,5 @@
-// CarSignUp.js
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Form } from "react-router-dom";
 import CarInput from "../components/SignUp/CarInput";
 import handleSignUp from "../utils/HandleSignUp";
 
@@ -44,7 +43,7 @@ function CarSignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateCars()) {
+    if (validateCars() !== null) {
       const result = await handleSignUp({ user: state.user, cars });
 
       if (result.success === true) {
@@ -56,7 +55,7 @@ function CarSignUp() {
   };
 
   return (
-    <form className="bodyform" id="form" onSubmit={handleSubmit}>
+    <Form method="post" className="bodyform" id="form" onSubmit={handleSubmit}>
       <div className="inscription-component">
         <h1>Car Sign Up</h1>
         {cars.map((car, index) => (
@@ -78,7 +77,7 @@ function CarSignUp() {
           Submit
         </button>
       </div>
-    </form>
+    </Form>
   );
 }
 

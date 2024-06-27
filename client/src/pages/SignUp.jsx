@@ -1,5 +1,4 @@
-// UserSignUp.js
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Form } from "react-router-dom";
 import UseSignUpForm from "../hooks/UseSignUpForm";
 
 function SignUp() {
@@ -16,14 +15,14 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateInputs()) {
+    if (validateInputs() !== null) {
       // Proceed to car signup page with user data
       navigate("/signup/car", { state: { user: formValues } });
     }
   };
 
   return (
-    <form className="bodyform" id="form" onSubmit={handleSubmit}>
+    <Form method="post" className="bodyform" id="form" onSubmit={handleSubmit}>
       <div className="inscription-component">
         <h1>User Sign Up</h1>
         <label className="input-control">
@@ -120,7 +119,7 @@ function SignUp() {
           Next
         </button>
       </div>
-    </form>
+    </Form>
   );
 }
 

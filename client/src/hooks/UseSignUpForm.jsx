@@ -1,5 +1,3 @@
-// useSignUpForm.js
-
 import { useState } from "react";
 
 const UseSignUpForm = (initialState) => {

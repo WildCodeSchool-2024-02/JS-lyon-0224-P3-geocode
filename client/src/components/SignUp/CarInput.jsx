@@ -1,4 +1,3 @@
-// CarInput.js
 import PropTypes from "prop-types";
 
 function CarInput({ car, handleCarChange, handleRemoveCar }) {

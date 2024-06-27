@@ -104,7 +104,7 @@ function ContactPage({ handleContact }) {
         } else if (validate === true && validate(value) === false ) {
           setError(field, validateMsg);
           isValid = false;
-        } else if (minLength && value.length < minLength) {
+        } else if (value.length < minLength) {
           setError(field, minLengthMsg);
           isValid = false;
         } else {

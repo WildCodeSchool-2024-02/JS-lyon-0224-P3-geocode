@@ -15,7 +15,7 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateInputs() !== null) {
+    if (validateInputs() !== false) {
       // Proceed to car signup page with user data
       navigate("/signup/car", { state: { user: formValues } });
     }

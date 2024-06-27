@@ -43,7 +43,7 @@ function CarSignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateCars() !== null) {
+    if (validateCars() !== false) {
       const result = await handleSignUp({ user: state.user, cars });
 
       if (result.success === true) {

@@ -7,7 +7,7 @@ const AbstractSeeder = require("./AbstractSeeder");
 class StationSeeder extends AbstractSeeder {
   constructor() {
     // Call the constructor of the parent class (AbstractSeeder) with appropriate options
-    super({ table: "stations", truncate: true });
+    super({ table: "station", truncate: true });
   }
 
   run() {

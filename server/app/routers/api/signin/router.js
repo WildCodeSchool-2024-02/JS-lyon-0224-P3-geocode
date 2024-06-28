@@ -7,8 +7,7 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import item-related actions
-const { signin } = require("../../../controllers/authActions");
-
+const { signin } = require("../../../controllers/AuthActions");
 
 router.post("/", signin);
 

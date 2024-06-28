@@ -5,7 +5,7 @@ const tables = require("../../database/tables");
 const browse = async (req, res, next) => {
   try {
     // Fetch all cars from the database
-    const cars = await tables.cars.readAll();
+    const cars = await tables.car.readAll();
 
     // Respond with the cars in JSON format
     res.json(cars);
@@ -21,7 +21,7 @@ const add = async (req, res, next) => {
   // Log the received car data to debug
 
   try {
-    const result = await tables.cars.create(dataCar);
+    const result = await tables.car.create(dataCar);
 
     // After creating the car, log the response
 

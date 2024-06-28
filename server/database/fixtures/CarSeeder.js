@@ -6,7 +6,7 @@ const SocketSeeder = require("./SocketSeeder");
 class CarSeeder extends AbstractSeeder {
   constructor() {
     super({
-      table: "cars",
+      table: "car",
       truncate: true,
       dependencies: [UserSeeder, SocketSeeder],
     });
@@ -26,41 +26,40 @@ class CarSeeder extends AbstractSeeder {
     const userIds = users.map((user) => user.id);
     const socketTypes = sockets.map((socket) => socket.type);
 
-    // Generate and insert fake car data
-    for (let i = 0; i < users.length; i += 1) {
-      // Check if the user already has a car
-      const userHasCar = database.query(
-        `SELECT * FROM cars WHERE user_id = ?`,
-        [userIds[i]]
-      );
+    await Promise.all(
+      userIds.map(async (userId) => {
+        // Check if the user already has a car
+        const [userHasCar] = await database.query(
+          `SELECT * FROM car WHERE user_id = ?`,
+          [userId]
+        );
 
-      // If the user doesn't have a car, add a new one
-      if (userHasCar.length === 0) {
-        const fakeCar = {
-          brand: this.faker.vehicle.manufacturer(),
-          model: this.faker.vehicle.model(),
-          socket: socketTypes[Math.floor(Math.random() * socketTypes.length)],
-          user_id: userIds[i],
-        };
+        // If the user doesn't have a car, add a new one
+        if (userHasCar.length === 0) {
+          const fakeCar = {
+            brand: this.faker.vehicle.manufacturer(),
+            model: this.faker.vehicle.model(),
+            socket: socketTypes[Math.floor(Math.random() * socketTypes.length)],
+            user_id: userId,
+          };
 
-        this.insert(fakeCar);
-      }
+          this.insert(fakeCar);
+        }
 
-      // Add additional cars for each user (if desired)
-      for (let j = 1; j < Math.floor(Math.random() * 5) + 1; j += 1) {
-        // Add logic to check if the user already has additional cars here
-        const additionalCar = {
-          brand: this.faker.vehicle.manufacturer(),
-          model: this.faker.vehicle.model(),
-          socket: socketTypes[Math.floor(Math.random() * socketTypes.length)],
-          user_id: userIds[i],
-        };
+        // Add additional cars for each user (if desired)
+        for (let j = 1; j < Math.floor(Math.random() * 3) + 1; j += 1) {
+          // Add logic to check if the user already has additional cars here
+          const additionalCar = {
+            brand: this.faker.vehicle.manufacturer(),
+            model: this.faker.vehicle.model(),
+            socket: socketTypes[Math.floor(Math.random() * socketTypes.length)],
+            user_id: userId,
+          };
 
-        this.insert(additionalCar);
-      }
-    }
-
-    // Ensure all promises are resolved
+          this.insert(additionalCar);
+        }
+      })
+    );
   }
 }
 

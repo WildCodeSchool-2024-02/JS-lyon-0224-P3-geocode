@@ -32,8 +32,27 @@ const add = async (req, res, next) => {
     next(err);
   }
 };
+
+const edit = async (req, res, next) => {
+  const { user_id: userId, id } = req.params;
+  const car = { ...req.body, userId, id };
+  try {
+    const affectedRows = await tables.car.update(car);
+    if (affectedRows === 0) {
+      res.status(404).json({ error: "Car not found" });
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    console.error("Error in edit action:", err);
+    res.status(500).json({ error: "Internal server error" });
+    next(err);
+  }
+};
+
 // Ready to export the controller functions
 module.exports = {
   browse,
   add,
+  edit,
 };

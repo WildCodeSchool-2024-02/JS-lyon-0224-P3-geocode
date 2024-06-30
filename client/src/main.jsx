@@ -23,8 +23,6 @@ import EditProfile from "./pages/EditProfile";
 
 const Api = import.meta.env.VITE_API_URL;
 
-
-
 const handleContact = async (contactData) => {
   try {
     const response = await fetch(`${Api}/api/contact/add`, {

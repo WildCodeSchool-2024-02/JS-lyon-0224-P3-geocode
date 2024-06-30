@@ -14,8 +14,7 @@ router.get("/", browse);
 
 router.post("/", add);
 
-router.put("/:id", edit);
-
+router.put("/:user_id", edit);
 /* ************************************************************************* */
 
 module.exports = router;

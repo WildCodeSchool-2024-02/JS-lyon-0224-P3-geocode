@@ -32,13 +32,14 @@ class CarRepository extends AbstractRepository {
       car.id === undefined ||
       car.brand === undefined ||
       car.model === undefined ||
-      car.socket === undefined
+      car.socket === undefined ||
+      car.user_id === undefined
     ) {
       throw new Error("Missing required fields");
     }
 
     const [result] = await this.database.query(
-      `UPDATE ${this.table} SET brand = ?, model = ?, socket = ?  WHERE user_id = ? AND id = ?`,
+      `UPDATE ${this.table} SET brand = ?, model = ?, socket = ? WHERE user_id = ? AND id = ?`,
       [car.brand, car.model, car.socket, car.user_id, car.id]
     );
 

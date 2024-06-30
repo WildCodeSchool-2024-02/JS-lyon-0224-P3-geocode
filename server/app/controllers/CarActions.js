@@ -34,8 +34,7 @@ const add = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const { user_id: userId, id } = req.params;
-  const car = { ...req.body, userId, id };
+  const car = { ...req.body, id: req.params.id };
   try {
     const affectedRows = await tables.car.update(car);
     if (affectedRows === 0) {

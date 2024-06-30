@@ -14,7 +14,7 @@ router.get("/", browse);
 
 router.post("/", add);
 
-router.put("/:user_id/:id", edit);
+router.put("/:id", edit);
 
 /* ************************************************************************* */
 

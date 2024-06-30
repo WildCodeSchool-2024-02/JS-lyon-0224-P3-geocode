@@ -10,12 +10,14 @@ function ReservationPopUp({ station, onClose, onReserved }) {
 
     const reservationDetails = {
       stationId: station.id,
+      userId: 1, // Replace with actual user ID
+      carId: 1,
       reservationTime,
       duration: 30,
     };
 
     try {
-      const response = await fetch("/api/reserve", {
+      const response = await fetch("/api/stations/rent", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

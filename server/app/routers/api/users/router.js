@@ -7,7 +7,7 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import item-related actions
-const { browse, read, add, edit } = require("../../../controllers/userActions");
+const { browse, read, add, edit } = require("../../../controllers/UserActions");
 const validateEdit = require("../../../services/validateEdit");
 const validateAdd = require("../../../services/validateAdd");
 const { hashPassword } = require("../../../services/auth");

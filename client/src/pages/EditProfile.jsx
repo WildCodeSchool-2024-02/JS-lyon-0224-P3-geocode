@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import { useLoaderData, Form } from "react-router-dom";
+import { useLoaderData, useNavigate, Form } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
-
 import "../components/Profile/ProfileEdit.css";
+
+const Api = import.meta.env.VITE_API_URL;
 
 export default function EditProfile() {
   const user = useLoaderData();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -30,8 +33,39 @@ export default function EditProfile() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const params = { id: user.id };
+
+    const editFormData = {
+      firstname: formData.firstname,
+      lastname: formData.lastname,
+      email: formData.email,
+      city: formData.city,
+      image: formData.image,
+    };
+
+    try {
+      const response = await fetch(`${Api}/api/users/${params.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editFormData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      navigate(`/profile/${params.id}`);
+    } catch (error) {
+      console.error("Error in handleSubmit:", error);
+    }
+  };
+
   return (
-    <Form method="put" className="edit-form">
+    <Form method="put" className="edit-form" onSubmit={handleSubmit}>
       <section className="image-edit-container">
         <div className="photoComponent">
           {user.image !== null ? (

@@ -14,6 +14,23 @@ const browse = async (req, res, next) => {
     next(err);
   }
 };
+const read = async (req, res, next) => {
+  try {
+    // Fetch a specific car from the database based on the provided ID
+    const cars = await tables.car.read(req.params.id);
+
+    // If the car is not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with the cars in JSON format
+    if (cars == null) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(cars);
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 
 const add = async (req, res, next) => {
   const dataCar = req.body;
@@ -34,7 +51,7 @@ const add = async (req, res, next) => {
 };
 
 const edit = async (req, res, next) => {
-  const car = { ...req.body, user_id: req.params.user_id };
+  const car = { ...req.body, id: req.params.id };
   try {
     const affectedRows = await tables.car.update(car);
     if (affectedRows === 0) {
@@ -54,4 +71,5 @@ module.exports = {
   browse,
   add,
   edit,
+  read,
 };

@@ -19,6 +19,17 @@ class CarRepository extends AbstractRepository {
     return { carId: result.insertId };
   }
 
+  async read(id) {
+    // Execute the SQL SELECT query to retrieve a specific item by its ID
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where id = ?`,
+      [id]
+    );
+
+    // Return the first row of the result, which represents the item
+    return rows[0];
+  }
+
   async readAll() {
     // Execute the SQL SELECT query to retrieve all cars from the "car" table
     const [rows] = await this.database.query(`select * from ${this.table}`);

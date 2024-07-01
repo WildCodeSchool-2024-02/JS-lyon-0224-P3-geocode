@@ -3,34 +3,23 @@ import PropTypes from "prop-types";
 import "./ReservationPopup.css";
 
 function ReservationPopUp({ station, onClose, onReserved }) {
-  const [reservationTime, setReservationTime] = useState("");
+  const [userId, setUserId] = useState("");
+  const [carId, setCarId] = useState("");
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
+    const now = new Date();
     const reservationDetails = {
       stationId: station.id,
-      reservationTime,
+      userId,
+      carId,
+      reservationTime: now.toISOString(),
       duration: 30,
     };
 
-    try {
-      const response = await fetch("/api/reserve", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(reservationDetails),
-      });
-
-      if (response.status === 201) {
-        onReserved();
-      } else {
-        console.error("Reservation failed");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    console.info("Reservation details:", reservationDetails);
+    onReserved();
   };
 
   return (
@@ -41,14 +30,24 @@ function ReservationPopUp({ station, onClose, onReserved }) {
         </h2>
         <form onSubmit={handleSubmit}>
           <label>
-            <p>Reservation Time:</p>
+            <p>User ID:</p>
             <input
-              type="datetime-local"
-              value={reservationTime}
-              onChange={(e) => setReservationTime(e.target.value)}
+              type="text"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
               required
             />
           </label>
+          <label>
+            <p>Car ID:</p>
+            <input
+              type="text"
+              value={carId}
+              onChange={(e) => setCarId(e.target.value)}
+              required
+            />
+          </label>
+          <p>This spot will be reserved for the next 30 minutes.</p>
           <button type="submit" className="button">
             Reserve
           </button>
@@ -62,7 +61,9 @@ function ReservationPopUp({ station, onClose, onReserved }) {
 }
 
 ReservationPopUp.propTypes = {
-  station: PropTypes.shape.isRequired,
+  station: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }).isRequired,
   onClose: PropTypes.func.isRequired,
   onReserved: PropTypes.func.isRequired,
 };

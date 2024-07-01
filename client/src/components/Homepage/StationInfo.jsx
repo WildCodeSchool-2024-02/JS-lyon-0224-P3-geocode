@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./StationInfo.css";
 import PropTypes from "prop-types";
 import stationPic from "../../assets/image/pngtree-white-electric-vehicle-charging-station-png-image_6574430 1.png";
@@ -8,17 +8,53 @@ import ReservationPopUp from "./ReservationPopUp";
 function StationInfo({ station }) {
   const address = station !== null ? station.address : "";
   const power = station !== null ? station.power : "";
-  const initialSpots = station !== null ? station.spots : 0;
   const type = station !== null ? station.type : "";
 
   // State to manage the available spots
-  const [availableSpots, setAvailableSpots] = useState(initialSpots);
-  // State to manage the popup visibility
+  const [availableSpots, setAvailableSpots] = useState(
+    station ? station.spots : 0
+  );
   const [showPopup, setShowPopup] = useState(false);
+  const timeoutRef = useRef(null);
+
+  // Update available spots when station data changes
+  useEffect(() => {
+    if (station) {
+      setAvailableSpots(station.spots);
+    }
+  }, [station]);
+
+  useEffect(
+    () => () => {
+      // Clear any pending timeouts when the component unmounts or station changes
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    },
+    [station]
+  );
 
   // Handler for the reservation button
   const handleReservation = () => {
     setShowPopup(true);
+  };
+
+  const handleReserved = () => {
+    setAvailableSpots((prev) => prev - 1);
+    setShowPopup(false);
+
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    // Set a new timeout to restore the spot after 30 minutes
+    timeoutRef.current = setTimeout(
+      () => {
+        setAvailableSpots((prev) => prev + 1);
+      },
+      30 * 60 * 1000
+    ); // 30 minutes in milliseconds
   };
 
   return (
@@ -74,10 +110,7 @@ function StationInfo({ station }) {
         <ReservationPopUp
           station={station}
           onClose={() => setShowPopup(false)}
-          onReserved={() => {
-            setAvailableSpots(availableSpots - 1);
-            setShowPopup(false);
-          }}
+          onReserved={handleReserved}
         />
       )}
     </div>
@@ -86,6 +119,7 @@ function StationInfo({ station }) {
 
 StationInfo.propTypes = {
   station: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     address: PropTypes.string,
     power: PropTypes.number,
     spots: PropTypes.number,

@@ -71,10 +71,30 @@ const add = async (req, res, next) => {
   }
 };
 
+// The D of BREAD - Delete operation
+const drop = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const affectedRows = await tables.user.drop(id);
+    if (affectedRows === 0) {
+      res.status(404).json({ error: "User not found" });
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    console.error("Error deleting user:", err);
+    res
+      .status(500)
+      .json({ error: "An error occurred while deleting the user" });
+    next(err);
+  }
+};
+
 // Ready to export the controller functions
 module.exports = {
   browse,
   read,
   edit,
   add,
+  drop,
 };

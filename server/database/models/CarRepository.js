@@ -19,12 +19,50 @@ class CarRepository extends AbstractRepository {
     return { carId: result.insertId };
   }
 
+  async read(id) {
+    // Execute the SQL SELECT query to retrieve a specific item by its ID
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where id = ?`,
+      [id]
+    );
+
+    // Return the first row of the result, which represents the item
+    return rows[0];
+  }
+
   async readAll() {
     // Execute the SQL SELECT query to retrieve all cars from the "car" table
     const [rows] = await this.database.query(`select * from ${this.table}`);
 
     // Return the array of cars
     return rows;
+  }
+
+  async update(car) {
+    if (
+      car.id === undefined ||
+      car.brand === undefined ||
+      car.model === undefined ||
+      car.socket === undefined ||
+      car.user_id === undefined
+    ) {
+      throw new Error("Missing required fields");
+    }
+
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET brand = ?, model = ?, socket = ? WHERE user_id = ? AND id = ?`,
+      [car.brand, car.model, car.socket, car.user_id, car.id]
+    );
+
+    return result.affectedRows;
+  }
+
+  async drop(id) {
+    const [result] = await this.database.query(
+      `DELETE FROM ${this.table} WHERE id = ?`,
+      [id]
+    );
+    return result.affectedRows;
   }
 }
 

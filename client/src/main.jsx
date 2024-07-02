@@ -1,13 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import axios from "axios";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  redirect,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
+
+import {
+  loadUserData,
+  loadCarData,
+  handleUserEdit,
+  handleCarEdit,
+} from "./utils/handleEdit";
 
 // page components
 import HomePage from "./pages/HomePage";
@@ -17,6 +19,7 @@ import ProfilePage from "./pages/ProfilePage";
 import ProfileAccess from "./pages/ProfileAccess";
 import SignUp from "./pages/SignUp";
 import CarSignUp from "./pages/SignUpCar";
+import EditCarPage from "./pages/EditCarPage";
 
 import SignInPage from "./components/SignIn/SignIn";
 import EditProfile from "./pages/EditProfile";
@@ -125,30 +128,14 @@ const router = createBrowserRouter([
       {
         path: "/profile/:id/edit",
         element: <EditProfile />,
-        loader: async ({ params }) => {
-          const response = await axios.get(`${Api}/api/users/${params.id}`);
-          return response.data;
-        },
-        action: async ({ request, params }) => {
-          const formData = await request.formData();
-
-          switch (request.method.toLowerCase()) {
-            case "put": {
-              await axios.put(`${Api}/api/users/${params.id}`, {
-                firstname: formData.get("firstname"),
-                lastname: formData.get("lastname"),
-                email: formData.get("email"),
-                city: formData.get("city"),
-                image: formData.get("image"),
-                id: params.id,
-              });
-
-              return redirect(`/profile/${params.id}`);
-            }
-            default:
-              throw new Response("", { status: 405 });
-          }
-        },
+        loader: loadUserData,
+        action: handleUserEdit,
+      },
+      {
+        path: "/editCar/:carId",
+        element: <EditCarPage />,
+        loader: loadCarData,
+        action: handleCarEdit,
       },
     ],
   },

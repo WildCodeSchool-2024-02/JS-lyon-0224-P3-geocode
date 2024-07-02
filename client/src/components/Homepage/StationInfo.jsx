@@ -8,11 +8,9 @@ import ReservationPopUp from "./ReservationPopUp";
 function StationInfo({ station }) {
   const address = station !== null ? station.address : "";
   const power = station !== null ? station.power : "";
-  const initialSpots = station !== null ? station.spots : 0;
+  const spot = station !== null ? station.spots : "";
   const type = station !== null ? station.type : "";
 
-  // State to manage the available spots
-  const [availableSpots, setAvailableSpots] = useState(initialSpots);
   // State to manage the popup visibility
   const [showPopup, setShowPopup] = useState(false);
 
@@ -33,7 +31,7 @@ function StationInfo({ station }) {
           </div>
           <div className="info">
             <h2>
-              <span>{availableSpots}</span>
+              <span>{spot}</span>
             </h2>
             <p>Spots</p>
             <h2>
@@ -63,7 +61,6 @@ function StationInfo({ station }) {
               type="button"
               className="button"
               onClick={handleReservation}
-              disabled={availableSpots === 0}
             >
               <h3>Reservation</h3>
             </button>
@@ -75,7 +72,6 @@ function StationInfo({ station }) {
           station={station}
           onClose={() => setShowPopup(false)}
           onReserved={() => {
-            setAvailableSpots(availableSpots - 1);
             setShowPopup(false);
           }}
         />

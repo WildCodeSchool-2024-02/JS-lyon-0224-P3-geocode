@@ -31,11 +31,10 @@ const signin = async (req, res, next) => {
           expiresIn: "1h",
         }
       );
-      res.json({
+      res.status(201).json({
         token,
         user,
       });
-      res.status(201).json({ id: user.id });
     } else {
       res.sendStatus(422);
     }

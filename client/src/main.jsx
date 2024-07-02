@@ -23,8 +23,6 @@ import EditProfile from "./pages/EditProfile";
 
 const Api = import.meta.env.VITE_API_URL;
 
-
-
 const handleContact = async (contactData) => {
   try {
     const response = await fetch(`${Api}/api/contact/add`, {
@@ -61,7 +59,7 @@ const handleSignIn = async ({ signInData }) => {
     }
 
     const data = await response.json();
-    return { success: true, id: data.id };
+    return { success: true, id: data.user.id };
   } catch (error) {
     console.error("Error in handleSignIn:", error);
     return { error: error.message };
@@ -107,22 +105,8 @@ const router = createBrowserRouter([
         element: <ProfileAccess />,
       },
       {
-        path: "/Profile/:id/",
+        path: "/Profile/:id",
         element: <ProfilePage />,
-        loader: async ({ params }) => {
-          const response = await fetch(`${Api}/api/users/${params.id}`);
-          if (response.status !== 200) {
-            throw new Error("Failed to fetch profile data");
-          }
-          const data = await response.json();
-          return data;
-        },
-        catch(error) {
-          // Log the error for debugging purposes
-          console.error("Error fetching profile data:", error);
-          // Rethrow the error to be handled by the caller
-          throw error;
-        },
       },
       {
         path: "/profile/:id/edit",

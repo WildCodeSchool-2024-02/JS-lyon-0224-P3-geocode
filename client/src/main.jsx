@@ -62,6 +62,9 @@ const handleSignIn = async ({ signInData }) => {
     }
 
     const data = await response.json();
+
+    localStorage.setItem("token", data.token);
+
     return { success: true, id: data.user.id };
   } catch (error) {
     console.error("Error in handleSignIn:", error);

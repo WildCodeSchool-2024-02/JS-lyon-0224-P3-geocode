@@ -88,8 +88,6 @@ export default function SignInPage({ handleSignIn }) {
 
         if (result.success) {
           navigate(`/profile/${result.id}`);
-
-          // window.location.href = `/profile/${result.id}`;
         } else {
           console.error("Sign-in failed:", result.error);
           throw new Error(result.error);

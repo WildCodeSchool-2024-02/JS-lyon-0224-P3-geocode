@@ -13,7 +13,7 @@ const {
   edit,
   add,
   drop,
-} = require("../../../controllers/userActions");
+} = require("../../../controllers/UserActions");
 const validateEdit = require("../../../services/validateEdit");
 const validateAdd = require("../../../services/validateAdd");
 const { hashPassword } = require("../../../services/auth");

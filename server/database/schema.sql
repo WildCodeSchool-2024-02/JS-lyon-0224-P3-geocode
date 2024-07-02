@@ -38,8 +38,8 @@ create table rent (
   user_id int unsigned not null,
   station_id int unsigned not null,
   car_id int unsigned not null,
-  reservation_time datetime not null,
-  duration int not null,
+  start_time datetime not null,
+  end_time datetime not null,
   foreign key (station_id) references station(id),
   foreign key (user_id) references user(id),
   foreign key (car_id) references car(id)

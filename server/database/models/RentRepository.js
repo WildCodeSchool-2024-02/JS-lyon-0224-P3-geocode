@@ -7,14 +7,8 @@ class RentRepository extends AbstractRepository {
 
   async create(rent) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (user_id, station_id, car_id, reservation_time, duration) VALUES (?, ?, ?, ?, ?)`,
-      [
-        rent.stationId,
-        rent.userId,
-        rent.carId,
-        rent.reservationTime,
-        rent.duration,
-      ]
+      `INSERT INTO ${this.table} (user_id, station_id, car_id, start_time, end_time) VALUES (?, ?, ?, ?, ?)`,
+      [rent.stationId, rent.userId, rent.carId, rent.startTime, rent.endTime]
     );
     return { id: result.insertId, ...rent };
   }

@@ -16,36 +16,22 @@ const browse = async (req, res, next) => {
 
 // Rent a charging spot
 const rent = async (req, res, next) => {
-  const { stationId, userId, carId, reservationTime, duration } = req.body;
+  const dataRent = req.body;
+
+  // Log the received rent data to debug
 
   try {
-    const station = await tables.station.read(stationId);
-    if (station === null) {
-      return res.status(404).json({ message: 'Station not found' });
-    }
+    const result = await tables.rent.create(dataRent);
 
-    if (station.spots <= 0) {
-      return res.status(400).json({ message: 'No spots available' });
-    }
+    // After creating the rent, log the response
 
-    const reservation = await tables.rent.create({
-      stationId,
-      userId,
-      carId,
-      reservationTime,
-      duration,
-    });
-
-    await tables.station.updateSpots(stationId, station.spots - 1);
-
-    setTimeout(async () => {
-      await tables.station.updateSpots(stationId, station.spots + 1);
-    }, duration * 60 * 1000);
-
-    return res.status(201).json(reservation);
-  } catch (error) {
-    console.error(error);
-    return next(error);
+    res.status(201).json(result);
+  } catch (err) {
+    console.error("Error creating rent:", err);
+    res
+      .status(500)
+      .json({ error: "An error occurred while creating the rent" });
+    next(err);
   }
 };
 

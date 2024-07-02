@@ -45,13 +45,6 @@ class StationRepository extends AbstractRepository {
     // Return the array of stations
     return rows;
   }
-
-  async updateSpots(id, spots) {
-    await this.database.query(
-      `UPDATE ${this.table} SET spots = ? WHERE id = ?`,
-      [spots, id]
-    );
-  }
 }
 
 module.exports = StationRepository;

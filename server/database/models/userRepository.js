@@ -34,14 +34,14 @@ class userRepository extends AbstractRepository {
     return rows;
   }
 
-  // Read a user with their associated cars
+  // Read a user with their associated car
   async read(id) {
     const query = `
       SELECT 
         user.id, user.firstname, user.lastname, user.email, user.city, user.image, user.admin,
-        cars.id as car_id, cars.brand, cars.model, cars.socket
+        car.id as car_id, car.brand, car.model, car.socket
       FROM ${this.table}
-      LEFT JOIN cars ON user.id = cars.user_id
+      LEFT JOIN car ON user.id = car.user_id
       WHERE user.id = ?
     `;
 
@@ -106,6 +106,15 @@ class userRepository extends AbstractRepository {
       ]
     );
 
+    return result.affectedRows;
+  }
+
+  async drop(id) {
+    await this.database.query(`DELETE FROM car WHERE user_id = ?`, [id]);
+    const [result] = await this.database.query(
+      `DELETE FROM ${this.table} WHERE id = ?`,
+      [id]
+    );
     return result.affectedRows;
   }
 }

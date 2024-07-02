@@ -4,7 +4,7 @@ const tables = require("../../database/tables");
 const browse = async (req, res, next) => {
   try {
     // Fetch all stations from the database
-    const stations = await tables.stations.readAll();
+    const stations = await tables.station.readAll();
 
     // Respond with the stations in JSON format
     res.json(stations);

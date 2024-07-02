@@ -7,13 +7,12 @@ class SocketSeeder extends AbstractSeeder {
 
   run() {
     const socketTypes = [
-      { type: "Type1" },
-      { type: "Type2" },
-      { type: "Type3" },
-      { type: "Type4" },
-      { type: "Type5" },
+      { type: "T2" },
+      { type: "E/F" },
+      { type: "T3" },
+      { type: "Combo" },
+      { type: "Chademo" },
     ];
-
 
     socketTypes.forEach(async (socket) => {
       await this.insert(socket);

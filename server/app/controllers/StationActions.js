@@ -18,12 +18,8 @@ const browse = async (req, res, next) => {
 const rent = async (req, res, next) => {
   const dataRent = req.body;
 
-  // Log the received rent data to debug
-
   try {
     const result = await tables.rent.create(dataRent);
-
-    // After creating the rent, log the response
 
     res.status(201).json(result);
   } catch (err) {

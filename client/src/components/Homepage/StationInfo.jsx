@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import ReservationForm from "../reservation/ReservationForm";
 import "./StationInfo.css";
 import stationPic from "../../assets/image/pngtree-white-electric-vehicle-charging-station-png-image_6574430 1.png";
 import chargerPic from "../../assets/image/ev-plug-t2.svg";
@@ -9,8 +10,9 @@ function StationInfo({ station }) {
   const power = station?.power || "";
   const spot = station?.spots || "";
   const type = station?.type || "";
-  const navigate = useNavigate();
   const isSelected = station !== null;
+
+  const navigate = useNavigate();
 
   const handleReservation = () => {
     if (isSelected) {
@@ -70,6 +72,7 @@ function StationInfo({ station }) {
             </button>
           </div>
         </div>
+        {isSelected && <ReservationForm stationId={station.id} userId={1} />}
       </div>
     </div>
   );
@@ -82,7 +85,11 @@ StationInfo.propTypes = {
     power: PropTypes.number,
     spots: PropTypes.number,
     type: PropTypes.string,
-  }).isRequired,
+  }),
+};
+
+StationInfo.defaultProps = {
+  station: null,
 };
 
 export default StationInfo;

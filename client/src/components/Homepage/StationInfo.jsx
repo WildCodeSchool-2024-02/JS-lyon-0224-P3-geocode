@@ -1,13 +1,23 @@
+import { useState } from "react";
 import "./StationInfo.css";
 import PropTypes from "prop-types";
 import stationPic from "../../assets/image/pngtree-white-electric-vehicle-charging-station-png-image_6574430 1.png";
 import chargerPic from "../../assets/image/ev-plug-t2.svg";
+import ReservationPopUp from "./ReservationPopUp";
 
 function StationInfo({ station }) {
   const address = station !== null ? station.address : "";
   const power = station !== null ? station.power : "";
-  const spots = station !== null ? station.spots : "";
+  const spot = station !== null ? station.spots : "";
   const type = station !== null ? station.type : "";
+
+  // State to manage the popup visibility
+  const [showPopup, setShowPopup] = useState(false);
+
+  // Handler for the reservation button
+  const handleReservation = () => {
+    setShowPopup(true);
+  };
 
   return (
     <div className="stationComponent">
@@ -20,10 +30,8 @@ function StationInfo({ station }) {
             />
           </div>
           <div className="info">
-            {/* when we fetch our data here we going to make a logic to show info related to the map */}
-            {/* here we will use the data for the station */}
             <h2>
-              <span>{spots}</span>
+              <span>{spot}</span>
             </h2>
             <p>Spots</p>
             <h2>
@@ -34,14 +42,12 @@ function StationInfo({ station }) {
         </div>
         <div className="supplementary">
           <div className="address">
-            {/* here we will use the data for the address */}
             <h3>
               <span>Address</span>
             </h3>
             <p>{address}</p>
           </div>
           <div className="charger">
-            {/* here we will use the data for the charger type and we are going to be mapping for the types maybe */}
             <img src={chargerPic} alt="charger type icon" />
             <h3>
               <span>{type}</span>
@@ -51,12 +57,25 @@ function StationInfo({ station }) {
             <button type="button" className="button dire">
               <h3>Direction</h3>
             </button>
-            <button type="button" className="button">
+            <button
+              type="button"
+              className="button"
+              onClick={handleReservation}
+            >
               <h3>Reservation</h3>
             </button>
           </div>
         </div>
       </div>
+      {showPopup && (
+        <ReservationPopUp
+          station={station}
+          onClose={() => setShowPopup(false)}
+          onReserved={() => {
+            setShowPopup(false);
+          }}
+        />
+      )}
     </div>
   );
 }

@@ -17,7 +17,6 @@ const {
 const validateEdit = require("../../../services/validateEdit");
 const validateAdd = require("../../../services/validateAdd");
 const { hashPassword } = require("../../../services/auth");
-// const { verifyToken } = require("../../../services/auth");
 
 // Route to get a list of items
 router.get("/", browse);

@@ -53,17 +53,18 @@ const handleSignIn = async ({ signInData }) => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(signInData),
     });
 
-    if (response.status !== 201) {
+    if (response.status !== 200) {
       const errorData = await response.json();
       return { error: errorData.message };
     }
 
     const data = await response.json();
 
-    localStorage.setItem("token", data.token);
+    // localStorage.setItem("token", data.token);
 
     return { success: true, id: data.user.id };
   } catch (error) {
@@ -111,8 +112,28 @@ const router = createBrowserRouter([
         element: <ProfileAccess />,
       },
       {
-        path: "/Profile/:id",
+        path: "/Profile/:id/",
         element: <ProfilePage />,
+        loader: async ({ params }) => {
+          const response = await fetch(`${Api}/api/users/${params.id}`, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          });
+
+          if (response.status !== 200) {
+            throw new Error("Failed to fetch profile data");
+          }
+          const data = await response.json();
+          return data;
+        },
+        catch(error) {
+          // Log the error for debugging purposes
+          console.error("Error fetching profile data:", error);
+          // Rethrow the error to be handled by the caller
+          throw error;
+        },
       },
       {
         path: "/profile/:id/edit",

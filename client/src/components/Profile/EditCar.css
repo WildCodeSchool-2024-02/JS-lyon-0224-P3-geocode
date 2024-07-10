@@ -1,0 +1,17 @@
+.edit-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.delete-button {
+  width: 6.5rem;
+  height: 2.5rem;
+  background: red;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}

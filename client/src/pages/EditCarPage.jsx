@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLoaderData, useNavigate, Form } from "react-router-dom";
 import porsche from "../assets/image/porsche.jpeg";
+import "../components/Profile/EditCar.css";
+import handleDeleteCar from "../utils/handleDeleteCar";
+import notify from "../poptoastify/notify";
 
 const Api = import.meta.env.VITE_API_URL;
 
@@ -28,6 +31,16 @@ export default function EditCarPage() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleDelete = async () => {
+    const userCars = await handleDeleteCar.getCarsByUserId(car.user_id);
+    if (userCars.length > 1) {
+      await handleDeleteCar.deleteCar(car.id);
+      navigate(`/profile/${car.user_id}`);
+    } else {
+      notify("You must have at least one car", "error");
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -93,17 +106,22 @@ export default function EditCarPage() {
             onChange={handleChange}
           >
             <option value="">current: {car.socket}</option>
-            <option value="Type 1">T2</option>
-            <option value="Type 2">E/F</option>
-            <option value="Type 3">T3</option>
-            <option value="Type 4">Combo</option>
-            <option value="Type 5">Chademo</option>
+            <option value="T2">T2</option>
+            <option value="E/F">E/F</option>
+            <option value="T3">T3</option>
+            <option value="Combo">Combo</option>
+            <option value="Chademo">Chademo</option>
           </select>
         </label>
       </div>
-      <button type="submit" className="button">
-        save
-      </button>
+      <div className="edit-buttons">
+        <button type="submit" className="button">
+          save
+        </button>
+        <button type="button" className="delete-button" onClick={handleDelete}>
+          Delete
+        </button>
+      </div>
     </Form>
   );
 }

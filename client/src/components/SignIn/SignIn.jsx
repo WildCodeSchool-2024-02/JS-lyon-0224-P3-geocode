@@ -1,10 +1,12 @@
-import { Form } from "react-router-dom";
+import { useNavigate, Form } from "react-router-dom";
 import { useState } from "react";
 import PropTypes from "prop-types";
 import "./SignIn.css";
 import logo from "../../assets/image/geocode4.svg";
 
 export default function SignInPage({ handleSignIn }) {
+  const navigate = useNavigate();
+
   const [signInValues, setSignInValues] = useState({
     email: "",
     password: "",
@@ -85,7 +87,7 @@ export default function SignInPage({ handleSignIn }) {
         const result = await handleSignIn({ signInData });
 
         if (result.success) {
-          window.location.href = `/profile/${result.id}`;
+          navigate(`/profile/${result.id}`);
         } else {
           console.error("Sign-in failed:", result.error);
           throw new Error(result.error);

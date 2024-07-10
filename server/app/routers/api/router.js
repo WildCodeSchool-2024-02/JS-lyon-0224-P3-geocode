@@ -10,7 +10,6 @@ const usersRouter = require("./users/router");
 
 router.use("/users", usersRouter);
 
-
 const carsRouter = require("./cars/router");
 
 router.use("/cars", carsRouter);
@@ -30,8 +29,6 @@ router.use("/contact", ContactRouter);
 const authActions = require("./signin/router");
 
 router.use("/signin", authActions);
-
-
 
 /* ************************************************************************* */
 

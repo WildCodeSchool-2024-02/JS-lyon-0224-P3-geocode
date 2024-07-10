@@ -54,16 +54,19 @@ const handleSignIn = async ({ signInData }) => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(signInData),
     });
 
-    if (response.status !== 201) {
+    if (response.status !== 200) {
       const errorData = await response.json();
       return { error: errorData.message };
     }
 
     const data = await response.json();
-    return { success: true, id: data.id };
+
+
+    return { success: true, id: data.user.id };
   } catch (error) {
     console.error("Error in handleSignIn:", error);
     return { error: error.message };
@@ -112,7 +115,13 @@ const router = createBrowserRouter([
         path: "/Profile/:id/",
         element: <ProfilePage />,
         loader: async ({ params }) => {
-          const response = await fetch(`${Api}/api/users/${params.id}`);
+          const response = await fetch(`${Api}/api/users/${params.id}`, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          });
+
           if (response.status !== 200) {
             throw new Error("Failed to fetch profile data");
           }

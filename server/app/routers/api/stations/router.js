@@ -9,10 +9,12 @@ const router = express.Router();
 // Import item-related actions
 const { browse, rent } = require("../../../controllers/StationActions");
 
+const { verifyCookie } = require("../../../services/auth");
+
 // Route to get a list of items
 router.get("/", browse);
 
-router.post("/rent", rent);
+router.post("/rent", verifyCookie, rent);
 
 /* ************************************************************************* */
 

@@ -7,7 +7,13 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import item-related actions
-const { browse, read, add, edit } = require("../../../controllers/userActions");
+const {
+  browse,
+  read,
+  edit,
+  add,
+  drop,
+} = require("../../../controllers/UserActions");
 const validateEdit = require("../../../services/validateEdit");
 const validateAdd = require("../../../services/validateAdd");
 const { hashPassword } = require("../../../services/auth");
@@ -20,6 +26,8 @@ router.get("/:id", read);
 router.put("/:id", validateEdit, edit);
 
 router.post("/", hashPassword, validateAdd, add);
+
+router.delete("/:id", drop);
 
 /* ************************************************************************* */
 

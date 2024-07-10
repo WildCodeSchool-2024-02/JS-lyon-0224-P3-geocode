@@ -4,12 +4,29 @@ const tables = require("../../database/tables");
 const browse = async (req, res, next) => {
   try {
     // Fetch all stations from the database
-    const stations = await tables.station.readAll();
+    const station = await tables.station.readAll();
 
     // Respond with the stations in JSON format
-    res.json(stations);
+    res.json(station);
   } catch (err) {
     // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+// Rent a charging spot
+const rent = async (req, res, next) => {
+  const dataRent = req.body;
+
+  try {
+    const result = await tables.rent.create(dataRent);
+
+    res.status(201).json(result);
+  } catch (err) {
+    console.error("Error creating rent:", err);
+    res
+      .status(500)
+      .json({ error: "An error occurred while creating the rent" });
     next(err);
   }
 };
@@ -17,4 +34,5 @@ const browse = async (req, res, next) => {
 // Ready to export the controller functions
 module.exports = {
   browse,
+  rent,
 };

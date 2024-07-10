@@ -56,6 +56,14 @@ class CarRepository extends AbstractRepository {
 
     return result.affectedRows;
   }
+
+  async drop(id) {
+    const [result] = await this.database.query(
+      `DELETE FROM ${this.table} WHERE id = ?`,
+      [id]
+    );
+    return result.affectedRows;
+  }
 }
 
 module.exports = CarRepository;

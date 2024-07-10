@@ -93,11 +93,11 @@ export default function EditCarPage() {
             onChange={handleChange}
           >
             <option value="">current: {car.socket}</option>
-            <option value="Type 1">T2</option>
-            <option value="Type 2">E/F</option>
-            <option value="Type 3">T3</option>
-            <option value="Type 4">Combo</option>
-            <option value="Type 5">Chademo</option>
+            <option value="T2">T2</option>
+            <option value="E/F">E/F</option>
+            <option value="T3">T3</option>
+            <option value="Combo">Combo</option>
+            <option value="Chademo">Chademo</option>
           </select>
         </label>
       </div>

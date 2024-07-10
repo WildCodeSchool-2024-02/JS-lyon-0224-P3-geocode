@@ -108,6 +108,15 @@ class userRepository extends AbstractRepository {
 
     return result.affectedRows;
   }
+
+  async drop(id) {
+    await this.database.query(`DELETE FROM car WHERE user_id = ?`, [id]);
+    const [result] = await this.database.query(
+      `DELETE FROM ${this.table} WHERE id = ?`,
+      [id]
+    );
+    return result.affectedRows;
+  }
 }
 
 module.exports = userRepository;

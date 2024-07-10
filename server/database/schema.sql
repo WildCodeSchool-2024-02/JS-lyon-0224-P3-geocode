@@ -33,6 +33,18 @@ create table socket (
   type varchar(155) not null
 );
 
+create table rent (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  user_id int unsigned not null,
+  station_id int unsigned not null,
+  car_id int unsigned not null,
+  start_time datetime not null,
+  end_time datetime not null,
+  foreign key (station_id) references station(id),
+  foreign key (user_id) references user(id),
+  foreign key (car_id) references car(id)
+);
+
 create table usermessage (
   firstname varchar(80) not null,
   lastname varchar(80) not null,

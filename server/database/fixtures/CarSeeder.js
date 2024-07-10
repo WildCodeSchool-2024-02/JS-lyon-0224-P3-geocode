@@ -47,7 +47,7 @@ class CarSeeder extends AbstractSeeder {
         }
 
         // Add additional cars for each user (if desired)
-        for (let j = 1; j < Math.floor(Math.random() * 3) + 1; j += 1) {
+        for (let j = 1; j < Math.floor(Math.random() * 5) + 1; j += 1) {
           // Add logic to check if the user already has additional cars here
           const additionalCar = {
             brand: this.faker.vehicle.manufacturer(),

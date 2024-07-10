@@ -1,0 +1,38 @@
+.reservationPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.popupContent {
+  background: var(--primary-color);
+  font-family: var(--main-font);
+  color: var(--secondary-color);
+  padding: 20px;
+  border-radius: 0.5rem;
+  width: 20rem;
+  text-align: center;
+}
+
+form label {
+  display: block;
+  margin: 1rem 0;
+}
+
+form input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  font-family: var(--main-font);
+}
+
+form button {
+  margin: 0.5rem;
+}

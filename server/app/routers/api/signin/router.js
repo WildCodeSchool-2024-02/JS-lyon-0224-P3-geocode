@@ -9,7 +9,9 @@ const router = express.Router();
 // Import item-related actions
 const { signin } = require("../../../controllers/AuthActions");
 
-router.post("/", signin);
+const validateSignIn = require("../../../services/validateSignIn")
+
+router.post("/", validateSignIn, signin);
 
 /* ************************************************************************* */
 

@@ -23,6 +23,7 @@ import EditCarPage from "./pages/EditCarPage";
 
 import SignInPage from "./components/SignIn/SignIn";
 import EditProfile from "./pages/EditProfile";
+import ReservationPage from "./pages/ReservationPage";
 
 const Api = import.meta.env.VITE_API_URL;
 
@@ -53,16 +54,19 @@ const handleSignIn = async ({ signInData }) => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(signInData),
     });
 
-    if (response.status !== 201) {
+    if (response.status !== 200) {
       const errorData = await response.json();
       return { error: errorData.message };
     }
 
     const data = await response.json();
-    return { success: true, id: data.id };
+
+
+    return { success: true, id: data.user.id };
   } catch (error) {
     console.error("Error in handleSignIn:", error);
     return { error: error.message };
@@ -111,7 +115,13 @@ const router = createBrowserRouter([
         path: "/Profile/:id/",
         element: <ProfilePage />,
         loader: async ({ params }) => {
-          const response = await fetch(`${Api}/api/users/${params.id}`);
+          const response = await fetch(`${Api}/api/users/${params.id}`, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          });
+
           if (response.status !== 200) {
             throw new Error("Failed to fetch profile data");
           }
@@ -136,6 +146,10 @@ const router = createBrowserRouter([
         element: <EditCarPage />,
         loader: loadCarData,
         action: handleCarEdit,
+      },
+      {
+        path: "/rent/:stationId",
+        element: <ReservationPage />,
       },
     ],
   },

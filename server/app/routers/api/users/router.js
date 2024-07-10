@@ -18,16 +18,18 @@ const validateEdit = require("../../../services/validateEdit");
 const validateAdd = require("../../../services/validateAdd");
 const { hashPassword } = require("../../../services/auth");
 
+const { verifyCookie } = require("../../../services/auth");
+
 // Route to get a list of items
-router.get("/", browse);
+router.get("/", verifyCookie, browse);
 
-router.get("/:id", read);
+router.get("/:id", verifyCookie, read);
 
-router.put("/:id", validateEdit, edit);
+router.put("/:id", verifyCookie, validateEdit, edit);
 
 router.post("/", hashPassword, validateAdd, add);
 
-router.delete("/:id", drop);
+router.delete("/:id", verifyCookie, drop);
 
 /* ************************************************************************* */
 

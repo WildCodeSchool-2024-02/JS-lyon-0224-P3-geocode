@@ -5,13 +5,23 @@ const Api = import.meta.env.VITE_API_URL;
 
 // Loader for fetching user data
 export const loadUserData = async ({ params }) => {
-  const response = await axios.get(`${Api}/api/users/${params.id}`);
+  const response = await axios.get(`${Api}/api/users/${params.id}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    withCredentials: true,
+  });
   return response.data;
 };
 
 // Loader for fetching car data
 export const loadCarData = async ({ params }) => {
-  const response = await axios.get(`${Api}/api/cars/${params.carId}`);
+  const response = await axios.get(`${Api}/api/cars/${params.carId}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    withCredentials: true,
+  });
   return response.data;
 };
 

@@ -23,6 +23,7 @@ import EditCarPage from "./pages/EditCarPage";
 
 import SignInPage from "./components/SignIn/SignIn";
 import EditProfile from "./pages/EditProfile";
+import ReservationPage from "./pages/ReservationPage";
 
 const Api = import.meta.env.VITE_API_URL;
 
@@ -136,6 +137,10 @@ const router = createBrowserRouter([
         element: <EditCarPage />,
         loader: loadCarData,
         action: handleCarEdit,
+      },
+      {
+        path: "/rent/:stationId",
+        element: <ReservationPage />,
       },
     ],
   },

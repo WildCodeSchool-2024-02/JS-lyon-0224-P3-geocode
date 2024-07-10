@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
 import notify from "../poptoastify/notify";
+import handleContact from "../API/HandleContact";
 import "../components/Contact/Contact.css";
 
-function ContactPage({ handleContact }) {
+function ContactPage() {
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     firstname: "",
@@ -230,9 +230,5 @@ function ContactPage({ handleContact }) {
     </form>
   );
 }
-
-ContactPage.propTypes = {
-  handleContact: PropTypes.func.isRequired,
-};
 
 export default ContactPage;

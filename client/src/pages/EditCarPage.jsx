@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLoaderData, useNavigate, Form } from "react-router-dom";
 import porsche from "../assets/image/porsche.jpeg";
 import "../components/Profile/EditCar.css";
-import handleDeleteCar from "../utils/handleDeleteCar";
+import handleDeleteCar from "../API/handleDeleteCar";
 import notify from "../poptoastify/notify";
 
 const Api = import.meta.env.VITE_API_URL;

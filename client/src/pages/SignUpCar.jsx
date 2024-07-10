@@ -1,12 +1,14 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate, Form } from "react-router-dom";
 import CarInput from "../components/SignUp/CarInput";
-import handleSignUp from "../utils/HandleSignUp";
+import handleSignUp from "../API/HandleSignUp";
 
 function CarSignUp() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const [cars, setCars] = useState([{ key: Date.now(), brand: "", model: "", socket: "" }]);
+  const [cars, setCars] = useState([
+    { key: Date.now(), brand: "", model: "", socket: "" },
+  ]);
   const [carErrors, setCarErrors] = useState({});
 
   const handleCarChange = (key, e) => {
@@ -42,7 +44,11 @@ function CarSignUp() {
     let valid = true;
     const errors = {};
     cars.forEach((car) => {
-      if (car.brand.trim() === "" || car.model.trim() === "" || car.socket.trim() === "") {
+      if (
+        car.brand.trim() === "" ||
+        car.model.trim() === "" ||
+        car.socket.trim() === ""
+      ) {
         errors[car.key] = "All fields are required";
         valid = false;
       } else {
@@ -79,7 +85,9 @@ function CarSignUp() {
               setError={setError}
               setSuccess={setSuccess}
             />
-            {carErrors[car.key] && <div className="error">{carErrors[car.key]}</div>}
+            {carErrors[car.key] && (
+              <div className="error">{carErrors[car.key]}</div>
+            )}
           </div>
         ))}
         <button type="button" className="button" onClick={handleAddCar}>

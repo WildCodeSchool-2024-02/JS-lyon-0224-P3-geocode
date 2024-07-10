@@ -1,18 +1,17 @@
+import axios from "axios";
+
 const Api = import.meta.env.VITE_API_URL;
 
 const handleContact = async (contactData) => {
   try {
-    const response = await fetch(`${Api}/api/contact/add`, {
-      method: "POST",
+    const response = await axios.post(`${Api}/api/contact/add`, contactData, {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(contactData),
     });
 
     if (response.status !== 201) {
-      const errorData = await response.json();
-      return { error: errorData.message };
+      return { error: response.data.message };
     }
     return { success: true };
   } catch (error) {

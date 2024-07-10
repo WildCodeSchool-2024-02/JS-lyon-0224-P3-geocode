@@ -1,22 +1,22 @@
+import axios from "axios";
+
 const Api = import.meta.env.VITE_API_URL;
 
 const handleSignIn = async ({ signInData }) => {
   try {
-    const response = await fetch(`${Api}/api/signin`, {
-      method: "POST",
+    const response = await axios.post(`${Api}/api/signin`, signInData, {
       headers: {
         "Content-Type": "application/json",
       },
-      credentials: "include",
-      body: JSON.stringify(signInData),
+      withCredentials: true,
     });
 
     if (response.status !== 200) {
-      const errorData = await response.json();
+      const errorData = response.data;
       return { error: errorData.message };
     }
 
-    const data = await response.json();
+    const { data } = response;
 
     return { success: true, user: data.user.email, id: data.user.id };
   } catch (error) {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import handleRent from "../../utils/HandleRent";
+import handleRent from "../../API/HandleRent";
 
 function ReservationForm({ stationId, userId }) {
   const navigate = useNavigate();

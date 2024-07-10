@@ -3,7 +3,7 @@ import ReactDOMServer from "react-dom/server";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import { useState, useEffect, useCallback } from "react";
 import L from "leaflet";
-import "./Map.css";
+import "../../Styles/Map.css";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import PropTypes from "prop-types";
 import GeoSearch from "./geoSearch";

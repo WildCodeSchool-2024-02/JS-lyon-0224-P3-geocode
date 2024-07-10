@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "swiper/css";
 import "swiper/css/pagination";
 
-import "./UserCars.css";
+import "../../Styles/UserCars.css";
 
 import porsche from "../../assets/image/porsche.jpeg";
 

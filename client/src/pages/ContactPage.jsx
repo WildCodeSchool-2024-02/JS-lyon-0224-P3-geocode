@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import notify from "../poptoastify/notify";
 import handleContact from "../API/HandleContact";
-import "../components/Contact/Contact.css";
+import "../Styles/Contact.css";
 
 function ContactPage() {
   const navigate = useNavigate();

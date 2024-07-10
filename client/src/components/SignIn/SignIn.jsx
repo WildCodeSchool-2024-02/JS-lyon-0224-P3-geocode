@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useUserContext } from "../../context/UserContext";
 import handleSignIn from "../../API/HandleSignIn";
 import logo from "../../assets/image/geocode4.svg";
-import "./SignIn.css";
+import "../../Styles/SignIn.css";
 
 export default function SignInPage() {
   const navigate = useNavigate();

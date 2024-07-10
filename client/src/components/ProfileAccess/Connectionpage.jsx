@@ -1,4 +1,4 @@
-import "./ConnectionPage.css";
+import "../../Styles/ConnectionPage.css";
 import logo from "../../assets/image/geocode4.svg";
 
 export default function ConnectionPage() {

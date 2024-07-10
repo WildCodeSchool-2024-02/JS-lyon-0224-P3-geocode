@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLoaderData, useNavigate, Form } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
-import "../components/Profile/ProfileEdit.css";
+import "../Styles/ProfileEdit.css";
 
 const Api = import.meta.env.VITE_API_URL;
 

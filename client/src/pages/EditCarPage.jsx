@@ -47,6 +47,7 @@ export default function EditCarPage() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(editFormData),
       });
 

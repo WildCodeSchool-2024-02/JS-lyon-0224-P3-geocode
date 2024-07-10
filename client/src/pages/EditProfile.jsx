@@ -51,6 +51,7 @@ export default function EditProfile() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(editFormData),
       });
 

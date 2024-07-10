@@ -15,16 +15,18 @@ const {
   drop,
 } = require("../../../controllers/CarActions");
 
-// Route to get a list of items
-router.get("/", browse);
+const { verifyCookie } = require("../../../services/auth");
 
-router.get("/:id", read);
+// Route to get a list of items
+router.get("/", verifyCookie, browse);
+
+router.get("/:id", verifyCookie, read);
 
 router.post("/", add);
 
-router.put("/:id", edit);
+router.put("/:id", verifyCookie, edit);
 
-router.delete("/:id", drop);
+router.delete("/:id", verifyCookie, drop);
 /* ************************************************************************* */
 
 module.exports = router;

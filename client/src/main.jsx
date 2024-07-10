@@ -21,7 +21,7 @@ import SignUp from "./pages/SignUp";
 import CarSignUp from "./pages/SignUpCar";
 import EditCarPage from "./pages/EditCarPage";
 
-import SignInPage from "./components/SignIn/SignIn";
+import SignInPage from "./pages/SignInPage";
 import EditProfile from "./pages/EditProfile";
 import ReservationPage from "./pages/ReservationPage";
 import loadStationData from "./API/HandleHompage";

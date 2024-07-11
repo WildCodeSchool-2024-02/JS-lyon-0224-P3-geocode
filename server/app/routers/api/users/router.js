@@ -26,7 +26,7 @@ router.get("/", verifyCookie, browse);
 
 router.post("/signout", signout);
 
-router.get("/:id", verifyCookie, read);
+router.get("/profile", verifyCookie, read);
 
 router.put("/:id", verifyCookie, validateEdit, edit);
 

@@ -68,7 +68,7 @@ export default function EditCarPage() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      navigate(`/profile/${formData.user_id}`);
+      navigate(`/profile`);
     } catch (error) {
       console.error("Error in handleSubmit:", error);
     }

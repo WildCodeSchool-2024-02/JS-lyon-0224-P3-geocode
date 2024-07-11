@@ -90,7 +90,7 @@ export default function SignInPage() {
 
         if (result.success) {
           login(result.user);
-          navigate(`/profile/${result.id}`);
+          navigate(`/profile`);
         } else {
           console.error("Sign-in failed:", result.error);
           throw new Error(result.error);

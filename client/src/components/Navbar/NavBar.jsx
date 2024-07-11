@@ -47,7 +47,7 @@ function NavBar({ isLogoVisible }) {
               <a href="/">Home</a>
             </li>
             <li>
-              <a href="/profile">Profile</a>
+              <a href="/profileaccess">Profile</a>
             </li>
             <li>
               <a href="/contact">Contact</a>

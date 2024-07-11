@@ -57,13 +57,12 @@ const router = createBrowserRouter([
         element: <ContactPage />,
       },
       {
-        path: "/Profile",
+        path: "/Profileaccess",
         element: <ProfileAccess />,
       },
       {
-        path: "/profile/:id/",
+        path: "/profile",
         element: <ProfilePage />,
-        loader: loadUserData,
       },
       {
         path: "/profile/:id/edit",

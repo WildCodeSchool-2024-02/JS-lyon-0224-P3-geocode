@@ -51,7 +51,7 @@ export default function EditProfile() {
         withCredentials: true,
       });
 
-      navigate(`/profile/${params.id}`);
+      navigate(`/profile`);
     } catch (error) {
       console.error("Error in handleSubmit:", error);
     }

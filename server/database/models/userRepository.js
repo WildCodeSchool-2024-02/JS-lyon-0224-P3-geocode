@@ -12,13 +12,14 @@ class userRepository extends AbstractRepository {
   async create(user) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (firstname, lastname, city, email, hashed_password) values (?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (firstname, lastname, city, email, hashed_password, role) values (?, ?, ?, ?, ?, 'user')`,
       [
         user.firstname,
         user.lastname,
         user.city,
         user.email,
         user.hashedPassword,
+        user.role,
       ]
     );
 
@@ -38,7 +39,7 @@ class userRepository extends AbstractRepository {
   async read(id) {
     const query = `
       SELECT 
-        user.id, user.firstname, user.lastname, user.email, user.city, user.image, user.admin,
+        user.id, user.firstname, user.lastname, user.email, user.city, user.image, user.role,
         car.id as car_id, car.brand, car.model, car.socket
       FROM ${this.table}
       LEFT JOIN car ON user.id = car.user_id
@@ -58,7 +59,7 @@ class userRepository extends AbstractRepository {
       city: rows[0].city,
       email: rows[0].email,
       image: rows[0].image,
-      admin: rows[0].admin,
+      role: rows[0].role,
       cars: rows
         .filter((row) => row.car_id !== null)
         .map((row) => ({

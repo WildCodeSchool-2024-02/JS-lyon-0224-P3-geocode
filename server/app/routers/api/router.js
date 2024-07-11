@@ -30,7 +30,6 @@ const authActions = require("./signin/router");
 
 router.use("/signin", authActions);
 
-router.use("/signout", authActions);
 
 /* ************************************************************************* */
 

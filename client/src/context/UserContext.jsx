@@ -1,15 +1,15 @@
 import PropTypes from "prop-types";
 import { createContext, useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import useLocalStorage from "../utils/useLocalStorage";
+import UseLocalStorage from "../hooks/UseLocalStorage";
+import { signOutUser } from "../API/HandleProfile";
 
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
-  const ApiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
 
-  const [user, setUser] = useLocalStorage("user", null);
+  const [user, setUser] = UseLocalStorage("user", null);
 
   const login = (userData) => {
     setUser(userData);
@@ -17,19 +17,12 @@ export function UserProvider({ children }) {
 
   const signout = async (sessionExpired) => {
     try {
-      const response = await fetch(`${ApiUrl}/user/signout`, {
-        credentials: "include", // envoyer / recevoir le cookie à chaque requête
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.status === 200) {
-        setUser(null);
-        navigate(sessionExpired === true ? "/signin" : "/");
+      await signOutUser();
+      setUser(null);
+      if (sessionExpired === true) {
+        navigate("/");
       }
     } catch (err) {
-      // Log des erreurs possibles
       console.error(err);
     }
   };

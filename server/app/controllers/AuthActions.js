@@ -48,7 +48,7 @@ const signin = async (req, res, next) => {
   }
 };
 
-const signout = (req, res) => {
+const signout = (_req, res) => {
   res.clearCookie("access_token").sendStatus(200);
 };
 

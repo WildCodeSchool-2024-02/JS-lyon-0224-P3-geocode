@@ -1,11 +1,11 @@
 import { useNavigate, Form } from "react-router-dom";
 import { useState } from "react";
-import PropTypes from "prop-types";
-import "./SignIn.css";
 import { useUserContext } from "../../context/UserContext";
+import handleSignIn from "../../API/HandleSignIn";
 import logo from "../../assets/image/geocode4.svg";
+import "../../Styles/SignIn.css";
 
-export default function SignInPage({ handleSignIn }) {
+export default function SignInPage() {
   const navigate = useNavigate();
   const { login } = useUserContext();
 
@@ -156,7 +156,3 @@ export default function SignInPage({ handleSignIn }) {
     </Form>
   );
 }
-
-SignInPage.propTypes = {
-  handleSignIn: PropTypes.func.isRequired,
-};

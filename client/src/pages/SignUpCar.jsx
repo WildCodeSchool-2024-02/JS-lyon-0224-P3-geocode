@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate, Form } from "react-router-dom";
 import CarInput from "../components/SignUp/CarInput";
-import handleSignUp from "../utils/HandleSignUp";
+import handleSignUp from "../API/HandleSignUp";
 
 function CarSignUp() {
   const { state } = useLocation();

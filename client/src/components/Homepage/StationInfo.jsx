@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import "./StationInfo.css";
 import stationPic from "../../assets/image/pngtree-white-electric-vehicle-charging-station-png-image_6574430 1.png";
 import chargerPic from "../../assets/image/ev-plug-t2.svg";
+import "../../Styles/StationInfo.css";
 
 function StationInfo({ station }) {
   const address = station?.address || "";

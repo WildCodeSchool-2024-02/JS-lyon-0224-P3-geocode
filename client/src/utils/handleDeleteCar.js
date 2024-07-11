@@ -2,7 +2,7 @@ import notify from "../poptoastify/notify";
 
 const Api = import.meta.env.VITE_API_URL;
 
-const deleteCar = async (carId) => {
+export const deleteCar = async (carId) => {
   try {
     const response = await fetch(`${Api}/api/cars/${carId}`, {
       method: "DELETE",
@@ -22,15 +22,17 @@ const deleteCar = async (carId) => {
   }
 };
 
-const getCarsByUserId = async (userId) => {
+export const getCarsByUserId = async (userId) => {
   try {
-    const response = await fetch(`${Api}/api/cars/${userId}`);
+    const response = await fetch(`${Api}/api/cars/byUser/${userId}`);
+    if (!response.ok) {
+      throw new Error("Failed to fetch user cars");
+    }
     const data = await response.json();
     return data;
   } catch (err) {
     console.error("Error fetching user cars:", err);
+    notify("Failed to fetch user cars", "error");
   }
   return [];
 };
-
-export default { deleteCar, getCarsByUserId };

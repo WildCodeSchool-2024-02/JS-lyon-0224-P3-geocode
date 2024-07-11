@@ -82,6 +82,18 @@ const drop = async (req, res, next) => {
   }
 };
 
+const getCarByUserId = async (req, res, next) => {
+  try {
+    const userId = req.params.user_id;
+
+    const carsCount = await tables.car.getCarsByUserId(userId);
+    res.status(200).json(carsCount);
+  } catch (err) {
+    console.error("Error fetching user cars:", err);
+    next(err);
+  }
+};
+
 // Ready to export the controller functions
 module.exports = {
   browse,
@@ -89,4 +101,5 @@ module.exports = {
   edit,
   read,
   drop,
+  getCarByUserId,
 };

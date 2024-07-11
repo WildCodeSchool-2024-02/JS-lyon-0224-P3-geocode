@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLoaderData, useNavigate, Form } from "react-router-dom";
+import { getCarsByUserId, deleteCar } from "../utils/handleDeleteCar";
 import porsche from "../assets/image/porsche.jpeg";
 import "../components/Profile/EditCar.css";
-import handleDeleteCar from "../utils/handleDeleteCar";
+
 import notify from "../poptoastify/notify";
 
 const Api = import.meta.env.VITE_API_URL;
@@ -34,15 +35,20 @@ export default function EditCarPage() {
   };
 
   const handleDelete = async () => {
-    const userCars = await handleDeleteCar.getCarsByUserId(car.user_id);
-    if (userCars.length > 1) {
-      await handleDeleteCar.deleteCar(car.id);
-      navigate(`/profile/${car.user_id}`);
-    } else {
-      notify("You must have at least one car", "error");
+    try {
+      const userCarsCount = await getCarsByUserId(formData.user_id);
+
+      if (userCarsCount > 1) {
+        await deleteCar(car.id);
+        navigate(`/profile/${formData.user_id}`);
+      } else {
+        notify("You must have at least one car", "error");
+      }
+    } catch (error) {
+      console.error("Error in handleDelete:", error);
+      notify("Failed to delete car", "error");
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const params = { carId: car.id };
@@ -70,6 +76,7 @@ export default function EditCarPage() {
       navigate(`/profile/${formData.user_id}`);
     } catch (error) {
       console.error("Error in handleSubmit:", error);
+      notify("Failed to update car", "error");
     }
   };
 

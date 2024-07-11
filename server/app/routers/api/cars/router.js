@@ -13,6 +13,7 @@ const {
   edit,
   read,
   drop,
+  getCarByUserId,
 } = require("../../../controllers/CarActions");
 
 // Route to get a list of items
@@ -25,6 +26,9 @@ router.post("/", add);
 router.put("/:id", edit);
 
 router.delete("/:id", drop);
+
+router.get("/byUser/:user_id", getCarByUserId);
+
 /* ************************************************************************* */
 
 module.exports = router;

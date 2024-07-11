@@ -3,15 +3,16 @@ import notify from "../poptoastify/notify";
 
 const Api = import.meta.env.VITE_API_URL;
 
-const deleteCar = async (carId) => {
+export const deleteCar = async (carId) => {
   try {
     const response = await axios.delete(`${Api}/api/cars/${carId}`, {
       headers: {
         "Content-Type": "application/json",
       },
+      withCredentials: true,
     });
 
-    if (response.status === 200) {
+    if (response.status !== 201) {
       notify("Car deleted successfully", "success");
     } else {
       throw new Error("Failed to delete car");
@@ -22,14 +23,16 @@ const deleteCar = async (carId) => {
   }
 };
 
-const getCarsByUserId = async (userId) => {
+export const getCarsByUserId = async (userId) => {
   try {
-    const response = await axios.get(`${Api}/api/cars/${userId}`);
-    return response.data;
+    const response = await axios.get(`${Api}/api/cars/byUser/${userId}`);
+    if (response.status === 200) {
+      return response.data;
+    }
+    throw new Error("Failed to fetch user cars");
   } catch (err) {
     console.error("Error fetching user cars:", err);
+    notify("Failed to fetch user cars", "error");
   }
   return [];
 };
-
-export default { deleteCar, getCarsByUserId };

@@ -13,6 +13,7 @@ const {
   edit,
   read,
   drop,
+  getCarByUserId,
 } = require("../../../controllers/CarActions");
 
 const { verifyCookie } = require("../../../services/auth");
@@ -27,6 +28,9 @@ router.post("/", add);
 router.put("/:id", verifyCookie, edit);
 
 router.delete("/:id", verifyCookie, drop);
+
+router.get("/byUser/:user_id", getCarByUserId);
+
 /* ************************************************************************* */
 
 module.exports = router;

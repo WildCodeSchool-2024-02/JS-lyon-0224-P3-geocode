@@ -64,6 +64,14 @@ class CarRepository extends AbstractRepository {
     );
     return result.affectedRows;
   }
+
+  async getCarsByUserId(userId) {
+    const [rows] = await this.database.query(
+      `SELECT COUNT(user_id) as count FROM ${this.table} WHERE user_id = ?`,
+      [userId]
+    );
+    return rows[0].count;
+  }
 }
 
 module.exports = CarRepository;

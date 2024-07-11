@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { createContext, useContext, useMemo } from "react";
 // import { useNavigate } from "react-router-dom";
-import useLocalStorage from "../utils/useLocalStorage";
+import useLocalStorage from "../hooks/UseLocalStorage";
 
 const UserContext = createContext();
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import "./NavBar.css";
+import "../../Styles/NavBar.css";
 import Logo from "../../assets/image/geocode4.svg";
 
 function NavBar({ isLogoVisible }) {

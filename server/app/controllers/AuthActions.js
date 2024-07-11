@@ -48,6 +48,11 @@ const signin = async (req, res, next) => {
   }
 };
 
+const signout = (req, res) => {
+  res.clearCookie("access_token").sendStatus(200);
+};
+
 module.exports = {
   signin,
+  signout,
 };

@@ -35,11 +35,16 @@ export default function UserInfo({ user }) {
             <p>{city}</p>
           </div>
         </div>
-        <Link to={`/profile/${user.id}/edit`}>
+        <div className="btn-component">
+          <Link to={`/profile/${user.id}/edit`}>
+            <button type="button" className="button">
+              Edit
+            </button>
+          </Link>
           <button type="button" className="button">
-            Edit
+            Sign out
           </button>
-        </Link>
+        </div>
       </div>
     </div>
   );

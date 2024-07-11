@@ -61,6 +61,12 @@
   gap: 1rem;
 }
 
+.btn-component {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 @media (min-width: 680px) {
   .profileComponent {
     margin: 0;

@@ -7,7 +7,6 @@ function CarInput({
   setError,
   setSuccess,
 }) {
-  
   const validateInput = (e) => {
     const { name, value } = e.target;
     const minLength = name === "brand" ? 3 : 2; // Adjust minLength based on the field

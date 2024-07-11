@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import propTypes from "prop-types";
 import { FaRegUserCircle } from "react-icons/fa";
-import "./UserInfo.css";
+import "../../Styles/UserInfo.css";
 
 export default function UserInfo({ user }) {
   const { firstname, lastname, email, city, image } = user;

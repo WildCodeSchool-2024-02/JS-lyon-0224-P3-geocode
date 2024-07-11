@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useLoaderData, useNavigate, Form } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
-import "../components/Profile/ProfileEdit.css";
+import axios from "axios";
+import "../Styles/ProfileEdit.css";
 
 const Api = import.meta.env.VITE_API_URL;
 
@@ -46,17 +47,9 @@ export default function EditProfile() {
     };
 
     try {
-      const response = await fetch(`${Api}/api/users/${params.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(editFormData),
+      await axios.put(`${Api}/api/users/${params.id}`, editFormData, {
+        withCredentials: true,
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
 
       navigate(`/profile/${params.id}`);
     } catch (error) {

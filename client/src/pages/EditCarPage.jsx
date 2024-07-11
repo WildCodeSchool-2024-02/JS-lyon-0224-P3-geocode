@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useLoaderData, useNavigate, Form } from "react-router-dom";
-import { getCarsByUserId, deleteCar } from "../utils/handleDeleteCar";
+import { getCarsByUserId, deleteCar } from "../API/handleDeleteCar";
 import porsche from "../assets/image/porsche.jpeg";
-import "../components/Profile/EditCar.css";
+import "../Styles/EditCar.css";
 
 import notify from "../poptoastify/notify";
 

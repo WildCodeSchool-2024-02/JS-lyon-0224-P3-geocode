@@ -9,7 +9,7 @@ import {
   loadCarData,
   handleUserEdit,
   handleCarEdit,
-} from "./utils/handleEdit";
+} from "./API/handleEdit";
 
 // page components
 import HomePage from "./pages/HomePage";
@@ -21,57 +21,10 @@ import SignUp from "./pages/SignUp";
 import CarSignUp from "./pages/SignUpCar";
 import EditCarPage from "./pages/EditCarPage";
 
-import SignInPage from "./components/SignIn/SignIn";
+import SignInPage from "./pages/SignInPage";
 import EditProfile from "./pages/EditProfile";
 import ReservationPage from "./pages/ReservationPage";
-
-const Api = import.meta.env.VITE_API_URL;
-
-const handleContact = async (contactData) => {
-  try {
-    const response = await fetch(`${Api}/api/contact/add`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(contactData),
-    });
-
-    if (response.status !== 201) {
-      const errorData = await response.json();
-      return { error: errorData.message };
-    }
-    return { success: true };
-  } catch (error) {
-    return { error: error.message };
-  }
-};
-
-const handleSignIn = async ({ signInData }) => {
-  try {
-    const response = await fetch(`${Api}/api/signin`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-      body: JSON.stringify(signInData),
-    });
-
-    if (response.status !== 200) {
-      const errorData = await response.json();
-      return { error: errorData.message };
-    }
-
-    const data = await response.json();
-
-
-    return { success: true, id: data.user.id };
-  } catch (error) {
-    console.error("Error in handleSignIn:", error);
-    return { error: error.message };
-  }
-};
+import loadStationData from "./API/HandleHompage";
 
 const router = createBrowserRouter([
   {
@@ -81,11 +34,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
-        loader: async () => {
-          const response = await fetch(`${Api}/api/stations`);
-          const data = await response.json();
-          return data;
-        },
+        loader: loadStationData,
       },
       {
         path: "/signup",
@@ -97,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/signin",
-        element: <SignInPage handleSignIn={handleSignIn} />,
+        element: <SignInPage />,
       },
       {
         path: "/About-us",
@@ -105,35 +54,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/Contact",
-        element: <ContactPage handleContact={handleContact} />,
+        element: <ContactPage />,
       },
       {
         path: "/Profile",
         element: <ProfileAccess />,
       },
       {
-        path: "/Profile/:id/",
+        path: "/profile/:id/",
         element: <ProfilePage />,
-        loader: async ({ params }) => {
-          const response = await fetch(`${Api}/api/users/${params.id}`, {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          });
-
-          if (response.status !== 200) {
-            throw new Error("Failed to fetch profile data");
-          }
-          const data = await response.json();
-          return data;
-        },
-        catch(error) {
-          // Log the error for debugging purposes
-          console.error("Error fetching profile data:", error);
-          // Rethrow the error to be handled by the caller
-          throw error;
-        },
+        loader: loadUserData,
       },
       {
         path: "/profile/:id/edit",

@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("./assets/Fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+  src: url("../assets/Fonts/Poppins/Poppins-Regular.ttf") format("truetype");
 }
 
 /*----------CSS VARIABLES--------------*/

@@ -6,7 +6,7 @@ create table user (
   email varchar(255) not null unique,
   hashed_password varchar(255) not null,
   image text,
-  admin boolean default 0 not null
+  role enum('user', 'admin') not null
 );
 
 create table car (

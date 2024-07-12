@@ -18,7 +18,8 @@ export function UserProvider({ children }) {
   const signout = async (sessionExpired) => {
     try {
       await signOutUser();
-      setUser(null);
+      setUser("null");
+
       if (sessionExpired === true) {
         navigate("/");
       }

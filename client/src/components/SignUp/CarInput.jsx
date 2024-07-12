@@ -7,7 +7,6 @@ function CarInput({
   setError,
   setSuccess,
 }) {
-  
   const validateInput = (e) => {
     const { name, value } = e.target;
     const minLength = name === "brand" ? 3 : 2; // Adjust minLength based on the field
@@ -65,11 +64,11 @@ function CarInput({
           onChange={(e) => handleCarChange(car.key, e)}
         >
           <option value="">Select Socket Type</option>
-          <option value="Type 1">Type 1</option>
-          <option value="Type 2">Type 2</option>
-          <option value="Type 3">Type 3</option>
-          <option value="Type 4">Type 4</option>
-          <option value="Type 5">Type 5</option>
+          <option value="T2">T2</option>
+          <option value="E/F">E/F</option>
+          <option value="T3">T3</option>
+          <option value="Combo">Combo</option>
+          <option value="Chademo">Chademo</option>
         </select>
       </label>
       <button

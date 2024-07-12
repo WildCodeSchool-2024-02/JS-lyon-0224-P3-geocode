@@ -14,7 +14,7 @@ export default function ProfilePage() {
         setUser(await loadUserData());
       } catch (error) {
         console.error(error, "redirection");
-        navigate("/");
+        navigate("/profileAccess");
       }
     };
     getUser();

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { useUserContext } from "../../context/UserContext";
 import "../../Styles/NavBar.css";
 import Logo from "../../assets/image/geocode4.svg";
 
@@ -8,6 +9,8 @@ function NavBar({ isLogoVisible }) {
   const [burgerClass, setBurgerClass] = useState("burger-bar unclicked");
   const [menuClass, setMenuClass] = useState("menu hidden");
   const [isMenuClicked, setIsMenuClicked] = useState(false);
+
+  const { user } = useUserContext();
 
   // Function to toggle menu visibility
   const updateMenu = () => {
@@ -47,7 +50,11 @@ function NavBar({ isLogoVisible }) {
               <a href="/">Home</a>
             </li>
             <li>
-              <a href="/profileaccess">Profile</a>
+              {user !== null ? (
+                <a href="/profile">Profile</a>
+              ) : (
+                <a href="/profileaccess">Profile</a>
+              )}
             </li>
             <li>
               <a href="/contact">Contact</a>

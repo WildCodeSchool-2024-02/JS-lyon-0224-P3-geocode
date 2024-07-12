@@ -41,7 +41,7 @@ export default function EditCarPage() {
 
       if (userCarsCount > 1) {
         await deleteCar(car.id);
-        navigate(`/profile/${formData.user_id}`);
+        navigate(`/profile`);
       } else {
         notify("You must have at least one car", "error");
       }

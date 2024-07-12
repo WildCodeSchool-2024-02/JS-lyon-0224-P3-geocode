@@ -62,18 +62,12 @@ export default function EditCarPage() {
     };
 
     try {
-      await axios.put(
-        `${Api}/api/cars/${params.carId}`,
-        editFormData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
-
-
+      await axios.put(`${Api}/api/cars/${params.carId}`, editFormData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
 
       navigate(`/profile`);
     } catch (error) {

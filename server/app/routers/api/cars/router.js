@@ -17,6 +17,7 @@ const {
 } = require("../../../controllers/CarActions");
 
 const { verifyCookie } = require("../../../services/auth");
+const carValidateEdit = require("../../../services/carvalidateEdit");
 
 // Route to get a list of items
 router.get("/", verifyCookie, browse);
@@ -25,7 +26,7 @@ router.get("/:id", verifyCookie, read);
 
 router.post("/", add);
 
-router.put("/:id", verifyCookie, edit);
+router.put("/:id", verifyCookie, carValidateEdit, edit);
 
 router.delete("/:id", verifyCookie, drop);
 

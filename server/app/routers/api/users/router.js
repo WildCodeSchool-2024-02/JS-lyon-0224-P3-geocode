@@ -20,10 +20,13 @@ const { hashPassword } = require("../../../services/auth");
 
 const { verifyCookie } = require("../../../services/auth");
 
+const { signout } = require("../../../controllers/AuthActions");
 // Route to get a list of items
 router.get("/", verifyCookie, browse);
 
-router.get("/:id", verifyCookie, read);
+router.post("/signout", signout);
+
+router.get("/profile", verifyCookie, read);
 
 router.put("/:id", verifyCookie, validateEdit, edit);
 

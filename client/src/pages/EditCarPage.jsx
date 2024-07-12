@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLoaderData, useNavigate, Form } from "react-router-dom";
+import axios from "axios";
 import { getCarsByUserId, deleteCar } from "../API/handleDeleteCar";
 import porsche from "../assets/image/porsche.jpeg";
 import "../Styles/EditCar.css";
@@ -61,19 +62,20 @@ export default function EditCarPage() {
     };
 
     try {
-      const response = await fetch(`${Api}/api/cars/${params.carId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(editFormData),
-      });
+      await axios.put(
+        `${Api}/api/cars/${params.carId}`,
+        editFormData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
 
-      navigate(`/profile/${formData.user_id}`);
+
+      navigate(`/profile`);
     } catch (error) {
       console.error("Error in handleSubmit:", error);
       notify("Failed to update car", "error");

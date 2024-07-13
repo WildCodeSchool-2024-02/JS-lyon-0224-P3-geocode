@@ -29,8 +29,8 @@ function NavBar({ isLogoVisible }) {
   };
 
   return (
-    <div>
-      <nav>
+    <div className="navBar">
+      <nav className="nav">
         <div
           className="burger-menu"
           onClick={updateMenu}

@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
-import stationPic from "../../assets/image/pngtree-white-electric-vehicle-charging-station-png-image_6574430 1.png";
-import chargerPic from "../../assets/image/ev-plug-t2.svg";
+import stationPic from "../../assets/image/charging-station.png";
+import chargerPic from "../../assets/image/plug1.png";
 import "../../Styles/StationInfo.css";
 
 function StationInfo({ station }) {
@@ -67,14 +67,14 @@ function StationInfo({ station }) {
             </h3>
           </div>
           <div className="supplementary_buttons">
-            <button
+            {/* <button
               type="button"
               className={`button  ${user === "null" ? "disabled_button" : "button"}`}
               disabled={user === "null" || !isSelected}
               title={getTitle()}
             >
               Direction
-            </button>
+            </button> */}
             <button
               type="button"
               className={`button  ${user === "null" ? "disabled_button" : "button"}`}

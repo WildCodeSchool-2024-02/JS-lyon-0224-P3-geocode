@@ -10,7 +10,7 @@
 :root {
   /*----------COLORS-------------*/
   --light-bg-color: #e5e9e7;
-  --dark-bg-color: rgba(82, 91, 90, 0.6);
+  --dark-bg-color: #525b5a99;
   --primary-color: #f9f9f9;
   --secondary-color: #525b5a;
   --title-color: #21a89a;
@@ -26,7 +26,7 @@
   --main-font: "Poppins", sans-serif;
 
   /*-----------SHADOW-----------*/
-  --shadow: 0rem 0rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+  --shadow: 0rem 0rem 0.5rem 0rem rgba(0, 0, 0, 0.25);
 }
 
 /*-----------CODE----------------*/
@@ -81,11 +81,8 @@ span {
   border-radius: 0.5rem;
   cursor: pointer;
   box-shadow: var(--shadow);
-}
-
-.button h3 {
-  margin: 0;
   color: var(--primary-color);
+  font-weight: 700;
 }
 
 .button:hover,

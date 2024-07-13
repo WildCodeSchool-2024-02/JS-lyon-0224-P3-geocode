@@ -17,7 +17,7 @@ function GeoSearch() {
     // Create a new GeoSearchControl with specified options and connect it to the map
     const searchControl = new GeoSearchControl({
       provider,
-      showMarker: true,
+      showMarker: false,
       showPopup: false,
       autoClose: true,
       retainZoomLevel: false,

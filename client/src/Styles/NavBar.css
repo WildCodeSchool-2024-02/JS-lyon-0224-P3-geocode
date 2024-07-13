@@ -1,13 +1,20 @@
 /* ---------------- Navbar and burger menu ------------------ */
 
-nav {
-  width: 100%;
+.navBar {
+  /* width: 100vw; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav {
+  width: 95vw;
   height: 3em;
   display: flex;
   justify-content: space-between;
   align-items: center;
   /* Center items vertically */
-  padding-inline: 1em;
+  /* padding-left: 0.5rem; */
   position: relative;
   margin: 1rem 0;
   /* Ensure nav stays relative for menu positioning */
@@ -18,13 +25,14 @@ nav {
 }
 
 .logo {
-  width: 5rem;
-  height: 3rem;
+  width: 8rem;
+  height: 4rem;
+  margin: -1rem;
 }
 
 .burger-menu {
   /* position: fixed; */
-  height: 2rem;
+  height: 1.5rem;
   width: 3rem;
   display: flex;
   flex-direction: column;
@@ -40,7 +48,7 @@ nav {
   width: 2.6rem;
   /* Reduced width for better alignment */
   height: 0.2rem;
-  background-color: rgb(0, 0, 0);
+  background-color: var(--secondary-color);
   border-radius: 0.25em;
   transition: transform 0.5s ease-out;
   /* Adjusted for a better look */
@@ -78,7 +86,7 @@ nav {
 
 /* ------------- animations for burger menu ------------------ */
 .burger-bar.clicked:nth-child(1) {
-  transform: rotate(45deg) translate(0.5rem, 0.5rem);
+  transform: rotate(45deg) translate(0.3rem, 0.4rem);
   /* Improved spacing */
   transition: transform 0.5s ease-out;
 }
@@ -89,7 +97,7 @@ nav {
 }
 
 .burger-bar.clicked:nth-child(3) {
-  transform: rotate(-45deg) translate(0.45rem, -0.45rem);
+  transform: rotate(-45deg) translate(0.3rem, -0.4rem);
   /* Adjusted rotation */
   transition: transform 0.5s ease-out;
 }
@@ -156,5 +164,12 @@ nav {
   }
 }
 
-@media (max-width: 950px) {
+@media (min-width: 950px) {
+  .nav {
+    width: 98vw;
+  }
+
+  .logo {
+    margin: 0;
+  }
 }

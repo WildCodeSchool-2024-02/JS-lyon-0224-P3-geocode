@@ -15,16 +15,6 @@
   margin-bottom: 1rem;
 }
 
-.deletebtn {
-  width: 6.5rem;
-  height: 2.5rem;
-  background: var(--delete-gradient);
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-}
-
 @media (min-width: 680px) {
   .edit-car {
     margin-top: 2rem;

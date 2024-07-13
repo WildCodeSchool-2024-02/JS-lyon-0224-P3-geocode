@@ -22,7 +22,7 @@
   );
   --second-gradient: linear-gradient(0.05turn, #21a89a, #44bb81, #67cd68);
 
-  --delete-gradient: linear-gradient(0.05turn, #d32f2f, #ea4242);
+  --delete-gradient: linear-gradient(0.05turn, #d32f2f, #ea4242, #f15050);
 
   /*---------TYPOGRAPHY---------*/
   --main-font: "Poppins", sans-serif;
@@ -84,12 +84,32 @@ span {
   cursor: pointer;
   box-shadow: var(--shadow);
   color: var(--primary-color);
+  font-family: var(--main-font);
   font-weight: 700;
 }
 
 .button:hover,
 .button:focus {
   box-shadow: 0 0.5em 0.5em -0.4em var(--title-color);
+  transform: translateY(-0.25em);
+}
+
+.deletebtn {
+  width: 6.5rem;
+  height: 2.5rem;
+  background: var(--delete-gradient);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: var(--primary-color);
+  box-shadow: var(--shadow);
+  font-weight: 700;
+  font-family: var(--main-font);
+}
+
+.deletebtn:hover,
+.deletebtn:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em red;
   transform: translateY(-0.25em);
 }
 

@@ -121,11 +121,7 @@ export default function EditCarPage() {
         <button type="submit" className="button">
           Save
         </button>
-        <button
-          type="button"
-          className="deletebtn button"
-          onClick={handleDelete}
-        >
+        <button type="button" className="deletebtn" onClick={handleDelete}>
           Delete
         </button>
       </div>

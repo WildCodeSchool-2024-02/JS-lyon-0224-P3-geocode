@@ -31,10 +31,11 @@ function ReservationForm({ stationId, userId }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="reservation-form">
       <label>
         <p>Reservation Time:</p>
         <input
+          className="reservation container"
           type="datetime-local"
           value={reservationTime}
           onChange={(e) => setReservationTime(e.target.value)}
@@ -44,6 +45,7 @@ function ReservationForm({ stationId, userId }) {
       <label>
         <p>Duration:</p>
         <select
+          className="reservation container"
           value={duration}
           onChange={(e) => setDuration(parseInt(e.target.value, 10))}
         >
@@ -53,12 +55,18 @@ function ReservationForm({ stationId, userId }) {
           <option value={120}>2 hours</option>
         </select>
       </label>
-      <button type="submit" className="button">
-        Reserve
-      </button>
-      <button type="button" className="button" onClick={() => navigate("/")}>
-        Cancel
-      </button>
+      <div className="reservationBtn">
+        <button type="submit" className="button">
+          Reserve
+        </button>
+        <button
+          type="button"
+          className="deletebtn"
+          onClick={() => navigate("/")}
+        >
+          Cancel
+        </button>
+      </div>
     </form>
   );
 }

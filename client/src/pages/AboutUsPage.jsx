@@ -4,7 +4,9 @@ function AboutusPage() {
   return (
     <div className="aboutUs">
       <div className="aboutUsContent">
-        <h1>About GeoCode</h1>
+        <h1>
+          <span>About GeoCode</span>
+        </h1>
         <p>
           Welcome to GeoCode! We are dedicated to making electric vehicle travel
           easier and more convenient through our interactive mapping
@@ -12,7 +14,9 @@ function AboutusPage() {
           on charging stations, routes, and points of interest, ensuring a
           seamless and enjoyable journey.
         </p>
-        <h2>Our Mission</h2>
+        <h2>
+          <span>Our Mission</span>
+        </h2>
         <p>
           At GeoCode, our mission is to revolutionize the electric vehicle
           experience by offering a comprehensive, user-friendly map that helps
@@ -20,7 +24,9 @@ function AboutusPage() {
           transition to sustainable transportation by making electric vehicle
           travel more accessible and efficient.
         </p>
-        <h2>Our Team</h2>
+        <h2>
+          <span>Our Team</span>
+        </h2>
         <p>
           Our team is composed of passionate professionals with expertise in web
           development, geographic information systems, and sustainable
@@ -28,7 +34,9 @@ function AboutusPage() {
           application that meets the needs of our users and contributes to a
           greener future.
         </p>
-        <h2>Contact Us</h2>
+        <h2>
+          <span>Contact Us</span>
+        </h2>
         <p>
           Have questions or feedback? We’d love to hear from you! Reach out to
           us at <a href="/Contact">contact@geocode.com</a>.

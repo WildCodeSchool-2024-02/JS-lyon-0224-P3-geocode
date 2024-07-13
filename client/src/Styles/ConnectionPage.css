@@ -21,6 +21,7 @@
   border-radius: 0.5rem;
   cursor: pointer;
   box-shadow: var(--shadow);
+  font-family: var(--main-font);
   font-weight: 900;
 }
 

@@ -2,38 +2,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: transparent;
-  font-family: var(--main-font);
 }
 
 .aboutUsContent {
-  padding: 2rem;
-  width: 80vw;
+  padding: 1rem;
+  width: 92vw;
   background: var(--primary-color);
   border-radius: 0.5rem;
   box-shadow: var(--shadow);
-}
-
-.aboutUsContent h1,
-.aboutUsContent h2,
-.aboutUsContent p {
-  color: var(--secondary-color);
+  margin-top: 1rem;
 }
 
 .aboutUsContent h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.aboutUsContent h2 {
-  font-size: 1.5rem;
-  margin-top: 1.5rem;
   margin-bottom: 1rem;
 }
 
 .aboutUsContent p {
-  font-size: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .aboutUsContent a {
@@ -47,7 +32,6 @@
 
 @media (min-width: 680px) {
   .aboutUsContent {
-    width: 45vw;
-    height: auto;
+    width: 60vw;
   }
 }

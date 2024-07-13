@@ -3,20 +3,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 2rem;
+  gap: 2rem;
 }
+
 .edit-box {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   align-items: center;
   background-color: var(--light-bg-color);
 }
-.edit-label {
-  margin: 1rem;
-}
+
 .edit-input {
   background: var(--primary-color);
-  color: black;
   height: 3rem;
   min-width: 20rem;
   max-width: 25rem;
@@ -25,15 +22,44 @@
   font-weight: 600;
   outline-color: var(--dark-bg-color);
 }
+
+.edit_btn {
+  margin-top: 2rem;
+}
+
 .label-title {
   margin-bottom: 0.4rem;
   margin-left: 0.2rem;
   font-size: large;
   color: var(--secondary-color);
+  font-family: var(--main-font);
 }
+
 .image-edit-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 680px) {
+  .edit-form {
+    margin-top: 0;
+    gap: 0;
+  }
+
+  .edit-box {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    margin-top: 2rem;
+  }
+
+  .edit-label {
+    margin: 1rem;
+  }
+
+  .edit_btn {
+    margin-top: 1rem;
+  }
 }

@@ -21,6 +21,11 @@
   border-radius: 0.5rem;
   cursor: pointer;
   box-shadow: var(--shadow);
+  font-weight: 900;
+}
+
+.btn > a {
+  color: var(--secondary-color);
 }
 
 .btn:hover,

@@ -22,6 +22,8 @@
   );
   --second-gradient: linear-gradient(0.05turn, #21a89a, #44bb81, #67cd68);
 
+  --delete-gradient: linear-gradient(0.05turn, #d32f2f, #ea4242);
+
   /*---------TYPOGRAPHY---------*/
   --main-font: "Poppins", sans-serif;
 

@@ -50,7 +50,7 @@ function NavBar({ isLogoVisible }) {
               <a href="/">Home</a>
             </li>
             <li>
-              {user !== null ? (
+              {user !== "null" ? (
                 <a href="/profile">Profile</a>
               ) : (
                 <a href="/profileaccess">Profile</a>

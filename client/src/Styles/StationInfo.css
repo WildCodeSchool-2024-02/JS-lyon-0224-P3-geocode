@@ -82,6 +82,20 @@
   align-items: end;
 }
 
+.station-btn {
+  cursor: unset;
+}
+
+.disabled_button {
+  background: var(--dark-bg-color);
+  cursor: not-allowed;
+}
+
+.disabled_button:hover {
+  box-shadow: none;
+  transform: none;
+}
+
 @media (min-width: 450px) {
   .container {
     align-items: unset;

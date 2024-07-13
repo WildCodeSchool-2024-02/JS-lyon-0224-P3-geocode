@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../context/UserContext";
 import stationPic from "../../assets/image/pngtree-white-electric-vehicle-charging-station-png-image_6574430 1.png";
 import chargerPic from "../../assets/image/ev-plug-t2.svg";
 import "../../Styles/StationInfo.css";
@@ -13,10 +14,22 @@ function StationInfo({ station }) {
 
   const navigate = useNavigate();
 
+  const { user } = useUserContext();
+
   const handleReservation = () => {
     if (isSelected) {
       navigate(`/rent/${station.id}`);
     }
+  };
+
+  const getTitle = () => {
+    if (user === "null") {
+      return "Please connect";
+    }
+    if (!isSelected) {
+      return "Please choose a station";
+    }
+    return "";
   };
 
   return (
@@ -56,18 +69,20 @@ function StationInfo({ station }) {
           <div className="supplementary_buttons">
             <button
               type="button"
-              className="button dire"
-              disabled={!isSelected}
+              className={`button  ${user === "null" ? "disabled_button" : "button"}`}
+              disabled={user === "null" || !isSelected}
+              title={getTitle()}
             >
-              <h3>Direction</h3>
+              Direction
             </button>
             <button
               type="button"
-              className="button"
+              className={`button  ${user === "null" ? "disabled_button" : "button"}`}
               onClick={handleReservation}
-              disabled={!isSelected}
+              disabled={user === "null" || !isSelected}
+              title={getTitle()}
             >
-              <h3>Reservation</h3>
+              Reservation
             </button>
           </div>
         </div>

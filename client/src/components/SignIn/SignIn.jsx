@@ -89,7 +89,7 @@ export default function SignInPage() {
         const result = await handleSignIn({ signInData });
 
         if (result.success) {
-          login(result.user);
+          login({ id: result.id, email: result.user });
           navigate(`/profile`);
         } else {
           console.error("Sign-in failed:", result.error);

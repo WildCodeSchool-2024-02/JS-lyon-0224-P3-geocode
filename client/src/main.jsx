@@ -10,6 +10,7 @@ import {
   handleUserEdit,
   handleCarEdit,
 } from "./API/handleEdit";
+import loadStationData from "./API/HandleHompage";
 
 // page components
 import HomePage from "./pages/HomePage";
@@ -24,7 +25,6 @@ import EditCarPage from "./pages/EditCarPage";
 import SignInPage from "./pages/SignInPage";
 import EditProfile from "./pages/EditProfile";
 import ReservationPage from "./pages/ReservationPage";
-import loadStationData from "./API/HandleHompage";
 
 const router = createBrowserRouter([
   {

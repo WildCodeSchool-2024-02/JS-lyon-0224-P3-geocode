@@ -1,14 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-const useLocalStorage = (key) => {
-  const [value, setValue] = useState(() => localStorage.getItem("user"));
+const useLocalStorage = (key, initialValue) => {
+  const [storedValue, setStoredValue] = useState(() => {
+    try {
+      const item = localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.error("Error reading localStorage key:", key, error);
+      return initialValue;
+    }
+  });
 
-  useEffect(() => {
-    const storedVal = typeof value === "object" ? JSON.stringify(value) : value;
-    localStorage.setItem(key, storedVal);
-  }, [value, key]);
+  const setValue = (value) => {
+    try {
+      const valueToStore =
+        value instanceof Function ? value(storedValue) : value;
+      setStoredValue(valueToStore);
+      localStorage.setItem(key, JSON.stringify(valueToStore));
+    } catch (error) {
+      console.error("Error setting localStorage key:", key, error);
+    }
+  };
 
-  return [value, setValue];
+  return [storedValue, setValue];
 };
 
 export default useLocalStorage;

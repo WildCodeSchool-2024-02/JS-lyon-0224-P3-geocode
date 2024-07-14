@@ -5,14 +5,15 @@
   gap: 1rem;
 }
 
-/* .option {
-  background: var(--primary-color);
-  color: var(--secondary-color);
-  height: 3rem;
+.signUpCarBtn {
+  display: flex;
+  justify-content: space-between;
   min-width: 20rem;
-  max-width: 25rem;
-  border: none;
-  font-family: var(--main-font);
-  font-weight: 700;
-  outline-color: var(--dark-bg-color);
-} */
+  margin-top: 1rem;
+}
+
+@media (min-width: 680px) {
+  .signUpCarBtn {
+    min-width: 25rem;
+  }
+}

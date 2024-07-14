@@ -75,7 +75,7 @@ function CarInput({
       <button
         type="button"
         onClick={() => handleRemoveCar(car.key)}
-        className="button"
+        className="deletebtn"
       >
         Remove Car
       </button>

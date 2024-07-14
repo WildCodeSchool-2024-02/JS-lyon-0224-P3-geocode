@@ -1,10 +1,21 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import ReservationForm from "../components/reservation/ReservationForm";
+import { useUserContext } from "../context/UserContext";
 import "../Styles/ReservationPage.css";
 
 function ReservationPage() {
   const { stationId } = useParams();
-  const userId = 1; // Example userId, replace with actual userId from context/auth
+  const navigate = useNavigate();
+  const { user } = useUserContext();
+
+  useEffect(() => {
+    if (user === null) {
+      navigate("/profileaccess");
+    }
+  }, [user, navigate]);
+
+  const userId = user.id;
 
   return (
     <div className="reservationPage">

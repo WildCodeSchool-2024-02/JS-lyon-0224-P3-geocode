@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function notify(message, type = "default") {
   const options = {
-    position: "bottom-right",
+    position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,

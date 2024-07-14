@@ -138,6 +138,10 @@ a {
   text-decoration: none;
 }
 
+.error {
+  font-family: var(--main-font);
+}
+
 @media (min-width: 680px) {
   .profile-component {
     display: flex;

@@ -11,14 +11,6 @@ export default function EditProfile() {
   const navigate = useNavigate();
   const user = useLoaderData();
 
-  // const [formData, setFormData] = useState({
-  //   firstname: "",
-  //   lastname: "",
-  //   email: "",
-  //   city: "",
-  //   image: "",
-  // });
-
   const { formData, setFormData, formErrors, handleChange, validateInputs } =
     UseEditForm({
       firstname: "",
@@ -38,11 +30,7 @@ export default function EditProfile() {
         image: user.image || "",
       });
     }
-  }, [user]);
-
-  // const handleChange = (e) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // };
+  }, [user, setFormData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,7 +61,7 @@ export default function EditProfile() {
     <Form method="put" className="edit-form" onSubmit={handleSubmit}>
       <section className="image-edit-container">
         <div className="photoComponent">
-          {user.image !== "" ? (
+          {user.image !== "" && user.image !== null ? (
             <img src={user.image} alt="user profile" className="profilePhoto" />
           ) : (
             <FaRegUserCircle className="noPhoto" />

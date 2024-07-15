@@ -7,10 +7,10 @@ const useLocalStorage = (key, initialValue, expiryInMinutes = 60) => {
       if (item === null) return initialValue;
 
       const parsedItem = JSON.parse(item);
-      const currentTime = new Date().getTime();
-      const expiryTime = parsedItem.expiry || 0;
 
       // Check if the stored item is expired
+      const currentTime = new Date().getTime();
+      const expiryTime = parsedItem?.expiry || 0;
       if (currentTime > expiryTime) {
         // Set the value to null instead of removing it
         localStorage.setItem(key, JSON.stringify(null));

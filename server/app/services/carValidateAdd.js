@@ -1,25 +1,20 @@
 const Joi = require("joi");
 
 const addSchema = Joi.object({
-  firstname: Joi.string()
+  brand: Joi.string()
     .pattern(/^[a-zA-ZÀ-ÿ\s']+$/)
-    .min(3)
+    .min(1)
     .max(55)
     .required(),
-  lastname: Joi.string()
-    .pattern(/^[a-zA-ZÀ-ÿ\s']+$/)
-    .min(3)
+  model: Joi.string()
+    .pattern(/^[a-zA-Z0-9À-ÿ\s']+$/)
+    .min(2)
     .max(55)
     .required(),
-  email: Joi.string().email().required(),
-  city: Joi.string()
-    .pattern(/^[a-zA-ZÀ-ÿ\s']+$/)
-    .min(3)
-    .max(55)
-    .required(),
-  password: Joi.string().min(8).required(),
-  password2: Joi.string().valid(Joi.ref("password")).required(),
+  socket: Joi.string().allow(),
+  user_id: Joi.number().allow(),
 });
+
 const validateAdd = (req, res, next) => {
   const { error } = addSchema.validate(req.body, { abortEarly: true });
 

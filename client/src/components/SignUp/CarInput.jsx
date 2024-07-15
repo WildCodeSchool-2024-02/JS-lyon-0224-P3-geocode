@@ -6,6 +6,7 @@ function CarInput({
   handleRemoveCar,
   setError,
   setSuccess,
+  showRemoveButton,
 }) {
   const validateInput = (e) => {
     const { name, value } = e.target;
@@ -25,10 +26,12 @@ function CarInput({
       setSuccess(name);
     }
   };
+
   const handleInputChange = (key, e) => {
     handleCarChange(key, e);
     validateInput(e);
   };
+
   return (
     <div>
       <label className="input-control">
@@ -71,13 +74,15 @@ function CarInput({
           <option value="Chademo">Chademo</option>
         </select>
       </label>
-      <button
-        type="button"
-        onClick={() => handleRemoveCar(car.key)}
-        className="button"
-      >
-        Remove Car
-      </button>
+      {showRemoveButton && (
+        <button
+          type="button"
+          onClick={() => handleRemoveCar(car.key)}
+          className="button"
+        >
+          Remove Car
+        </button>
+      )}
     </div>
   );
 }
@@ -93,6 +98,7 @@ CarInput.propTypes = {
   handleRemoveCar: PropTypes.func.isRequired,
   setError: PropTypes.func.isRequired,
   setSuccess: PropTypes.func.isRequired,
+  showRemoveButton: PropTypes.bool.isRequired, // Added new prop type
 };
 
 export default CarInput;

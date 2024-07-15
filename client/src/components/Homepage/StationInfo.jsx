@@ -61,10 +61,13 @@ function StationInfo({ station }) {
             <p>{address}</p>
           </div>
           <div className="charger">
-            <img src={chargerPic} alt="charger type icon" />
-            <h3>
-              <span>{type}</span>
-            </h3>
+            <div className="img-component">
+              <img src={chargerPic} alt="charger type icon" />
+              <p>
+                <span>Type</span>
+              </p>
+            </div>
+            <p>{type}</p>
           </div>
           <div className="supplementary_buttons">
             {/* <button

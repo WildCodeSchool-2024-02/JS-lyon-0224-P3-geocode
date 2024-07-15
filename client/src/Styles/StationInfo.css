@@ -75,13 +75,20 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 1rem;
+  padding-left: 0.3rem;
 }
 
-.charger > img {
+.img-component {
+  display: flex;
+  width: 4rem;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 1rem 0 0;
+}
+
+.img-component > img {
   height: 4rem;
   width: 4rem;
-  margin: 0 1rem 0 0;
 }
 
 .supplementary_buttons {

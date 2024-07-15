@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import ReservationForm from "../components/reservation/ReservationForm";
 import { useUserContext } from "../context/UserContext";
+import "../Styles/ReservationPage.css";
 
 function ReservationPage() {
   const { stationId } = useParams();
@@ -19,7 +20,7 @@ function ReservationPage() {
   return (
     <div className="reservationPage">
       {user !== null ? (
-        <div className="pageContent">
+        <div className="pageContent container">
           <h2>
             <span>Reserve a Spot</span>
           </h2>

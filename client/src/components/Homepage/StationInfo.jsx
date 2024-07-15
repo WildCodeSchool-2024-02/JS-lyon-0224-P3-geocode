@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
-import stationPic from "../../assets/image/pngtree-white-electric-vehicle-charging-station-png-image_6574430 1.png";
-import chargerPic from "../../assets/image/ev-plug-t2.svg";
+import stationPic from "../../assets/image/charging-station.png";
+import chargerPic from "../../assets/image/plug1.png";
 import "../../Styles/StationInfo.css";
 
 function StationInfo({ station }) {
@@ -23,7 +23,7 @@ function StationInfo({ station }) {
   };
 
   const getTitle = () => {
-    if (user === "null") {
+    if (user === "null" || user === null) {
       return "Please connect";
     }
     if (!isSelected) {
@@ -43,41 +43,44 @@ function StationInfo({ station }) {
             />
           </div>
           <div className="info">
-            <h2>
-              <span>{spot}</span>
-            </h2>
-            <p>Spots</p>
-            <h2>
-              <span>{power}</span>
-            </h2>
-            <p>kw/h</p>
+            <h2>{spot}</h2>
+            <p>
+              <span>Spots</span>
+            </p>
+            <h2>{power}</h2>
+            <p>
+              <span>Power kw/h</span>
+            </p>
           </div>
         </div>
         <div className="supplementary">
           <div className="address">
-            <h3>
+            <p>
               <span>Address</span>
-            </h3>
+            </p>
             <p>{address}</p>
           </div>
           <div className="charger">
-            <img src={chargerPic} alt="charger type icon" />
-            <h3>
-              <span>{type}</span>
-            </h3>
+            <div className="img-component">
+              <img src={chargerPic} alt="charger type icon" />
+              <p>
+                <span>Type</span>
+              </p>
+            </div>
+            <p>{type}</p>
           </div>
           <div className="supplementary_buttons">
-            <button
+            {/* <button
               type="button"
               className={`button  ${user === "null" ? "disabled_button" : "button"}`}
               disabled={user === "null" || !isSelected}
               title={getTitle()}
             >
               Direction
-            </button>
+            </button> */}
             <button
               type="button"
-              className={`button  ${user === "null" ? "disabled_button" : "button"}`}
+              className={`button  ${user === "null" || user === null ? "disabled_button" : "button"}`}
               onClick={handleReservation}
               disabled={user === "null" || !isSelected}
               title={getTitle()}

@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import handleRent from "../../API/HandleRent";
-import { loadUserData } from "../../API/HandleProfile"; // Import the loadUserData function
+import { loadUserData } from "../../API/HandleProfile";
+import notify from "../../poptoastify/notify";
 
 function ReservationForm({ stationId, userId }) {
   const navigate = useNavigate();
@@ -47,6 +48,10 @@ function ReservationForm({ stationId, userId }) {
     if (result.success) {
       setTime(startTime);
       setEndTime(endTimeCalculated);
+      notify("Reservation created!", "success");
+      setTimeout(() => {
+        navigate("/");
+      }, 5000);
     } else {
       console.error("Reservation failed:", result.error);
     }
@@ -54,10 +59,11 @@ function ReservationForm({ stationId, userId }) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="reservation-form">
         <label>
           <p>Reservation Time:</p>
           <input
+            className="reservation container"
             type="datetime-local"
             value={reservationTime}
             onChange={(e) => setReservationTime(e.target.value)}
@@ -67,6 +73,7 @@ function ReservationForm({ stationId, userId }) {
         <label>
           <p>Duration:</p>
           <select
+            className="reservation container"
             value={duration}
             onChange={(e) => setDuration(parseInt(e.target.value, 10))}
           >
@@ -82,6 +89,7 @@ function ReservationForm({ stationId, userId }) {
             value={selectedCarId}
             onChange={(e) => setSelectedCarId(e.target.value)}
             required
+            className="reservation container"
           >
             {cars.map((car) => (
               <option key={car.id} value={car.id}>
@@ -90,16 +98,24 @@ function ReservationForm({ stationId, userId }) {
             ))}
           </select>
         </label>
-        <button type="submit" className="button">
-          Reserve
-        </button>
-        <button type="button" className="button" onClick={() => navigate("/")}>
-          Cancel
-        </button>
+        <div className="reservationBtn">
+          <button type="submit" className="button">
+            Reserve
+          </button>
+          <button
+            type="button"
+            className="deletebtn"
+            onClick={() => navigate("/")}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
       {time && endTime && (
-        <div>
-          <h3>Reservation Confirmed</h3>
+        <div className="rent-confirmation">
+          <h3>
+            <span>Reservation Confirmed</span>
+          </h3>
           <p>Start Time: {time.toLocaleString()}</p>
           <p>End Time: {endTime.toLocaleString()}</p>
         </div>

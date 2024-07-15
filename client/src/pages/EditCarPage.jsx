@@ -77,7 +77,7 @@ export default function EditCarPage() {
   };
 
   return (
-    <Form method="put" className="edit-form" onSubmit={handleSubmit}>
+    <Form method="put" className="edit-car" onSubmit={handleSubmit}>
       <img src={porsche} alt="porsche" className="img" />
       <div className="edit-box">
         <label className="edit-label">
@@ -103,7 +103,7 @@ export default function EditCarPage() {
         <label className="edit-label">
           <span className="label-title">Car Socket:</span>
           <select
-            className="input container"
+            className="edit-input container"
             name="socket"
             value={formData.socket}
             onChange={handleChange}
@@ -119,9 +119,9 @@ export default function EditCarPage() {
       </div>
       <div className="edit-buttons">
         <button type="submit" className="button">
-          save
+          Save
         </button>
-        <button type="button" className="delete-button" onClick={handleDelete}>
+        <button type="button" className="deletebtn" onClick={handleDelete}>
           Delete
         </button>
       </div>

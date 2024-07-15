@@ -1,0 +1,40 @@
+.reservationPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pageContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 75vh;
+  width: 90vw;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.reservation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.reservation {
+  width: 60vw;
+  border: none;
+  outline-color: var(--dark-bg-color);
+}
+
+.reservationBtn {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.rent-confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}

@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import "../../Styles/SignUpCars.css";
 
 function CarInput({
   car,
@@ -33,8 +34,8 @@ function CarInput({
   };
 
   return (
-    <div>
-      <label className="input-control">
+    <div className="car-signup">
+      <label>
         <span className="label-title">Car Brand:</span>
         <input
           className="input container"
@@ -46,7 +47,7 @@ function CarInput({
           placeholder="Car Brand"
         />
       </label>
-      <label className="input-control">
+      <label>
         <span className="label-title">Car Model:</span>
         <input
           className="input container"
@@ -58,7 +59,7 @@ function CarInput({
           placeholder="Car Model"
         />
       </label>
-      <label className="input-control">
+      <label>
         <span className="label-title">Socket Type:</span>
         <select
           className="input container"
@@ -78,7 +79,7 @@ function CarInput({
         <button
           type="button"
           onClick={() => handleRemoveCar(car.key)}
-          className="button"
+          className="deletebtn"
         >
           Remove Car
         </button>

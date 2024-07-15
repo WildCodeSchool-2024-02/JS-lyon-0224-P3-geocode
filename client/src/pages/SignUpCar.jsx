@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation, useNavigate, Form } from "react-router-dom";
 import CarInput from "../components/SignUp/CarInput";
 import handleSignUp from "../API/HandleSignUp";
+import "../Styles/SignUpCars.css";
 
 function CarSignUp() {
   const { state } = useLocation();
@@ -91,12 +92,14 @@ function CarSignUp() {
             )}
           </div>
         ))}
-        <button type="button" className="button" onClick={handleAddCar}>
-          Add Another Car
-        </button>
-        <button className="button" id="signupbut" type="submit">
-          Submit
-        </button>
+        <div className="signUpCarBtn">
+          <button type="button" className="button" onClick={handleAddCar}>
+            Add Car
+          </button>
+          <button className="button" id="signupbut" type="submit">
+            Submit
+          </button>
+        </div>
       </div>
     </Form>
   );

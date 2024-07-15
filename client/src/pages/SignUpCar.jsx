@@ -68,7 +68,7 @@ function CarSignUp() {
 
       if (result.success) {
         navigate("/signin");
-        notify("Account created, please sign in", "success");
+        notify("Account created, please sign in !", "success");
       } else {
         console.error("SignUp failed:", result.error);
       }

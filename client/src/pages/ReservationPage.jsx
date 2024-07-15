@@ -10,20 +10,24 @@ function ReservationPage() {
 
   useEffect(() => {
     if (user === null) {
-      navigate("/signin");
+      navigate("/profileAccess");
     }
   }, [user, navigate]);
 
-  const userId = user.id;
+  const userId = user?.id;
 
   return (
     <div className="reservationPage">
-      <div className="pageContent">
-        <h2>
-          <span>Reserve a Spot</span>
-        </h2>
-        <ReservationForm stationId={Number(stationId)} userId={userId} />
-      </div>
+      {user !== null ? (
+        <div className="pageContent">
+          <h2>
+            <span>Reserve a Spot</span>
+          </h2>
+          <ReservationForm stationId={Number(stationId)} userId={userId} />
+        </div>
+      ) : (
+        "profile page is missing"
+      )}
     </div>
   );
 }

@@ -69,7 +69,7 @@ export default function EditProfile() {
         </div>
 
         <div className="img-input">
-          <label className="edit-label">
+          <label>
             <span className="label-title">Image URL:</span>
             <input
               className="edit-input container"
@@ -80,8 +80,8 @@ export default function EditProfile() {
             />
           </label>
         </div>
-        <button type="button" className="button">
-          import
+        <button type="button" className="button edit_btn">
+          Import
         </button>
       </section>
       <div className="edit-box">
@@ -127,7 +127,7 @@ export default function EditProfile() {
         </label>
       </div>
       <button type="submit" className="button">
-        save
+        Save
       </button>
     </Form>
   );

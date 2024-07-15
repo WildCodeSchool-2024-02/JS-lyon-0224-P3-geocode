@@ -12,8 +12,9 @@ const useLocalStorage = (key, initialValue, expiryInMinutes = 60) => {
 
       // Check if the stored item is expired
       if (currentTime > expiryTime) {
-        localStorage.removeItem(key);
-        return initialValue;
+        // Set the value to null instead of removing it
+        localStorage.setItem(key, JSON.stringify(null));
+        return null;
       }
 
       return parsedItem.value;
@@ -44,8 +45,9 @@ const useLocalStorage = (key, initialValue, expiryInMinutes = 60) => {
 
   const removeItem = () => {
     try {
-      localStorage.removeItem(key);
-      setStoredValue(initialValue);
+      // Set the value to null in localStorage
+      localStorage.setItem(key, JSON.stringify(null));
+      setStoredValue(null);
     } catch (error) {
       console.error("Error removing localStorage key:", key, error);
     }

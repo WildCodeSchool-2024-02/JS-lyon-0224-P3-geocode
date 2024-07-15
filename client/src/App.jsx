@@ -8,7 +8,7 @@ function App() {
   const location = useLocation();
 
   const isLogoVisible =
-    location.pathname !== "/profile" && location.pathname !== "/SignIn";
+    location.pathname !== "/profileaccess" && location.pathname !== "/SignIn";
 
   return (
     <UserProvider>

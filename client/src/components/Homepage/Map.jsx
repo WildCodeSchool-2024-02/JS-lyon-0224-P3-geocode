@@ -25,7 +25,7 @@ function Map({ setSelectedStation }) {
   // State to track the current center and zoom level of the map
   const [mapRegion, setMapRegion] = useState({
     center: [45.75, 4.83], // Default center coordinates
-    zoom: 13, // Default zoom level
+    zoom: 11, // Default zoom level
   });
   const MAX_MARKERS = 100; // Maximum number of markers to display
   const RANGE_INCREASE = 0.3; // Increase the range by 0.2 degrees

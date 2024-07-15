@@ -11,7 +11,7 @@ function ContactInputs({ formValues, formErrors, handleChange, handleSubmit }) {
             type="text"
             id="firstname"
             name="firstname"
-            placeholder="Your firstname please"
+            placeholder="Firstname"
             value={formValues.firstname}
             onChange={handleChange}
           />
@@ -25,7 +25,7 @@ function ContactInputs({ formValues, formErrors, handleChange, handleSubmit }) {
             type="text"
             id="lastname"
             name="lastname"
-            placeholder="Your lastname please"
+            placeholder="Lastname"
             value={formValues.lastname}
             onChange={handleChange}
           />
@@ -39,7 +39,7 @@ function ContactInputs({ formValues, formErrors, handleChange, handleSubmit }) {
             type="email"
             id="email"
             name="email"
-            placeholder="Your email address"
+            placeholder="Email"
             value={formValues.email}
             onChange={handleChange}
           />
@@ -51,7 +51,7 @@ function ContactInputs({ formValues, formErrors, handleChange, handleSubmit }) {
             type="text"
             id="subject"
             name="subject"
-            placeholder="Your subject"
+            placeholder="Subject"
             value={formValues.subject}
             onChange={handleChange}
           />
@@ -64,7 +64,7 @@ function ContactInputs({ formValues, formErrors, handleChange, handleSubmit }) {
             className="input-text container"
             id="message"
             name="message"
-            placeholder="Your message (max 300 characters)*"
+            placeholder="Your message"
             value={formValues.message}
             onChange={handleChange}
           />

@@ -20,6 +20,66 @@ export default function EditCarPage() {
     user_id: car.user_id, // Ensure to keep the user_id in the form data
   });
 
+  const [formErrorrs, setFormErrors] = useState({
+    brand: "",
+    model: "",
+  });
+
+  const setError = (name, message) => {
+    setFormErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: message,
+    }));
+  };
+
+  const setSuccess = (name) => {
+    setFormErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "",
+    }));
+  };
+
+  const validateInputs = () => {
+    const { brand, model } = formData;
+    const fields = [
+      {
+        name: "brand",
+        value: brand,
+        message: "brand is required",
+        minLength: 2,
+        errorMessage: "Brand must be at least 2 characters long",
+      },
+      {
+        name: "model",
+        value: model,
+        message: "model is required",
+        minLength: 2,
+        errorMessage: "Model must be at least 2 characters long",
+      },
+    ];
+
+    let allValid = true;
+
+    fields.forEach(
+      ({ name, value, message, errorMessage, minLength, match }) => {
+        if (value.trim() === "") {
+          setError(name, message);
+          allValid = false;
+        } else if (minLength && value.length < minLength) {
+          setError(name, errorMessage);
+          allValid = false;
+        } else if (match !== undefined && value !== match) {
+          setError(name, errorMessage);
+          allValid = false;
+        } else {
+          setSuccess(name);
+        }
+      }
+    );
+
+    return allValid;
+  };
+
   useEffect(() => {
     if (car !== null) {
       setFormData({
@@ -69,7 +129,9 @@ export default function EditCarPage() {
         withCredentials: true,
       });
 
-      navigate(`/profile`);
+      if (validateInputs() !== false) {
+        navigate(`/profile`);
+      }
     } catch (error) {
       console.error("Error in handleSubmit:", error);
       notify("Failed to update car", "error");
@@ -89,6 +151,9 @@ export default function EditCarPage() {
             value={formData.brand}
             onChange={handleChange}
           />
+          {formErrorrs.brand !== "" && (
+            <div className="error">{formErrorrs.brand}</div>
+          )}
         </label>
         <label className="edit-label">
           <span className="label-title">Car Model:</span>
@@ -99,6 +164,9 @@ export default function EditCarPage() {
             value={formData.model}
             onChange={handleChange}
           />
+          {formErrorrs.model !== "" && (
+            <div className="error">{formErrorrs.brand}</div>
+          )}
         </label>
         <label className="edit-label">
           <span className="label-title">Car Socket:</span>

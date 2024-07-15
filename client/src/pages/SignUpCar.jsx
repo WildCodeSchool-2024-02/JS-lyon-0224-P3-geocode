@@ -79,7 +79,7 @@ function CarSignUp() {
     <Form method="post" className="bodyform" id="form" onSubmit={handleSubmit}>
       <div className="inscription-component">
         <h1>Car Sign Up</h1>
-        {cars.map((car) => (
+        {cars.map((car, index) => (
           <div key={car.key}>
             <CarInput
               car={car}
@@ -87,6 +87,7 @@ function CarSignUp() {
               handleRemoveCar={handleRemoveCar}
               setError={setError}
               setSuccess={setSuccess}
+              showRemoveButton={index !== 0} // Only show the remove button for subsequent inputs
             />
             {carErrors[car.key] && (
               <div className="error">{carErrors[car.key]}</div>

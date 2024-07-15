@@ -133,12 +133,12 @@ export default function EditCarPage() {
         },
         withCredentials: true,
       });
-
       if (validateInputs() !== false) {
         navigate(`/profile`);
         notify("Changes saved", "success");
       }
     } catch (error) {
+      validateInputs();
       console.error("Error in handleSubmit:", error);
     }
   };

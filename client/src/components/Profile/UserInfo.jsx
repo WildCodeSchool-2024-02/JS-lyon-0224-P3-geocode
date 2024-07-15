@@ -3,6 +3,7 @@ import propTypes from "prop-types";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useUserContext } from "../../context/UserContext";
 import "../../Styles/UserInfo.css";
+import notify from "../../poptoastify/notify";
 
 export default function UserInfo({ user }) {
   const { firstname, lastname, email, city, image } = user;
@@ -11,6 +12,7 @@ export default function UserInfo({ user }) {
   const handleSignout = async () => {
     try {
       await signout(true);
+      notify("See you soon !", "success");
     } catch (error) {
       console.error("Error during sign out", error);
     }

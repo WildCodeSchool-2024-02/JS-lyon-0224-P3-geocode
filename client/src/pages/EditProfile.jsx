@@ -4,6 +4,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import axios from "axios";
 import UseEditForm from "../hooks/UseEditForm";
 import "../Styles/ProfileEdit.css";
+import notify from "../poptoastify/notify";
 
 const Api = import.meta.env.VITE_API_URL;
 
@@ -51,6 +52,7 @@ export default function EditProfile() {
 
       if (validateInputs() !== false) {
         navigate(`/profile`);
+        notify("Changes saved", "success");
       }
     } catch (error) {
       console.error("Error in handleSubmit:", error);

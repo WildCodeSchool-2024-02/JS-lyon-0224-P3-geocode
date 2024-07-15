@@ -64,13 +64,18 @@ export default function EditCarPage() {
       ({ name, value, message, errorMessage, minLength, match }) => {
         if (value.trim() === "") {
           setError(name, message);
+          notify("You must have at least one car", "error");
+
           allValid = false;
         } else if (minLength && value.length < minLength) {
           setError(name, errorMessage);
+          notify("You must have at least one car", "error");
+
           allValid = false;
         } else if (match !== undefined && value !== match) {
           setError(name, errorMessage);
           allValid = false;
+          notify("You must have at least one car", "error");
         } else {
           setSuccess(name);
         }
@@ -131,10 +136,10 @@ export default function EditCarPage() {
 
       if (validateInputs() !== false) {
         navigate(`/profile`);
+        notify("Changes saved", "success");
       }
     } catch (error) {
       console.error("Error in handleSubmit:", error);
-      notify("Failed to update car", "error");
     }
   };
 

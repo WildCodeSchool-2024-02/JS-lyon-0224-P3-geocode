@@ -55,9 +55,9 @@ function StationInfo({ station }) {
         </div>
         <div className="supplementary">
           <div className="address">
-            <h3>
+            <p>
               <span>Address</span>
-            </h3>
+            </p>
             <p>{address}</p>
           </div>
           <div className="charger">

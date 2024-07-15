@@ -111,6 +111,13 @@
   transform: none;
 }
 
+@media (max-width: 450px) {
+  .charger > p {
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+}
+
 @media (min-width: 450px) {
   .container {
     align-items: unset;

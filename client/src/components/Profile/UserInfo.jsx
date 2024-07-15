@@ -51,7 +51,7 @@ export default function UserInfo({ user }) {
               Edit
             </button>
           </Link>
-          <button type="button" className="button" onClick={handleSignout}>
+          <button type="button" className="deletebtn" onClick={handleSignout}>
             Sign out
           </button>
         </div>

@@ -43,14 +43,14 @@ function StationInfo({ station }) {
             />
           </div>
           <div className="info">
-            <h2>
-              {spot}
-            </h2>
-            <p><span>Spots</span></p>
-            <h2>
-              {power}
-            </h2>
-            <p><span>Power kw/h</span></p>
+            <h2>{spot}</h2>
+            <p>
+              <span>Spots</span>
+            </p>
+            <h2>{power}</h2>
+            <p>
+              <span>Power kw/h</span>
+            </p>
           </div>
         </div>
         <div className="supplementary">

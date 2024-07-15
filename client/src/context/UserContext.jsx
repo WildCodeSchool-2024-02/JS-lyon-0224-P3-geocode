@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { createContext, useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import UseLocalStorage from "../hooks/UseLocalStorage";
+import useLocalStorage from "../hooks/UseLocalStorage";
 import { signOutUser } from "../API/HandleProfile";
 
 const UserContext = createContext();
@@ -9,7 +9,7 @@ const UserContext = createContext();
 export function UserProvider({ children }) {
   const navigate = useNavigate();
 
-  const [user, setUser] = UseLocalStorage("user", null);
+  const [user, setUser, removeUser] = useLocalStorage("user", null);
 
   const login = (userData) => {
     setUser(userData);
@@ -18,7 +18,7 @@ export function UserProvider({ children }) {
   const signout = async (sessionExpired) => {
     try {
       await signOutUser();
-      setUser("null");
+      removeUser();
 
       if (sessionExpired === true) {
         navigate("/");

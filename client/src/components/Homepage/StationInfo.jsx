@@ -23,7 +23,7 @@ function StationInfo({ station }) {
   };
 
   const getTitle = () => {
-    if (user === "null") {
+    if (user === "null" || user === null) {
       return "Please connect";
     }
     if (!isSelected) {
@@ -80,7 +80,7 @@ function StationInfo({ station }) {
             </button> */}
             <button
               type="button"
-              className={`button  ${user === "null" ? "disabled_button" : "button"}`}
+              className={`button  ${user === "null" || user === null ? "disabled_button" : "button"}`}
               onClick={handleReservation}
               disabled={user === "null" || !isSelected}
               title={getTitle()}

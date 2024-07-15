@@ -140,6 +140,7 @@ a {
 
 .error {
   font-family: var(--main-font);
+  font-size: small;
 }
 
 @media (min-width: 680px) {

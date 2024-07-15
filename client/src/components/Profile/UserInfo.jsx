@@ -20,7 +20,7 @@ export default function UserInfo({ user }) {
     <div className="profileComponent">
       <div className="profileInfo container">
         <div className="photoComponent">
-          {image !== null ? (
+          {image !== "" ? (
             <img src={image} alt="user profile" className="profilePhoto" />
           ) : (
             <FaRegUserCircle className="noPhoto" />

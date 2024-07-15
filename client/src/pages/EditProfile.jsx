@@ -1,22 +1,32 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useLoaderData, useNavigate, Form } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 import axios from "axios";
+import UseEditForm from "../hooks/UseEditForm";
 import "../Styles/ProfileEdit.css";
 
 const Api = import.meta.env.VITE_API_URL;
 
 export default function EditProfile() {
-  const user = useLoaderData();
   const navigate = useNavigate();
+  const user = useLoaderData();
 
-  const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    city: "",
-    image: "",
-  });
+  // const [formData, setFormData] = useState({
+  //   firstname: "",
+  //   lastname: "",
+  //   email: "",
+  //   city: "",
+  //   image: "",
+  // });
+
+  const { formData, setFormData, formErrors, handleChange, validateInputs } =
+    UseEditForm({
+      firstname: "",
+      lastname: "",
+      email: "",
+      city: "",
+      image: "",
+    });
 
   useEffect(() => {
     if (user !== null) {
@@ -30,9 +40,9 @@ export default function EditProfile() {
     }
   }, [user]);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  // const handleChange = (e) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,7 +61,9 @@ export default function EditProfile() {
         withCredentials: true,
       });
 
-      navigate(`/profile`);
+      if (validateInputs() !== false) {
+        navigate(`/profile`);
+      }
     } catch (error) {
       console.error("Error in handleSubmit:", error);
     }
@@ -61,7 +73,7 @@ export default function EditProfile() {
     <Form method="put" className="edit-form" onSubmit={handleSubmit}>
       <section className="image-edit-container">
         <div className="photoComponent">
-          {user.image !== null ? (
+          {user.image !== "" ? (
             <img src={user.image} alt="user profile" className="profilePhoto" />
           ) : (
             <FaRegUserCircle className="noPhoto" />
@@ -94,6 +106,9 @@ export default function EditProfile() {
             value={formData.firstname}
             onChange={handleChange}
           />
+          {formErrors.firstname !== "" && (
+            <div className="error">{formErrors.firstname}</div>
+          )}
         </label>
         <label className="edit-label ">
           <span className="label-title">Last Name:</span>
@@ -104,6 +119,9 @@ export default function EditProfile() {
             value={formData.lastname}
             onChange={handleChange}
           />
+          {formErrors.lastname !== "" && (
+            <div className="error">{formErrors.lastname}</div>
+          )}
         </label>
         <label className="edit-label ">
           <span className="label-title">Email:</span>
@@ -114,6 +132,9 @@ export default function EditProfile() {
             value={formData.email}
             onChange={handleChange}
           />
+          {formErrors.email !== "" && (
+            <div className="error">{formErrors.email}</div>
+          )}
         </label>
         <label className="edit-label ">
           <span className="label-title">City:</span>
@@ -124,6 +145,9 @@ export default function EditProfile() {
             value={formData.city}
             onChange={handleChange}
           />
+          {formErrors.city !== "" && (
+            <div className="error">{formErrors.city}</div>
+          )}
         </label>
       </div>
       <button type="submit" className="button">

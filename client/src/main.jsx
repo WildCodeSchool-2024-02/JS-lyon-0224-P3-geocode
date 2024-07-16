@@ -21,6 +21,7 @@ import ProfileAccess from "./pages/ProfileAccess";
 import SignUp from "./pages/SignUp";
 import CarSignUp from "./pages/SignUpCar";
 import EditCarPage from "./pages/EditCarPage";
+import AdminPage from "./pages/AdminPage";
 
 import SignInPage from "./pages/SignInPage";
 import EditProfile from "./pages/EditProfile";
@@ -63,6 +64,11 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <ProfilePage />,
+      },
+      {
+        path: "/admin",
+        element: <AdminPage />,
+        loader: loadStationData,
       },
       {
         path: "/profile/:id/edit",

@@ -4,7 +4,8 @@ const CarRepository = require("./models/CarRepository");
 const StationRepository = require("./models/StationRepository");
 const SocketRepository = require("./models/SocketRepository");
 const UsermessageRepository = require("./models/UsermessageRepsitory");
-const RentRepository = require("./models/RentRepository")
+const RentRepository = require("./models/RentRepository");
+const AdminRepository = require("./models/AdminRepository");
 // Create an empty object to hold data repositories for different tables
 const tables = {};
 
@@ -19,6 +20,7 @@ tables.station = new StationRepository();
 tables.socket = new SocketRepository();
 tables.usermessage = new UsermessageRepository();
 tables.rent = new RentRepository();
+tables.AdminReadUser = new AdminRepository();
 
 /* ************************************************************************* */
 

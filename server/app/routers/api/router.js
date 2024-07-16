@@ -30,6 +30,10 @@ const authActions = require("./signin/router");
 
 router.use("/signin", authActions);
 
+const admin = require("./Admin/router")
+
+router.use("/admin",admin)
+
 
 /* ************************************************************************* */
 

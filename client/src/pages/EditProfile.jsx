@@ -55,6 +55,7 @@ export default function EditProfile() {
         notify("Changes saved", "success");
       }
     } catch (error) {
+      validateInputs();
       console.error("Error in handleSubmit:", error);
     }
   };

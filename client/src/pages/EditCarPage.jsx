@@ -64,9 +64,13 @@ export default function EditCarPage() {
       ({ name, value, message, errorMessage, minLength, match }) => {
         if (value.trim() === "") {
           setError(name, message);
+
+
           allValid = false;
         } else if (minLength && value.length < minLength) {
           setError(name, errorMessage);
+
+
           allValid = false;
         } else if (match !== undefined && value !== match) {
           setError(name, errorMessage);
@@ -130,11 +134,11 @@ export default function EditCarPage() {
       });
       if (validateInputs() !== false) {
         navigate(`/profile`);
+        notify("Changes saved", "success");
       }
     } catch (error) {
       validateInputs();
       console.error("Error in handleSubmit:", error);
-      notify("Failed to update car", "error");
     }
   };
 

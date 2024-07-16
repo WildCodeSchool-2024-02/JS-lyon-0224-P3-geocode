@@ -2,6 +2,7 @@ import { useNavigate, Form } from "react-router-dom";
 import { useState } from "react";
 import { useUserContext } from "../../context/UserContext";
 import handleSignIn from "../../API/HandleSignIn";
+import notify from "../../poptoastify/notify";
 import logo from "../../assets/image/geocode4.svg";
 import "../../Styles/SignIn.css";
 
@@ -91,6 +92,7 @@ export default function SignInPage() {
         if (result.success) {
           login({ id: result.id });
           navigate(`/profile`);
+          notify("Welcome !", "success");
         } else {
           console.error("Sign-in failed:", result.error);
           throw new Error(result.error);

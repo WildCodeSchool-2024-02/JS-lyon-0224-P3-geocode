@@ -53,6 +53,7 @@ export default function EditProfile() {
         navigate(`/profile`);
       }
     } catch (error) {
+      validateInputs();
       console.error("Error in handleSubmit:", error);
     }
   };

@@ -18,13 +18,14 @@ const {
 
 const { verifyCookie } = require("../../../services/auth");
 const carValidateEdit = require("../../../services/carvalidateEdit");
+const verfiyCarAdd = require("../../../services/carValidateAdd");
 
 // Route to get a list of items
 router.get("/", verifyCookie, browse);
 
 router.get("/:id", verifyCookie, read);
 
-router.post("/", add);
+router.post("/", verfiyCarAdd, add);
 
 router.put("/:id", verifyCookie, carValidateEdit, edit);
 

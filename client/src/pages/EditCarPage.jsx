@@ -128,11 +128,11 @@ export default function EditCarPage() {
         },
         withCredentials: true,
       });
-
       if (validateInputs() !== false) {
         navigate(`/profile`);
       }
     } catch (error) {
+      validateInputs();
       console.error("Error in handleSubmit:", error);
       notify("Failed to update car", "error");
     }

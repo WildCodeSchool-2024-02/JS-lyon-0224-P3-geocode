@@ -17,9 +17,10 @@ const browse = async (req, res, next) => {
 };
 // The R of BREAD - Read operation
 const read = async (req, res, next) => {
+  const { sub } = req.auth;
   try {
     // Fetch a specific user from the database based on the provided ID
-    const users = await tables.user.read(req.params.id);
+    const users = await tables.user.read(sub);
 
     // If the user is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the users in JSON format
@@ -71,10 +72,30 @@ const add = async (req, res, next) => {
   }
 };
 
+// The D of BREAD - Delete operation
+const drop = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const affectedRows = await tables.user.drop(id);
+    if (affectedRows === 0) {
+      res.status(404).json({ error: "User not found" });
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    console.error("Error deleting user:", err);
+    res
+      .status(500)
+      .json({ error: "An error occurred while deleting the user" });
+    next(err);
+  }
+};
+
 // Ready to export the controller functions
 module.exports = {
   browse,
   read,
   edit,
   add,
+  drop,
 };

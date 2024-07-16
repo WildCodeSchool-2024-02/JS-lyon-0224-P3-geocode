@@ -1,13 +1,36 @@
-import "./StationInfo.css";
 import PropTypes from "prop-types";
-import stationPic from "../../assets/image/pngtree-white-electric-vehicle-charging-station-png-image_6574430 1.png";
-import chargerPic from "../../assets/image/ev-plug-t2.svg";
+import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../context/UserContext";
+import stationPic from "../../assets/image/charging-station.png";
+import chargerPic from "../../assets/image/plug1.png";
+import "../../Styles/StationInfo.css";
 
 function StationInfo({ station }) {
-  const address = station !== null ? station.address : "";
-  const power = station !== null ? station.power : "";
-  const spots = station !== null ? station.spots : "";
-  const type = station !== null ? station.type : "";
+  const address = station?.address || "";
+  const power = station?.power || "";
+  const spot = station?.spots || "";
+  const type = station?.type || "";
+  const isSelected = station !== null;
+
+  const navigate = useNavigate();
+
+  const { user } = useUserContext();
+
+  const handleReservation = () => {
+    if (isSelected) {
+      navigate(`/rent/${station.id}`);
+    }
+  };
+
+  const getTitle = () => {
+    if (user === "null" || user === null) {
+      return "Please connect";
+    }
+    if (!isSelected) {
+      return "Please choose a station";
+    }
+    return "";
+  };
 
   return (
     <div className="stationComponent">
@@ -20,39 +43,49 @@ function StationInfo({ station }) {
             />
           </div>
           <div className="info">
-            {/* when we fetch our data here we going to make a logic to show info related to the map */}
-            {/* here we will use the data for the station */}
-            <h2>
-              <span>{spots}</span>
-            </h2>
-            <p>Spots</p>
-            <h2>
-              <span>{power}</span>
-            </h2>
-            <p>kw/h</p>
+            <h2>{spot}</h2>
+            <p>
+              <span>Spots</span>
+            </p>
+            <h2>{power}</h2>
+            <p>
+              <span>Power kw/h</span>
+            </p>
           </div>
         </div>
         <div className="supplementary">
           <div className="address">
-            {/* here we will use the data for the address */}
-            <h3>
+            <p>
               <span>Address</span>
-            </h3>
+            </p>
             <p>{address}</p>
           </div>
           <div className="charger">
-            {/* here we will use the data for the charger type and we are going to be mapping for the types maybe */}
-            <img src={chargerPic} alt="charger type icon" />
-            <h3>
-              <span>{type}</span>
-            </h3>
+            <div className="img-component">
+              <img src={chargerPic} alt="charger type icon" />
+              <p>
+                <span>Type</span>
+              </p>
+            </div>
+            <p>{type}</p>
           </div>
           <div className="supplementary_buttons">
-            <button type="button" className="button dire">
-              <h3>Direction</h3>
-            </button>
-            <button type="button" className="button">
-              <h3>Reservation</h3>
+            {/* <button
+              type="button"
+              className={`button  ${user === "null" ? "disabled_button" : "button"}`}
+              disabled={user === "null" || !isSelected}
+              title={getTitle()}
+            >
+              Direction
+            </button> */}
+            <button
+              type="button"
+              className={`button  ${user === "null" || user === null ? "disabled_button" : "button"}`}
+              onClick={handleReservation}
+              disabled={user === "null" || !isSelected}
+              title={getTitle()}
+            >
+              Reservation
             </button>
           </div>
         </div>
@@ -63,6 +96,7 @@ function StationInfo({ station }) {
 
 StationInfo.propTypes = {
   station: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     address: PropTypes.string,
     power: PropTypes.number,
     spots: PropTypes.number,

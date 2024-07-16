@@ -12,13 +12,14 @@ class userRepository extends AbstractRepository {
   async create(user) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (firstname, lastname, city, email, hashed_password) values (?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (firstname, lastname, city, email, hashed_password, role) values (?, ?, ?, ?, ?, 'user')`,
       [
         user.firstname,
         user.lastname,
         user.city,
         user.email,
         user.hashedPassword,
+        user.role,
       ]
     );
 
@@ -34,14 +35,14 @@ class userRepository extends AbstractRepository {
     return rows;
   }
 
-  // Read a user with their associated cars
+  // Read a user with their associated car
   async read(id) {
     const query = `
       SELECT 
-        user.id, user.firstname, user.lastname, user.email, user.city, user.image, user.admin,
-        cars.id as car_id, cars.brand, cars.model, cars.socket
+        user.id, user.firstname, user.lastname, user.email, user.city, user.image, user.role,
+        car.id as car_id, car.brand, car.model, car.socket
       FROM ${this.table}
-      LEFT JOIN cars ON user.id = cars.user_id
+      LEFT JOIN car ON user.id = car.user_id
       WHERE user.id = ?
     `;
 
@@ -58,7 +59,7 @@ class userRepository extends AbstractRepository {
       city: rows[0].city,
       email: rows[0].email,
       image: rows[0].image,
-      admin: rows[0].admin,
+      role: rows[0].role,
       cars: rows
         .filter((row) => row.car_id !== null)
         .map((row) => ({
@@ -106,6 +107,15 @@ class userRepository extends AbstractRepository {
       ]
     );
 
+    return result.affectedRows;
+  }
+
+  async drop(id) {
+    await this.database.query(`DELETE FROM car WHERE user_id = ?`, [id]);
+    const [result] = await this.database.query(
+      `DELETE FROM ${this.table} WHERE id = ?`,
+      [id]
+    );
     return result.affectedRows;
   }
 }

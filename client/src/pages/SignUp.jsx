@@ -1,5 +1,6 @@
 import { useNavigate, Form } from "react-router-dom";
 import UseSignUpForm from "../hooks/UseSignUpForm";
+import "../Styles/Contact.css";
 
 function SignUp() {
   const navigate = useNavigate();

@@ -1,10 +1,15 @@
-import { Form } from "react-router-dom";
+import { useNavigate, Form } from "react-router-dom";
 import { useState } from "react";
-import PropTypes from "prop-types";
-import "./SignIn.css";
+import { useUserContext } from "../../context/UserContext";
+import handleSignIn from "../../API/HandleSignIn";
+import notify from "../../poptoastify/notify";
 import logo from "../../assets/image/geocode4.svg";
+import "../../Styles/SignIn.css";
 
-export default function SignInPage({ handleSignIn }) {
+export default function SignInPage() {
+  const navigate = useNavigate();
+  const { login } = useUserContext();
+
   const [signInValues, setSignInValues] = useState({
     email: "",
     password: "",
@@ -85,7 +90,9 @@ export default function SignInPage({ handleSignIn }) {
         const result = await handleSignIn({ signInData });
 
         if (result.success) {
-          window.location.href = `/profile/${result.id}`;
+          login({ id: result.id });
+          navigate(`/profile`);
+          notify("Welcome !", "success");
         } else {
           console.error("Sign-in failed:", result.error);
           throw new Error(result.error);
@@ -141,9 +148,9 @@ export default function SignInPage({ handleSignIn }) {
         {signInErrors.form !== "" && (
           <span className="error">{signInErrors.form}</span>
         )}
-        <a href="/signin" className="forgetPassword">
+        {/* <a href="/signin" className="forgetPassword">
           <span>Forget password?</span>
-        </a>
+        </a> */}
         <button className="button" type="submit">
           Log in
         </button>
@@ -151,7 +158,3 @@ export default function SignInPage({ handleSignIn }) {
     </Form>
   );
 }
-
-SignInPage.propTypes = {
-  handleSignIn: PropTypes.func.isRequired,
-};

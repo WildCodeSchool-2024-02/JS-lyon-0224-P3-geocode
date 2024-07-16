@@ -1,18 +1,25 @@
-import { useState, useEffect } from "react";
-import { useLoaderData, Form } from "react-router-dom";
+import { useEffect } from "react";
+import { useLoaderData, useNavigate, Form } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
+import axios from "axios";
+import UseEditForm from "../hooks/UseEditForm";
+import "../Styles/ProfileEdit.css";
+import notify from "../poptoastify/notify";
 
-import "../components/Profile/ProfileEdit.css";
+const Api = import.meta.env.VITE_API_URL;
 
 export default function EditProfile() {
+  const navigate = useNavigate();
   const user = useLoaderData();
-  const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    city: "",
-    image: "",
-  });
+
+  const { formData, setFormData, formErrors, handleChange, validateInputs } =
+    UseEditForm({
+      firstname: "",
+      lastname: "",
+      email: "",
+      city: "",
+      image: "",
+    });
 
   useEffect(() => {
     if (user !== null) {
@@ -24,17 +31,40 @@ export default function EditProfile() {
         image: user.image || "",
       });
     }
-  }, [user]);
+  }, [user, setFormData]);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const params = { id: user.id };
+
+    const editFormData = {
+      firstname: formData.firstname,
+      lastname: formData.lastname,
+      email: formData.email,
+      city: formData.city,
+      image: formData.image,
+    };
+
+    try {
+      await axios.put(`${Api}/api/users/${params.id}`, editFormData, {
+        withCredentials: true,
+      });
+
+      if (validateInputs() !== false) {
+        navigate(`/profile`);
+        notify("Changes saved", "success");
+      }
+    } catch (error) {
+      validateInputs();
+      console.error("Error in handleSubmit:", error);
+    }
   };
 
   return (
-    <Form method="put" className="edit-form">
+    <Form method="put" className="edit-form" onSubmit={handleSubmit}>
       <section className="image-edit-container">
         <div className="photoComponent">
-          {user.image !== null ? (
+          {user.image !== "" && user.image !== null ? (
             <img src={user.image} alt="user profile" className="profilePhoto" />
           ) : (
             <FaRegUserCircle className="noPhoto" />
@@ -42,7 +72,7 @@ export default function EditProfile() {
         </div>
 
         <div className="img-input">
-          <label className="edit-label">
+          <label>
             <span className="label-title">Image URL:</span>
             <input
               className="edit-input container"
@@ -53,8 +83,8 @@ export default function EditProfile() {
             />
           </label>
         </div>
-        <button type="button" className="button">
-          import
+        <button type="button" className="button edit_btn">
+          Import
         </button>
       </section>
       <div className="edit-box">
@@ -67,6 +97,9 @@ export default function EditProfile() {
             value={formData.firstname}
             onChange={handleChange}
           />
+          {formErrors.firstname !== "" && (
+            <div className="error">{formErrors.firstname}</div>
+          )}
         </label>
         <label className="edit-label ">
           <span className="label-title">Last Name:</span>
@@ -77,6 +110,9 @@ export default function EditProfile() {
             value={formData.lastname}
             onChange={handleChange}
           />
+          {formErrors.lastname !== "" && (
+            <div className="error">{formErrors.lastname}</div>
+          )}
         </label>
         <label className="edit-label ">
           <span className="label-title">Email:</span>
@@ -87,6 +123,9 @@ export default function EditProfile() {
             value={formData.email}
             onChange={handleChange}
           />
+          {formErrors.email !== "" && (
+            <div className="error">{formErrors.email}</div>
+          )}
         </label>
         <label className="edit-label ">
           <span className="label-title">City:</span>
@@ -97,10 +136,13 @@ export default function EditProfile() {
             value={formData.city}
             onChange={handleChange}
           />
+          {formErrors.city !== "" && (
+            <div className="error">{formErrors.city}</div>
+          )}
         </label>
       </div>
       <button type="submit" className="button">
-        save
+        Save
       </button>
     </Form>
   );

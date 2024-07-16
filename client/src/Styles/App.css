@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("./assets/Fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+  src: url("../assets/Fonts/Poppins/Poppins-Regular.ttf") format("truetype");
 }
 
 /*----------CSS VARIABLES--------------*/
@@ -10,7 +10,7 @@
 :root {
   /*----------COLORS-------------*/
   --light-bg-color: #e5e9e7;
-  --dark-bg-color: rgba(82, 91, 90, 0.6);
+  --dark-bg-color: #525b5a99;
   --primary-color: #f9f9f9;
   --secondary-color: #525b5a;
   --title-color: #21a89a;
@@ -22,11 +22,13 @@
   );
   --second-gradient: linear-gradient(0.05turn, #21a89a, #44bb81, #67cd68);
 
+  --delete-gradient: linear-gradient(0.05turn, #d32f2f, #ea4242, #f15050);
+
   /*---------TYPOGRAPHY---------*/
   --main-font: "Poppins", sans-serif;
 
   /*-----------SHADOW-----------*/
-  --shadow: 0rem 0rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
+  --shadow: 0rem 0rem 0.5rem 0rem rgba(0, 0, 0, 0.25);
 }
 
 /*-----------CODE----------------*/
@@ -81,16 +83,33 @@ span {
   border-radius: 0.5rem;
   cursor: pointer;
   box-shadow: var(--shadow);
-}
-
-.button h3 {
-  margin: 0;
   color: var(--primary-color);
+  font-family: var(--main-font);
+  font-weight: 700;
 }
 
 .button:hover,
 .button:focus {
   box-shadow: 0 0.5em 0.5em -0.4em var(--title-color);
+  transform: translateY(-0.25em);
+}
+
+.deletebtn {
+  width: 6.5rem;
+  height: 2.5rem;
+  background: var(--delete-gradient);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  color: var(--primary-color);
+  box-shadow: var(--shadow);
+  font-weight: 700;
+  font-family: var(--main-font);
+}
+
+.deletebtn:hover,
+.deletebtn:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em red;
   transform: translateY(-0.25em);
 }
 
@@ -117,6 +136,12 @@ ul {
 
 a {
   text-decoration: none;
+}
+
+.error {
+  font-family: var(--main-font);
+  font-size: small;
+  color: red;
 }
 
 @media (min-width: 680px) {

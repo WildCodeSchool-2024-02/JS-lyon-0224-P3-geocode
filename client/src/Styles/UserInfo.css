@@ -6,13 +6,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .profileInfo {
   height: 45vh;
-  width: 80vw;
+  width: 90vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,24 +21,25 @@
 }
 
 .photoComponent {
-  width: 7rem;
-  height: 7rem;
+  width: 8rem;
+  height: 8rem;
   border-radius: 50%;
   border: solid 0.2rem var(--secondary-color);
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--secondary-color);
 }
 
 .profilePhoto {
-  width: 6.8rem;
-  height: 6.8rem;
+  width: 7.8rem;
+  height: 7.8rem;
   border-radius: 50%;
 }
 
 .noPhoto {
-  width: 6.5rem;
-  height: 6.5rem;
+  width: 7.7rem;
+  height: 7.7rem;
 }
 
 .UserContact {
@@ -61,6 +61,12 @@
   gap: 1rem;
 }
 
+.btn-component {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 @media (min-width: 680px) {
   .profileComponent {
     margin: 0;
@@ -77,6 +83,11 @@
   }
 
   .profilePhoto {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .noPhoto {
     width: 12rem;
     height: 12rem;
   }

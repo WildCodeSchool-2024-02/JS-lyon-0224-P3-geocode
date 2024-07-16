@@ -1,10 +1,10 @@
 // Import the repository modules responsible for handling data operations on the tables
 const UserRepository = require("./models/userRepository");
-const CarsRepository = require("./models/carsRepository");
-const StationsRepository = require("./models/stationsRepository");
+const CarRepository = require("./models/CarRepository");
+const StationRepository = require("./models/StationRepository");
 const SocketRepository = require("./models/SocketRepository");
 const UsermessageRepository = require("./models/UsermessageRepsitory");
-
+const RentRepository = require("./models/RentRepository")
 // Create an empty object to hold data repositories for different tables
 const tables = {};
 
@@ -14,10 +14,11 @@ const tables = {};
 
 // Register each repository as data access point for its table
 tables.user = new UserRepository();
-tables.cars = new CarsRepository();
-tables.stations = new StationsRepository();
+tables.car = new CarRepository();
+tables.station = new StationRepository();
 tables.socket = new SocketRepository();
 tables.usermessage = new UsermessageRepository();
+tables.rent = new RentRepository();
 
 /* ************************************************************************* */
 

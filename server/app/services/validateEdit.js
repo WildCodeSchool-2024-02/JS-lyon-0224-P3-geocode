@@ -17,14 +17,13 @@ const editSchema = Joi.object({
     .min(3)
     .max(55)
     .required(),
-  image: Joi.string(),
-  id: Joi.number().required(),
+  image: Joi.string().allow(""),
 });
 
 const validateEdit = (req, res, next) => {
   const { error } = editSchema.validate(req.body, { abortEarly: false });
 
-  if (error === true) {
+  if (error !== undefined) {
     res.status(400).json({ validationErrors: error.details });
   } else {
     next();

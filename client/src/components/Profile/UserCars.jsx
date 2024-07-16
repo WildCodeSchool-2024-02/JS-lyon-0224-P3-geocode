@@ -1,17 +1,24 @@
 import propTypes from "prop-types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "swiper/css";
 import "swiper/css/pagination";
 
-import "./UserCars.css";
+import "../../Styles/UserCars.css";
 
 import porsche from "../../assets/image/porsche.jpeg";
 
 export default function UserCars({ cars }) {
+  const navigate = useNavigate(); // Initialize useNavigate
+
   if (cars === null || cars.length === 0) {
     return <div className="no-cars container">No cars found.</div>;
   }
+
+  const handleEdit = (carId) => {
+    navigate(`/editCar/${carId}`);
+  };
 
   return (
     <div className="userCars">
@@ -36,6 +43,13 @@ export default function UserCars({ cars }) {
                   <p>
                     <span>Socket:</span> {car.socket}
                   </p>
+                  <button
+                    type="button"
+                    className="button"
+                    onClick={() => handleEdit(car.id)}
+                  >
+                    Edit
+                  </button>
                 </div>
               </SwiperSlide>
             ))}

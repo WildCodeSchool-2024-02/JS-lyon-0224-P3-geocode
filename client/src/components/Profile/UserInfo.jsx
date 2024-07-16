@@ -1,16 +1,28 @@
 import { Link } from "react-router-dom";
 import propTypes from "prop-types";
 import { FaRegUserCircle } from "react-icons/fa";
-import "./UserInfo.css";
+import { useUserContext } from "../../context/UserContext";
+import "../../Styles/UserInfo.css";
+import notify from "../../poptoastify/notify";
 
 export default function UserInfo({ user }) {
   const { firstname, lastname, email, city, image } = user;
+  const { signout } = useUserContext();
+
+  const handleSignout = async () => {
+    try {
+      await signout(true);
+      notify("See you soon !", "success");
+    } catch (error) {
+      console.error("Error during sign out", error);
+    }
+  };
 
   return (
     <div className="profileComponent">
       <div className="profileInfo container">
         <div className="photoComponent">
-          {image !== null ? (
+          {image !== "" && image !== null ? (
             <img src={image} alt="user profile" className="profilePhoto" />
           ) : (
             <FaRegUserCircle className="noPhoto" />
@@ -35,11 +47,16 @@ export default function UserInfo({ user }) {
             <p>{city}</p>
           </div>
         </div>
-        <Link to={`/profile/${user.id}/edit`}>
-          <button type="button" className="button">
-            Edit
+        <div className="btn-component">
+          <Link to={`/profile/${user.id}/edit`}>
+            <button type="button" className="button">
+              Edit
+            </button>
+          </Link>
+          <button type="button" className="deletebtn" onClick={handleSignout}>
+            Sign out
           </button>
-        </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,23 @@
+.edit-car {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+  gap: 2rem;
+}
+
+.edit-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 680px) {
+  .edit-car {
+    margin-top: 2rem;
+    gap: 0;
+  }
+}

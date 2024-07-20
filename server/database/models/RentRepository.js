@@ -32,6 +32,14 @@ class RentRepository extends AbstractRepository {
     );
     return { id: result.insertId, ...rent };
   }
+
+  async getRent(userId) {
+    const [result] = await this.database.query(
+      `SELECT * FROM rent WHERE user_id = ? ORDER BY end_time DESC LIMIT 1`,
+      [userId]
+    );
+    return result[0];
+  }
 }
 
 module.exports = RentRepository;

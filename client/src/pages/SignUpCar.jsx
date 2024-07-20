@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation, useNavigate, Form } from "react-router-dom";
 import CarInput from "../components/SignUp/CarInput";
 import handleSignUp from "../API/HandleSignUp";
+import notify from "../poptoastify/notify";
 import "../Styles/SignUpCars.css";
 
 function CarSignUp() {
@@ -66,7 +67,8 @@ function CarSignUp() {
       const result = await handleSignUp({ user: state.user, cars });
 
       if (result.success) {
-        navigate("/");
+        navigate("/signin");
+        notify("Account created, please sign in !", "success");
       } else {
         console.error("SignUp failed:", result.error);
       }

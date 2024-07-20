@@ -39,7 +39,6 @@ export default function EditCarPage() {
       navigate(`/profile`);
     } catch (error) {
       console.error("Error in handleSubmit:", error);
-      notify("Failed to update car", "error");
     }
   };
 

@@ -3,7 +3,7 @@ const Joi = require("joi");
 const addSchema = Joi.object({
   brand: Joi.string()
     .pattern(/^[a-zA-ZÀ-ÿ\s']+$/)
-    .min(1)
+    .min(2)
     .max(55)
     .required(),
   model: Joi.string()

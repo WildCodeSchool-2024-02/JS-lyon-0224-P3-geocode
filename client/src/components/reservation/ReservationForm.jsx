@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import handleRent from "../../API/HandleRent";
 import { loadUserData } from "../../API/HandleProfile";
+import handleCheckRent from "../../API/HandleCheckRent";
 import notify from "../../poptoastify/notify";
 
 function ReservationForm({ stationId, userId }) {
@@ -18,12 +19,15 @@ function ReservationForm({ stationId, userId }) {
     const fetchUserCars = async () => {
       try {
         const userData = await loadUserData();
-        setCars(userData.cars);
         if (userData.cars.length > 0) {
+          setCars(userData.cars);
           setSelectedCarId(userData.cars[0].id); // Set the first car as the default selected car
+        } else {
+          notify("No cars available for reservation.", "info");
         }
       } catch (error) {
         console.error("Failed to load user cars:", error);
+        notify("Failed to load user cars.", "error");
       }
     };
 
@@ -33,27 +37,50 @@ function ReservationForm({ stationId, userId }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const startTime = new Date(reservationTime);
-    const endTimeCalculated = new Date(startTime.getTime() + duration * 60000);
+    try {
+      const lastReservation = await handleCheckRent(userId);
+      if (lastReservation) {
+        const currentTime = new Date();
+        const lastReservationEndTime = new Date(lastReservation.end_time);
 
-    const reservationDetails = {
-      stationId,
-      userId,
-      carId: selectedCarId, // Use the selected carId
-      startTime: startTime.toISOString(),
-      endTime: endTimeCalculated.toISOString(),
-    };
+        if (currentTime < lastReservationEndTime) {
+          const formattedEndTime = lastReservationEndTime.toLocaleString();
+          notify(
+            `You already have an ongoing reservation! You can rent again after ${formattedEndTime}.`,
+            "error"
+          );
+          return;
+        }
+      }
 
-    const result = await handleRent(reservationDetails);
-    if (result.success) {
-      setTime(startTime);
-      setEndTime(endTimeCalculated);
-      notify("Reservation created!", "success");
-      setTimeout(() => {
-        navigate("/");
-      }, 5000);
-    } else {
-      console.error("Reservation failed:", result.error);
+      const startTime = new Date(reservationTime);
+      const endTimeCalculated = new Date(
+        startTime.getTime() + duration * 60000
+      );
+
+      const reservationDetails = {
+        stationId,
+        userId,
+        carId: selectedCarId,
+        startTime: startTime.toISOString(),
+        endTime: endTimeCalculated.toISOString(),
+      };
+
+      const result = await handleRent(reservationDetails);
+      if (result.success) {
+        setTime(startTime);
+        setEndTime(endTimeCalculated);
+        notify("Reservation created!", "success");
+        setTimeout(() => {
+          navigate("/");
+        }, 5000);
+      } else {
+        console.error("Reservation failed:", result.error);
+        notify("Reservation failed. Please try again.", "error");
+      }
+    } catch (error) {
+      console.error("Failed to create reservation:", error);
+      notify("Failed to create reservation. Please try again.", "error");
     }
   };
 

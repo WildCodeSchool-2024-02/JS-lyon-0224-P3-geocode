@@ -7,7 +7,11 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import item-related actions
-const { browse, rent } = require("../../../controllers/StationActions");
+const {
+  browse,
+  rent,
+  checkRent,
+} = require("../../../controllers/StationActions");
 
 const { verifyCookie } = require("../../../services/auth");
 
@@ -15,6 +19,8 @@ const { verifyCookie } = require("../../../services/auth");
 router.get("/", browse);
 
 router.post("/rent", verifyCookie, rent);
+
+router.get("/rent", checkRent);
 
 /* ************************************************************************* */
 

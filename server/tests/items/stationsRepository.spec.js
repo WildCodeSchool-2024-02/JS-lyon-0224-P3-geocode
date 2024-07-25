@@ -3,7 +3,7 @@ const { database, tables } = require("../config");
 
 // Import repository classes
 const AbstractRepository = require("../../database/models/AbstractRepository");
-const stationsRepository = require("../../database/models/stationsRepository");
+const stationsRepository = require("../../database/models/StationRepository");
 
 // Test suite for stationsRepository
 describe("stationsRepository", () => {

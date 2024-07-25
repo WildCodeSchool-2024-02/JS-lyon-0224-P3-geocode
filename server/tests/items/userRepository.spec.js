@@ -3,7 +3,7 @@ const { database, tables } = require("../config");
 
 // Import repository classes
 const AbstractRepository = require("../../database/models/AbstractRepository");
-const userRepository = require("../../database/models/userRepository");
+const userRepository = require("../../database/models/UserRepository");
 
 // Test suite for userRepository
 describe("userRepository", () => {
@@ -95,4 +95,3 @@ describe("userRepository", () => {
     expect(returned).toStrictEqual(rows[0]);
   });
 });
-

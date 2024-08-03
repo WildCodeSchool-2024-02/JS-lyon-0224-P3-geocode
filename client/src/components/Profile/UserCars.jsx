@@ -1,7 +1,7 @@
 import propTypes from "prop-types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -10,7 +10,7 @@ import "../../Styles/UserCars.css";
 import porsche from "../../assets/image/porsche.jpeg";
 
 export default function UserCars({ cars }) {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   if (cars === null || cars.length === 0) {
     return <div className="no-cars container">No cars found.</div>;

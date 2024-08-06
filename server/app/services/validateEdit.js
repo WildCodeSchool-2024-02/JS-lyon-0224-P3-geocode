@@ -11,7 +11,9 @@ const editSchema = Joi.object({
     .min(3)
     .max(55)
     .required(),
-  email: Joi.string().email().required(),
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .required(),
   city: Joi.string()
     .pattern(/^[a-zA-ZÀ-ÿ\s']+$/)
     .min(3)

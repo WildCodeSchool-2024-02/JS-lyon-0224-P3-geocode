@@ -58,14 +58,15 @@ export default function ProfilePage() {
         <div className="profile-component">
           <UserInfo user={user} />
           <UserCars cars={user.cars} />
-
-          <button
-            type="button"
-            onClick={() => setShowAddCarPopup(true)}
-            className="button add_button"
-          >
-            Add Car
-          </button>
+          <div className="button-container">
+            <button
+              type="button"
+              onClick={() => setShowAddCarPopup(true)}
+              className="add_button"
+            >
+              Add Car
+            </button>
+          </div>
 
           {showAddCarPopup && (
             <AddCarPopUp

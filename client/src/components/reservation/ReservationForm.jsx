@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Form } from "react-router-dom";
 import PropTypes from "prop-types";
 import handleRent from "../../API/HandleRent";
 import { loadUserData } from "../../API/HandleProfile";
 import handleCheckRent from "../../API/HandleCheckRent";
 import notify from "../../poptoastify/notify";
+import DateTimePicker from "./DateTimePicker";
 
 function ReservationForm({ stationId, userId }) {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ function ReservationForm({ stationId, userId }) {
         const userData = await loadUserData();
         if (userData.cars.length > 0) {
           setCars(userData.cars);
-          setSelectedCarId(userData.cars[0].id); // Set the first car as the default selected car
+          setSelectedCarId(userData.cars[0].id);
         } else {
           notify("No cars available for reservation.", "info");
         }
@@ -86,17 +87,11 @@ function ReservationForm({ stationId, userId }) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="reservation-form">
-        <label>
-          <p>Reservation Time:</p>
-          <input
-            className="reservation container"
-            type="datetime-local"
-            value={reservationTime}
-            onChange={(e) => setReservationTime(e.target.value)}
-            required
-          />
-        </label>
+      <Form onSubmit={handleSubmit} method="post" className="reservation-form">
+        <DateTimePicker
+          reservationTime={reservationTime}
+          setReservationTime={setReservationTime}
+        />
         <label>
           <p>Duration:</p>
           <select
@@ -137,7 +132,7 @@ function ReservationForm({ stationId, userId }) {
             Cancel
           </button>
         </div>
-      </form>
+      </Form>
       {time && endTime && (
         <div className="rent-confirmation">
           <h3>

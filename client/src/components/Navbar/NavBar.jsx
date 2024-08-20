@@ -37,7 +37,7 @@ function NavBar({ isLogoVisible }) {
           onKeyDown={handleKeyDown}
           role="button"
           tabIndex={0}
-          aria-expanded={isMenuClicked} // Corrected to use isMenuClicked
+          aria-expanded={isMenuClicked}
           aria-label="Toggle menu"
         >
           <div className={burgerClass} />

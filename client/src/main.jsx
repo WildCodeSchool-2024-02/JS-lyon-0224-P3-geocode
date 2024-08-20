@@ -9,7 +9,7 @@ import {
   loadCarData,
   handleUserEdit,
   handleCarEdit,
-} from "./API/handleEdit";
+} from "./API/HandleEdit";
 import loadStationData from "./API/HandleHompage";
 
 // page components
@@ -21,7 +21,6 @@ import ProfileAccess from "./pages/ProfileAccess";
 import SignUp from "./pages/SignUp";
 import CarSignUp from "./pages/SignUpCar";
 import EditCarPage from "./pages/EditCarPage";
-
 import SignInPage from "./pages/SignInPage";
 import EditProfile from "./pages/EditProfile";
 import ReservationPage from "./pages/ReservationPage";

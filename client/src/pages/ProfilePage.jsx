@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import UserInfo from "../components/Profile/UserInfo";
 import UserCars from "../components/Profile/UserCars";
-import AddCarPopUp from "../components/Profile/addCarPopUp";
 import { loadUserData } from "../API/HandleProfile";
 import addCar from "../API/HandleAddCar";
 
@@ -14,7 +13,6 @@ import addCar from "../API/HandleAddCar";
  */
 export default function ProfilePage() {
   const [user, setUser] = useState(null);
-  const [showAddCarPopup, setShowAddCarPopup] = useState(false);
   const navigate = useNavigate();
 
   /**
@@ -57,23 +55,7 @@ export default function ProfilePage() {
       {user !== null ? (
         <div className="profile-component">
           <UserInfo user={user} />
-          <UserCars cars={user.cars} />
-          <div className="button-container">
-            <button
-              type="button"
-              onClick={() => setShowAddCarPopup(true)}
-              className="add_button"
-            >
-              Add Car
-            </button>
-          </div>
-
-          {showAddCarPopup && (
-            <AddCarPopUp
-              onClose={() => setShowAddCarPopup(false)}
-              onSubmit={handleAddCar}
-            />
-          )}
+          <UserCars cars={user.cars} onAddCar={handleAddCar} />
         </div>
       ) : (
         "profile page is missing"

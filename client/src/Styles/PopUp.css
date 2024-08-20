@@ -1,53 +1,60 @@
 .popup {
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 50%;
   left: 50%;
+  width: 90vw;
+  /* Matches the width of .carInfo and .car-slide */
+  height: 43vh;
+  /* Matches the height of .carInfo and .car-slide */
   transform: translate(-50%, -50%);
-  background-color: var(--light-bg-color);
-  padding: 20px;
-  border: 2px solid #060606;
+  background-color: var(--primary-color);
   z-index: 1000;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
-}
-.add_button {
-  width: 6.5rem;
-  height: 2.5rem;
-  background: var(--main-gradient);
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  color: var(--primary-color);
-  font-family: var(--main-font);
-  font-weight: 700;
-  margin: 0.5rem;
-  margin-top: 1.4rem;
+  box-shadow: none;
 }
 
-.popUp-buttons {
+.addCarForm {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   align-items: center;
+  gap: 1rem;
 }
-.input-control .label-title {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  font-size: 1.2rem;
+
+.addCarForm label {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputAddCar {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  height: 2.5rem;
+  width: 60vw;
+  border: none;
+  font-family: var(--main-font);
+  font-weight: 700;
+  outline-color: var(--dark-bg-color);
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  background-color: var(--primary-color);
+  box-shadow: var(--shadow);
+  border-radius: 0.5rem;
 }
 
 @media (min-width: 680px) {
-  .add_button {
-    position: absolute;
-    bottom: 1px;
-    right: 50%;
-    transform: translateX(50%);
-    background-color: white;
-    border: 1px solid #ccc;
-    z-index: 1000;
-    margin-top: 0.5rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  .popup {
+    width: 45vw;
+    /* Matches the width of .carInfo and .car-slide in larger screens */
+    height: 70vh;
+    /* Matches the height of .carInfo and .car-slide in larger screens */
+  }
+
+  .inputAddCar {
+    width: 40vw;
+    height: 3rem;
   }
 }

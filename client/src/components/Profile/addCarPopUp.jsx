@@ -63,12 +63,12 @@ export default function AddCarPopUp({ onClose, onSubmit }) {
   };
 
   return (
-    <div className="popup">
-      <form onSubmit={handleSubmit}>
-        <label className="input-control">
+    <div className="popup container">
+      <form onSubmit={handleSubmit} className="addCarForm">
+        <label>
           <span className="label-title">Car Brand:</span>
           <input
-            className="input container"
+            className="inputAddCar"
             type="text"
             name="brand"
             placeholder="Car Brand"
@@ -77,10 +77,10 @@ export default function AddCarPopUp({ onClose, onSubmit }) {
           />
           {errors.brand && <span className="error">{errors.brand}</span>}
         </label>
-        <label className="input-control">
+        <label>
           <span className="label-title">Car Model:</span>
           <input
-            className="input container"
+            className="inputAddCar container"
             type="text"
             name="model"
             placeholder="Car Model"
@@ -89,10 +89,10 @@ export default function AddCarPopUp({ onClose, onSubmit }) {
           />
           {errors.model && <span className="error">{errors.model}</span>}
         </label>
-        <label className="input-control">
+        <label>
           <span className="label-title">Socket Type:</span>
           <select
-            className="input container"
+            className="inputAddCar container"
             name="socket"
             value={formData.socket}
             onChange={handleChange}
@@ -106,9 +106,9 @@ export default function AddCarPopUp({ onClose, onSubmit }) {
           </select>
           {errors.socket && <span className="error">{errors.socket}</span>}
         </label>
-        <div className="popUp-buttons">
+        <div className="btn-component">
           <button type="submit" className="button">
-            Submit
+            Add Car
           </button>
           {submissionStatus?.error && (
             <span className="error">{submissionStatus.error}</span>
@@ -116,7 +116,7 @@ export default function AddCarPopUp({ onClose, onSubmit }) {
           {submissionStatus?.success && (
             <span className="success">{submissionStatus.success}</span>
           )}
-          <button type="button" className="button" onClick={onClose}>
+          <button type="button" className="deletebtn" onClick={onClose}>
             Close
           </button>
         </div>

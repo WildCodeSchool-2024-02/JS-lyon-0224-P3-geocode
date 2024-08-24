@@ -1,6 +1,6 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getCarsByUserId, deleteCar } from "../API/handleDeleteCar";
+import { getCarsByUserId, deleteCar } from "../API/HandleDeleteCar";
 import notify from "../poptoastify/notify";
 import EditCarForm from "../components/Profile/EditCarForm";
 

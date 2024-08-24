@@ -1,4 +1,3 @@
-// HomePage.js
 import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import StationInfo from "../components/Homepage/StationInfo";

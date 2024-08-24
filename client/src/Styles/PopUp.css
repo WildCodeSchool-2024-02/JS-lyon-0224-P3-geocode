@@ -1,0 +1,60 @@
+.popup {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  width: 90vw;
+  /* Matches the width of .carInfo and .car-slide */
+  height: 43vh;
+  /* Matches the height of .carInfo and .car-slide */
+  transform: translate(-50%, -50%);
+  background-color: var(--primary-color);
+  z-index: 1000;
+  border-radius: 0.5rem;
+  box-shadow: none;
+}
+
+.addCarForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.addCarForm label {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputAddCar {
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  height: 2.5rem;
+  width: 60vw;
+  border: none;
+  font-family: var(--main-font);
+  font-weight: 700;
+  outline-color: var(--dark-bg-color);
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  background-color: var(--primary-color);
+  box-shadow: var(--shadow);
+  border-radius: 0.5rem;
+}
+
+@media (min-width: 680px) {
+  .popup {
+    width: 45vw;
+    /* Matches the width of .carInfo and .car-slide in larger screens */
+    height: 70vh;
+    /* Matches the height of .carInfo and .car-slide in larger screens */
+  }
+
+  .inputAddCar {
+    width: 40vw;
+    height: 3rem;
+  }
+}

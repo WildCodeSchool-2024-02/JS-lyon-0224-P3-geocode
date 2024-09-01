@@ -1,27 +1,28 @@
-const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
+const argon2 = require("argon2");
 
-// Options de hachage (voir documentation : https://github.com/ranisalt/node-argon2/wiki/Options)
-// Recommandations **minimales** de l'OWASP : https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 const hashingOptions = {
   type: argon2.argon2id,
   memoryCost: 19 * 2 ** 10 /* 19 Mio en kio (19 * 1024 kio) */,
   timeCost: 2,
-  parallelism: 1,
+  parallelism: 3,
 };
 
 const hashPassword = async (req, res, next) => {
   try {
-    // Extraction du mot de passe de la requête
+    // Extract the password from the request body
     const { password } = req.body;
 
-    // Hachage du mot de passe avec les options spécifiées
+    // Hash the password with the hashing options
     const hashedPassword = await argon2.hash(password, hashingOptions);
 
-    // Remplacement du mot de passe non haché par le mot de passe haché dans la requête
+    // Add the hashed password to the request body
     req.body.hashedPassword = hashedPassword;
-    // Suppression du mot de passe non haché de la requête par mesure de sécurité
+
+    // Delete the original password from the request body
     delete req.body.password;
+
+    // Call the next middleware function
     next();
   } catch (err) {
     next(err);

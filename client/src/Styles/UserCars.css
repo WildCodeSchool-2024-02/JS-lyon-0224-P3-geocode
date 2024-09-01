@@ -23,6 +23,10 @@ p {
   box-shadow: var(--shadow);
 }
 
+.buttonDiv {
+  display: flex;
+}
+
 .car-slide {
   height: 43vh;
   width: 90vw;

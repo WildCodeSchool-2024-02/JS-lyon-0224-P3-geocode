@@ -25,7 +25,7 @@ function SignUp() {
   return (
     <Form method="post" className="bodyform" id="form" onSubmit={handleSubmit}>
       <div className="inscription-component">
-        <h1>User Sign Up</h1>
+        <h1>Sign Up</h1>
         <label className="input-control">
           <input
             className="input container"
